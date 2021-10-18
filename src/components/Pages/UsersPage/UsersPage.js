@@ -1,15 +1,30 @@
-import styled from 'styled-components';
-import UserCard from './UserCard';
+import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+
+import UserCard from './UserCard'
+import { apiCallUsers } from '../../../redux/reducers/usersReducer'
+import { useEffect } from 'react'
+
 
 const UsersContainer = styled.div`
     width: 100%;
 `
-const arrUsers = [1, 2, 3]
 
 export const UsersPage = () => {
+    const state = useSelector(state => state.toolkit)
+    
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        dispatch(apiCallUsers())
+    }, [dispatch])
+
     return (
         <UsersContainer>
-            {arrUsers.map(item => <UserCard key={item}/>)}
+            {state.loading ? 
+                <h1>LOADING</h1> : 
+                state.posts.map((item) => <UserCard key={item.userId}/>)
+            }
         </UsersContainer>
     )
 }

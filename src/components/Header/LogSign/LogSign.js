@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { apiCallUsers } from '../../../redux/reducers/usersReducer'
 
 const LogInBtn = styled.button`
     border-radius: 0px;
@@ -27,9 +29,12 @@ const SignUpBtn = styled(LogInBtn)`
 `
 
 export const LogSign = () => {
+    const dispatch = useDispatch();
     return (
         <div>
-            <LogInBtn>Log In</LogInBtn>
+            <LogInBtn onClick={() => {
+                dispatch(apiCallUsers());
+            }}>Log In</LogInBtn>
             <SignUpBtn>Sign Up</SignUpBtn>
         </div>
     )

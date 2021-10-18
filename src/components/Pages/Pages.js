@@ -1,13 +1,12 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import LogInPage from './LogInPage';
-import PostsPage from './PostsPage';
-import SignUpPage from './SignUpPage';
-import UsersPage from './UsersPage';
+import LogInPage from './LogInPage'
+import PostsPage from './PostsPage'
+import SignUpPage from './SignUpPage'
+import UsersPage from './UsersPage'
 
 const PagesContainer = styled.div`
     width: 100%;
-    height: 100vh;
     background-color: #22256f;
     margin-top: 50px;
     padding-top: 5px;
@@ -28,14 +27,15 @@ const H2 = styled.h2`
     font-size: 30px;
 `
 
+
 export const Pages = () => {
     return (
         <PagesContainer>
             <H2>Page title</H2>
             <PagesWrapper>
-                {/* <UsersPage/> */}
+                <UsersPage />
                 {/* <PostsPage/> */}
-                <LogInPage/>
+                {/* <LogInPage/> */}
                 {/* <SignUpPage/> */}
             </PagesWrapper>
         </PagesContainer>
