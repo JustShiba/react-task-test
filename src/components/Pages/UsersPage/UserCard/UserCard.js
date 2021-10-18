@@ -11,7 +11,7 @@ export const UserCard = () => {
             <Information>
                 <Email href='#'>email@gmail.com</Email>
                 <Phone href='#'>+375 29 152 14 58</Phone>
-                <Likes><span>Total like:</span> 1550</Likes>
+                <Likes><span>Total likes:</span> 1000</Likes>
             </Information>
         </UserCardBox>
     )

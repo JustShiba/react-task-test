@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 const UsersContainer = styled.div`
     width: 100%;
 `
-const arrUsers = [1, 2, 3, 4, 5]
+const arrUsers = [1, 2, 3]
 
 export const UsersPage = () => {
     return (

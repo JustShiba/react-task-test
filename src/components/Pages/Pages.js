@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
+import LogInPage from './LogInPage';
+import PostsPage from './PostsPage';
+import SignUpPage from './SignUpPage';
 import UsersPage from './UsersPage';
 
 const PagesContainer = styled.div`
     width: 100%;
-    height: 1500px;
+    height: 100vh;
     background-color: #22256f;
     margin-top: 50px;
     padding-top: 5px;
@@ -22,6 +25,7 @@ const PagesWrapper = styled.div`
 const H2 = styled.h2`
     color: white;
     padding-bottom: 15px;
+    font-size: 30px;
 `
 
 export const Pages = () => {
@@ -29,7 +33,10 @@ export const Pages = () => {
         <PagesContainer>
             <H2>Page title</H2>
             <PagesWrapper>
-                <UsersPage/>
+                {/* <UsersPage/> */}
+                {/* <PostsPage/> */}
+                <LogInPage/>
+                {/* <SignUpPage/> */}
             </PagesWrapper>
         </PagesContainer>
     )
