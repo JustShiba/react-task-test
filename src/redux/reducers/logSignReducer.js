@@ -3,24 +3,31 @@ import { createSlice } from '@reduxjs/toolkit'
 export const logSignReducer = createSlice({
     name: 'logSignReducer',
     initialState: {
-        userInf: {
-            email: 'ilya@gmail.com',
+        userInfInp: {
+            email: 'newuser@gmail.com',
             password: '123456789'
         },
+        personalInf: {},
+        auth: false,
         loading: false,
     },
     reducers: {
         changeInpEmail: (state, action) => {
-            state.userInf.email = action.payload
+            state.userInfInp.email = action.payload
         },
         changeInpPass: (state, action) => {
-            state.userInf.password = action.payload
+            state.userInfInp.password = action.payload
         },
         logIn__START: (state) => {
             state.loading = true
         },
-        logSign__SUCCESS: (state) => {
+        signUp__START: (state) => {
+            state.loading = true
+        },
+        logSign__SUCCESS: (state, action) => {
             state.loading = false
+            state.auth = true
+            state.personalInf = action.payload
             alert('Congratulations!')
         },
         logSign__FAILURE: (state) => {
@@ -32,6 +39,7 @@ export const logSignReducer = createSlice({
 
 export const { 
     logIn__START, 
+    signUp__START,
     logSign__SUCCESS, 
     logSign__FAILURE,
     changeInpEmail,

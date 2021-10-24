@@ -12,11 +12,12 @@ const sendDataUser = ([user, type]) => {
 }
 
 export function* logInSaga() {
-    const state = yield select(state => state.authorization.userInf);
+    const state = yield select(state => state.authorization.userInfInp);
     try{
         const response = yield call(sendDataUser, [state, 'login'])
         if (response.status === 200) {
-            yield put(logSign__SUCCESS())
+            yield put(logSign__SUCCESS(response.data))
+            console.log(response);
         }
     }catch{
         yield put(logSign__FAILURE())
@@ -24,11 +25,11 @@ export function* logInSaga() {
 }
 
 export function* signUpSaga() {
-    const state = yield select(state => state.authorization.userInf);
+    const state = yield select(state => state.authorization.userInfInp);
     try{
-        const response = yield sendDataUser(state, 'signup');
+        const response = yield call(sendDataUser, [state, 'signup']);
         if (response.status === 200) {
-            yield put(logSign__SUCCESS())
+            yield put(logSign__SUCCESS(response.data))
         }
     }catch{
         yield put(logSign__FAILURE())

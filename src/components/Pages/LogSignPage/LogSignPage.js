@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { changeInpPass, changeInpEmail, logIn__START } from '../../../redux/reducers/logSignReducer'
+import { changeInpPass, changeInpEmail, logIn__START, signUp__START } from '../../../redux/reducers/logSignReducer'
 
 export const LogSignPage = () => {
 
     const dispatch = useDispatch();
-    const { email, password } = useSelector(state => state.authorization.userInf)
+    const { email, password } = useSelector(state => state.authorization.userInfInp)
 
     return(
         <LogSignBox>
@@ -30,7 +30,7 @@ export const LogSignPage = () => {
             }}>Log In</LogSignBtn>
             <LogSignBtn onClick={(e) => {
                 e.preventDefault()
-                // dispatch(logIn__START())
+                dispatch(signUp__START())
             }}>Sign Up</LogSignBtn>
         </LogSignBox>
     )
