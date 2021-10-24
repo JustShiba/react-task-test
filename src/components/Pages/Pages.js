@@ -1,9 +1,23 @@
 import styled from 'styled-components'
+import { Route } from 'react-router-dom';
 
-import LogInPage from './LogInPage'
+import LogSignPage from './LogSignPage'
 import PostsPage from './PostsPage'
-import SignUpPage from './SignUpPage'
 import UsersPage from './UsersPage'
+
+
+export const Pages = () => {
+    return (
+        <PagesContainer>
+            <H2>Page title</H2>
+            <PagesWrapper>
+                <Route path='/users' component={UsersPage}/>
+                <Route path='/posts' component={PostsPage}/>
+                <Route path='/loginSignup' component={LogSignPage}/>
+            </PagesWrapper>
+        </PagesContainer>
+    )
+}
 
 const PagesContainer = styled.div`
     width: 100%;
@@ -26,18 +40,3 @@ const H2 = styled.h2`
     padding-bottom: 15px;
     font-size: 30px;
 `
-
-
-export const Pages = () => {
-    return (
-        <PagesContainer>
-            <H2>Page title</H2>
-            <PagesWrapper>
-                <UsersPage />
-                {/* <PostsPage/> */}
-                {/* <LogInPage/> */}
-                {/* <SignUpPage/> */}
-            </PagesWrapper>
-        </PagesContainer>
-    )
-}

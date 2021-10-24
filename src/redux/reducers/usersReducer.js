@@ -3,20 +3,25 @@ import { createSlice } from '@reduxjs/toolkit'
 export const usersReducer = createSlice({
     name: 'usersSlice',
     initialState: {
-        posts: [],
+        users: [],
         loading: false,
-        error: false
     },
     reducers: {
         addUsers: (state, action) => {
             state.loading = true
-            state.posts.push(...action.payload)
+            state.users = action.payload
         },
         addUsersSuccess: (state, action) => {
             state.loading = false
         },
-        apiCallUsers: () => {}
+        apiCallUsers: () => {},
+        check: () => { console.log(`it's working~`);}
     }
 })
 
-export const { addUsers, apiCallUsers, addUsersSuccess } = usersReducer.actions
+export const { 
+    addUsers, 
+    apiCallUsers, 
+    addUsersSuccess, 
+    check 
+} = usersReducer.actions

@@ -1,6 +1,23 @@
-import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { apiCallUsers } from '../../../redux/reducers/usersReducer'
+
+
+export const LogSign = () => {
+    return (
+        <div>
+            <Link to='/loginSignup'>
+                <LogInBtn>
+                    Log In
+                </LogInBtn>
+            </Link>
+            <Link to='/loginSignup'> 
+                <SignUpBtn>
+                    Sign Up
+                </SignUpBtn>
+            </Link>
+        </div>
+    )
+}
 
 const LogInBtn = styled.button`
     border-radius: 0px;
@@ -27,15 +44,3 @@ const SignUpBtn = styled(LogInBtn)`
         background-color: #1b1f50;
     }
 `
-
-export const LogSign = () => {
-    const dispatch = useDispatch();
-    return (
-        <div>
-            <LogInBtn onClick={() => {
-                dispatch(apiCallUsers());
-            }}>Log In</LogInBtn>
-            <SignUpBtn>Sign Up</SignUpBtn>
-        </div>
-    )
-}

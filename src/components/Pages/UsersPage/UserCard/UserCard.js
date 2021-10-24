@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
-export const UserCard = () => {
+export const UserCard = ({info}) => {
+    const { email, nickname, phone, posts, userId } = info
     return (
-        <UserCardBox>
+        <UserCardBox id={userId} onClick={() => console.log('clicked on user')}> 
             <Information>
-                <H3>Name Lastname</H3>
-                <NickName>NickName</NickName>
-                <Posts>15 <span>posts</span></Posts>
+                <H3>{nickname || 'Your nickname'}</H3>
+                <Posts>{posts.length} <span>posts</span></Posts>
             </Information>
             <Information>
-                <Email href='#'>email@gmail.com</Email>
-                <Phone href='#'>+375 29 152 14 58</Phone>
-                <Likes><span>Total likes:</span> 1000</Likes>
+                <Email href='#'>{email}</Email>
+                <Phone href='#'>{phone || 'No phone number'}</Phone>
+                {/* <Likes><span>Total likes:</span> 1000</Likes> */}
             </Information>
         </UserCardBox>
     )
@@ -28,6 +28,7 @@ const UserCardBox = styled.div`
     justify-content: space-between;
     box-shadow: 0px 10px 13px -7px #a49bff;
     color: white;
+    cursor: pointer;
 `
 const H3 = styled.h3`
     margin-block-start: 0;
@@ -50,8 +51,6 @@ const Email = styled(Phone)`
     font-size: 12px;
     color: #bbb4ff;
 `
-
-const NickName = styled(Email)``
 
 const Information = styled.div``
 

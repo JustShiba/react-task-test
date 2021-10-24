@@ -11,7 +11,7 @@ const UsersContainer = styled.div`
 `
 
 export const UsersPage = () => {
-    const state = useSelector(state => state.toolkit)
+    const state = useSelector(state => state.users)
     
     const dispatch = useDispatch()
     
@@ -23,7 +23,7 @@ export const UsersPage = () => {
         <UsersContainer>
             {state.loading ? 
                 <h1>LOADING</h1> : 
-                state.posts.map((item) => <UserCard key={item.userId}/>)
+                state.users.map((item) => <UserCard key={item.userId} info={item}/>)
             }
         </UsersContainer>
     )

@@ -1,13 +1,16 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
+
 import { usersReducer } from './usersReducer'
-import initialUsersSaga from '../sagas/usersSagas';
+import { logSignReducer } from './logSignReducer'
+import allSagas from '../sagas'
 
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const rootReducer = combineReducers({
-    toolkit: usersReducer.reducer
+    users: usersReducer.reducer,
+    authorization: logSignReducer.reducer
 })
 
 const store = configureStore({
@@ -15,6 +18,6 @@ const store = configureStore({
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(sagaMiddleware),
 })
 
-sagaMiddleware.run(initialUsersSaga);
+sagaMiddleware.run(allSagas);
 
 export default store;
