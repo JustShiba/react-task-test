@@ -1,0 +1,69 @@
+import axios from 'axios'
+import { select, put, call } from 'redux-saga/effects'
+
+import {
+    getDataCurrentUser__SUCCESS,
+    getDataCurrentUser__FAILURE,
+    setNick__SUCCESS,
+    setPhone__SUCCESS,
+    setNick__FAILURE,
+    setPhone__FAILURE
+} from '../reducers/logSignReducer'
+import { config } from './auth/auth'
+
+
+const getInfUser = ([userId, method, inf]) => {
+    if (inf) {
+        return axios[method](`http://178.124.178.6:3000/users/${userId}`, inf, config)
+                    .then(resp => resp)
+                    .catch(error => console.log(error))
+    }
+    return axios[method](`http://178.124.178.6:3000/users/${userId}`, config)
+                .then(resp => resp)
+                .catch(error => console.log(error))
+}
+ 
+export function* currentUser() {
+    const id = yield select(state => state.authorization.personalInf.userId)
+
+    try {
+        const response =  yield call(getInfUser, [id, 'get'])
+        
+        if (response.status === 200) {
+            yield put(getDataCurrentUser__SUCCESS(response.data))
+        }
+    } catch {
+        yield put(getDataCurrentUser__FAILURE())
+    }
+}
+
+export function* changeNick() {
+    const id = yield select(state => state.authorization.personalInf.userId)
+    const nick = yield select(state => state.authorization.userInfInp.nickName)
+    
+    try {
+        const response =  yield call(getInfUser, [id, 'patch', {"nickname": nick}])
+        
+        if (response.status === 200) {
+            yield put(setNick__SUCCESS())
+        }
+    } catch {
+        yield put(setNick__FAILURE())
+    }
+}
+
+
+export function* changePhone() {
+    const id = yield select(state => state.authorization.personalInf.userId)
+    const phone = yield select(state => state.authorization.userInfInp.phone)
+
+    try {
+        const response =  yield call(getInfUser, [id, 'patch', {"phone": phone}])
+        
+        if (response.status === 200) {
+            yield put(setPhone__SUCCESS())
+        }
+    } catch {
+        yield put(setPhone__FAILURE())
+    }
+}

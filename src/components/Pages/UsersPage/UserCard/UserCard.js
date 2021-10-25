@@ -25,9 +25,13 @@ const UserCardBox = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    box-shadow: 0px 10px 13px -7px #a49bff;
+    box-shadow: 0px 8px 20px -10px #a49bff;
     color: white;
     cursor: pointer;
+    transition: 300ms;
+    &:hover{
+        box-shadow: 0px 10px 13px -7px #a49bff;
+    }
 `
 const H3 = styled.h3`
     margin-block-start: 0;

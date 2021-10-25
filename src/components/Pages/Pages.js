@@ -1,19 +1,32 @@
 import styled from 'styled-components'
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom'
 
 import LogSignPage from './LogSignPage'
 import PostsPage from './PostsPage'
 import UsersPage from './UsersPage'
+import NoLogIn from './NoLogIn'
+import { useSelector } from 'react-redux'
+import ProfilePage from './ProfilePage'
 
 
 export const Pages = () => {
+    const { auth } = useSelector(state => state.authorization)
     return (
         <PagesContainer>
-            <H2>Page title</H2>
             <PagesWrapper>
-                <Route path='/users' component={UsersPage}/>
-                <Route path='/posts' component={PostsPage}/>
                 <Route path='/loginSignup' component={LogSignPage}/>
+                {auth ? <>
+                    <Route path='/users' component={UsersPage}/>
+                    <Route path='/posts' component={PostsPage}/>
+                    <Route path='/Profile' component={ProfilePage}/>
+                </>:
+                <>
+                    <Route path='/' exact component={NoLogIn}/>
+                    <Route path='/users' component={NoLogIn}/>
+                    <Route path='/posts' component={NoLogIn}/>
+                    <Route path='/Profile' component={NoLogIn}/>
+                </>
+                }
             </PagesWrapper>
         </PagesContainer>
     )
@@ -35,8 +48,3 @@ const PagesWrapper = styled.div`
     justify-content: center;
 `
 
-const H2 = styled.h2`
-    color: white;
-    padding-bottom: 15px;
-    font-size: 30px;
-`

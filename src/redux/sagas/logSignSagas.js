@@ -2,7 +2,7 @@ import axios from 'axios'
 import { select, put, call } from 'redux-saga/effects'
 
 import { logSign__FAILURE, logSign__SUCCESS } from '../reducers/logSignReducer'
-import { config, user as admin } from './auth/auth'
+import { config, admin } from './auth/auth'
 
 
 const sendDataUser = ([user, type]) => {
@@ -13,13 +13,14 @@ const sendDataUser = ([user, type]) => {
 
 export function* logInSaga() {
     const state = yield select(state => state.authorization.userInfInp);
-    try{
+    try {
         const response = yield call(sendDataUser, [state, 'login'])
         if (response.status === 200) {
-            yield put(logSign__SUCCESS(response.data))
+            yield put(logSign__SUCCESS(response.data));
             console.log(response);
+            localStorage.setItem('userToken', response.data.token);
         }
-    }catch{
+    } catch {
         yield put(logSign__FAILURE())
     }
 }

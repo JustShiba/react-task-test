@@ -1,14 +1,18 @@
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import LogSign from './LogSign'
 import NavBar from './NavBar'
+import Profile from './Profile'
 
 export const Header = () => {
+    const { auth } = useSelector(state => state.authorization)
+
     return (
         <HeaderContainer>
             <HeaderWrapper>
                 <NavBar/>
-                <LogSign/>
+                {auth ? <Profile/> : <LogSign/>}
             </HeaderWrapper>
         </HeaderContainer>
     )

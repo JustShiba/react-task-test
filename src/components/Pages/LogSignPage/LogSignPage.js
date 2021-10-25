@@ -1,14 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+
+import Loader from '../../Loader'
 import { changeInpPass, changeInpEmail, logIn__START, signUp__START } from '../../../redux/reducers/logSignReducer'
 
 export const LogSignPage = () => {
 
     const dispatch = useDispatch();
     const { email, password } = useSelector(state => state.authorization.userInfInp)
-
+    const { loading } = useSelector(state => state.authorization)
     return(
         <LogSignBox>
+            {loading ? 
+            <Loader/>:
+            <>
+            <H2>Log in / Sign Up</H2>
             <Title>Email:</Title>
             <LogInInp 
                 value={email} 
@@ -32,6 +38,8 @@ export const LogSignPage = () => {
                 e.preventDefault()
                 dispatch(signUp__START())
             }}>Sign Up</LogSignBtn>
+            </>
+            }
         </LogSignBox>
     )
 }
@@ -83,4 +91,10 @@ const LogSignBtn = styled.button`
     &:hover {
         background-color: #4328b7;
     }
+`
+
+const H2 = styled.h2`
+    color: white;
+    padding-bottom: 15px;
+    font-size: 30px;
 `

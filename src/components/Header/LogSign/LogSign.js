@@ -37,7 +37,7 @@ const LogInBtn = styled.button`
     }
 `
 
-const SignUpBtn = styled(LogInBtn)`
+export const SignUpBtn = styled(LogInBtn)`
     background-color: #4328b7;  
     margin-left: 10px;
     &:hover {
