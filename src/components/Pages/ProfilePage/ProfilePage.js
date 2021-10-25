@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { 
     changeNickInp, 
     changePhoneInp,
+    deleteUser__START,
     getDataCurrentUser__START,
     setNick__START,
     setPhone__START
@@ -21,8 +22,6 @@ export const ProfilePage = () => {
     const phoneInp = state.userInfInp.phone
     const nickInp = state.userInfInp.nickName
     const loading = state.loading
-
-console.log(loading);
 
     useEffect(() => {
         dispatch(getDataCurrentUser__START())
@@ -45,25 +44,37 @@ console.log(loading);
                     dispatch(setNick__START())
                 }}>{nickname ? 'change nick' : 'add nick'}</Btn>
             </InpBox>
-            <Email>{email}</Email>              
-            <InpBox2>
-                <Phone>{phone}</Phone>
-                <CustomInp2 
-                    value={phoneInp} 
-                    onChange={(e) => {
-                        dispatch(changePhoneInp(e.target.value))
+            <Email>{email}</Email>  
+            <Box>            
+                <InpBox2>
+                    <Phone>{phone}</Phone>
+                    <CustomInp2 
+                        value={phoneInp} 
+                        onChange={(e) => {
+                            dispatch(changePhoneInp(e.target.value))
+                        }}
+                    /> 
+                    <Btn onClick={() => {
+                        dispatch(setPhone__START())
+                    }}>{phone ?  'change phone' :'add phone'}</Btn>
+                </InpBox2>
+                <DeleteBtn
+                    onClick={() => {
+                        dispatch(deleteUser__START())
                     }}
-                /> 
-                <Btn onClick={() => {
-                    dispatch(setPhone__START())
-                }}>{phone ? 'add phone' : 'change phone'}</Btn>
-            </InpBox2>
+                    >DELETE ACCAUNT</DeleteBtn>
+            </Box>
             </>}
             
             <Line/>
         </ProfilePageContainer>
     )
 }
+
+const Box = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
 
 const Btn = styled.button`
     background-color: #4328b7;
@@ -74,6 +85,10 @@ const Btn = styled.button`
     &:hover{
         background-color: #1b1f50
     }
+`
+
+const DeleteBtn = styled(Btn)`
+    background-color: crimson;
 `
 
 const InpBox = styled.div`

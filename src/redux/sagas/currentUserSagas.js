@@ -2,14 +2,21 @@ import axios from 'axios'
 import { select, put, call } from 'redux-saga/effects'
 
 import {
+    getDataCurrentUser__START,
     getDataCurrentUser__SUCCESS,
     getDataCurrentUser__FAILURE,
     setNick__SUCCESS,
     setPhone__SUCCESS,
     setNick__FAILURE,
-    setPhone__FAILURE
+    setPhone__FAILURE,
+    changeNickInp,
+    changePhoneInp,
+    deleteUser__SUCCESS,
+    deleteUser__FAILURE,
+    clearPersInf
 } from '../reducers/logSignReducer'
 import { config } from './auth/auth'
+
 
 
 const getInfUser = ([userId, method, inf]) => {
@@ -46,6 +53,8 @@ export function* changeNick() {
         
         if (response.status === 200) {
             yield put(setNick__SUCCESS())
+            yield put(getDataCurrentUser__START())
+            yield put(changeNickInp(''))
         }
     } catch {
         yield put(setNick__FAILURE())
@@ -62,8 +71,25 @@ export function* changePhone() {
         
         if (response.status === 200) {
             yield put(setPhone__SUCCESS())
+            yield put(getDataCurrentUser__START())
+            yield put(changePhoneInp(''))
         }
     } catch {
         yield put(setPhone__FAILURE())
     }
 }
+
+
+export function* deleteUser() {
+    const id = yield select(state => state.authorization.personalInf.userId)
+    try {
+        const response =  yield call(getInfUser, [id, 'delete'])
+        
+        if (response.status === 200) {
+            yield put(deleteUser__SUCCESS())
+            yield put(clearPersInf())
+        }
+    } catch {
+        yield put(deleteUser__FAILURE())
+    }
+} 

@@ -4,7 +4,7 @@ export const logSignReducer = createSlice({
     name: 'logSignReducer',
     initialState: {
         userInfInp: {
-            email: 'newuser@gmail.com',
+            email: 'user@gmail.com',
             password: '123456789',
             nickName: '',
             phone: ''
@@ -88,6 +88,25 @@ export const logSignReducer = createSlice({
         setPhone__FAILURE: (state) => {
             state.loading = false
             alert('Error: try again')
+        },
+
+        deleteUser__START: (state) => {
+            state.loading = true
+        },
+
+        deleteUser__SUCCESS: (state) => {
+            state.loading = false
+            state.auth = false
+            alert('Your acc was deleted')
+        },
+
+        deleteUser__FAILURE: (state) => {
+            state.loading = false
+            alert('Error: try again')
+        },
+
+        clearPersInf: (state) => {
+            state.personalInf = {}
         }
     }
 })
@@ -109,5 +128,9 @@ export const {
     setNick__SUCCESS,
     setPhone__SUCCESS,
     setNick__FAILURE,
-    setPhone__FAILURE
+    setPhone__FAILURE,
+    deleteUser__START,
+    deleteUser__SUCCESS,
+    deleteUser__FAILURE,
+    clearPersInf
 } = logSignReducer.actions
