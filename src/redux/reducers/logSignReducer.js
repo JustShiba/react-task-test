@@ -42,16 +42,16 @@ export const logSignReducer = createSlice({
             alert('Error: try again')
         },
 
-        getDataCurrentUser__START: (state) => {
+        getDataCurrentPersone__START: (state) => {
             state.loading = true
         },
 
-        getDataCurrentUser__SUCCESS: (state, action) => {
+        getDataCurrentPersone__SUCCESS: (state, action) => {
             state.loading = false
             state.personalInf = action.payload
         },
 
-        getDataCurrentUser__FAILURE: (state) => {
+        getDataCurrentPersone__FAILURE: (state) => {
             state.loading = false
             alert('Error: try again')
         },
@@ -118,9 +118,9 @@ export const {
     logSign__FAILURE,
     changeInpEmail,
     changeInpPass,
-    getDataCurrentUser__START,
-    getDataCurrentUser__SUCCESS,
-    getDataCurrentUser__FAILURE,
+    getDataCurrentPersone__START,
+    getDataCurrentPersone__SUCCESS,
+    getDataCurrentPersone__FAILURE,
     changeNickInp,
     changePhoneInp,
     setNick__START,

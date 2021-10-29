@@ -5,7 +5,8 @@ export const usersReducer = createSlice({
     initialState: {
         users: [],
         currentUserId: '',
-        currentUser: {},
+        currentUserInf: {},
+        otherUser: true,
         loading: false,
     },
     reducers: {
@@ -23,6 +24,16 @@ export const usersReducer = createSlice({
         selectUserId: (state, action) => {
             state.currentUserId = action.payload
         },
+
+        getDataCurrentUser__SUCCESS: (state, action) => {
+            state.currentUserInf = action.payload
+            state.otherUser = true
+        },
+
+        currentUserIsNotAuth: (state, action) => {
+            state.otherUser = false
+        },
+
     }
 })
 
@@ -30,5 +41,7 @@ export const {
     addUsers, 
     apiCallUsers, 
     addUsersSuccess, 
-    selectUserId
+    selectUserId,
+    getDataCurrentUser__SUCCESS,
+    currentUserIsNotAuth
 } = usersReducer.actions

@@ -6,12 +6,21 @@ import {
     changeNickInp, 
     changePhoneInp,
     deleteUser__START,
-    getDataCurrentUser__START,
+    getDataCurrentPersone__START,
     setNick__START,
     setPhone__START
 } from '../../../redux/reducers/logSignReducer'
 import Loader from '../../Loader'
 import { PostsPage } from '../PostsPage/PostsPage';
+
+
+/**
+ * Добавить проверку при клике на юзера и отправлять авторизованного
+ * пользователя по пути профиля
+ * Другого же пользователя(не авторизованного) отправлять по новому пути
+ * Простым языком добавить разные пути (path)
+*/
+
 
 
 export const ProfilePage = () => {
@@ -25,7 +34,7 @@ export const ProfilePage = () => {
     const loading = state.loading
 
     useEffect(() => {
-        dispatch(getDataCurrentUser__START())
+        dispatch(getDataCurrentPersone__START())
     }, [dispatch])
 
     return(

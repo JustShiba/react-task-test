@@ -2,9 +2,9 @@ import axios from 'axios'
 import { select, put, call } from 'redux-saga/effects'
 
 import {
-    getDataCurrentUser__START,
-    getDataCurrentUser__SUCCESS,
-    getDataCurrentUser__FAILURE,
+    getDataCurrentPersone__START,
+    getDataCurrentPersone__SUCCESS,
+    getDataCurrentPersone__FAILURE,
     setNick__SUCCESS,
     setPhone__SUCCESS,
     setNick__FAILURE,
@@ -15,6 +15,7 @@ import {
     deleteUser__FAILURE,
     clearPersInf
 } from '../reducers/logSignReducer'
+import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from '../reducers/usersReducer'
 import { config } from './auth/auth'
 
 
@@ -32,20 +33,29 @@ const getInfUser = ([userId, method, inf]) => {
 export function* currentUser() {
     const userPersonalId = yield select(state => state.authorization.personalInf.userId)
     const userCurrentId = yield select(state => state.users.currentUserId)
-    console.log(userCurrentId);
-    if(userPersonalId === userCurrentId) console.log(`${userPersonalId} === ${userCurrentId}`)
-    else console.log(`${userPersonalId} !== ${userCurrentId}`)
 
-    // try {
-    //     const response =  yield call(getInfUser, [userPersonalId, 'get'])
-
-        
-    //     if (response.status === 200) {
-    //         yield put(getDataCurrentUser__SUCCESS(response.data))
-    //     }
-    // } catch {
-    //     yield put(getDataCurrentUser__FAILURE())
-    // }
+    if (userPersonalId === userCurrentId) {
+        try {
+            const response =  yield call(getInfUser, [userPersonalId, 'get'])
+            
+            if (response.status === 200) {
+                yield put(getDataCurrentPersone__SUCCESS(response.data))
+                yield put(currentUserIsNotAuth())
+            }
+        } catch {
+            yield put(getDataCurrentPersone__FAILURE())
+        }
+    } else {
+        try {
+            const response =  yield call(getInfUser, [userCurrentId, 'get'])
+            
+            if (response.status === 200) {
+                yield put(getDataCurrentUser__SUCCESS(response.data))
+            }
+        } catch {
+            yield put(getDataCurrentPersone__FAILURE())
+        }
+    }
 }
 
 export function* changeNick() {
@@ -57,7 +67,7 @@ export function* changeNick() {
         
         if (response.status === 200) {
             yield put(setNick__SUCCESS())
-            yield put(getDataCurrentUser__START())
+            yield put(getDataCurrentPersone__START())
             yield put(changeNickInp(''))
         }
     } catch {
@@ -75,7 +85,7 @@ export function* changePhone() {
         
         if (response.status === 200) {
             yield put(setPhone__SUCCESS())
-            yield put(getDataCurrentUser__START())
+            yield put(getDataCurrentPersone__START())
             yield put(changePhoneInp(''))
         }
     } catch {
