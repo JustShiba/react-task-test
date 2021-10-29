@@ -21,7 +21,9 @@ export const UsersPage = () => {
             <H2>All Users</H2>
             {state.loading ? 
                 <Loader/> : 
-                state.users.map((item) => <UserCard key={item.userId} info={item}/>)
+                state.users.map((item) => <UserCard 
+                                            key={item.userId} 
+                                            info={item}/>)
             }
         </UsersContainer>
     )

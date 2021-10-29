@@ -18,7 +18,6 @@ import {
 import { config } from './auth/auth'
 
 
-
 const getInfUser = ([userId, method, inf]) => {
     if (inf) {
         return axios[method](`http://178.124.178.6:3000/users/${userId}`, inf, config)
@@ -31,17 +30,22 @@ const getInfUser = ([userId, method, inf]) => {
 }
  
 export function* currentUser() {
-    const id = yield select(state => state.authorization.personalInf.userId)
+    const userPersonalId = yield select(state => state.authorization.personalInf.userId)
+    const userCurrentId = yield select(state => state.users.currentUserId)
+    console.log(userCurrentId);
+    if(userPersonalId === userCurrentId) console.log(`${userPersonalId} === ${userCurrentId}`)
+    else console.log(`${userPersonalId} !== ${userCurrentId}`)
 
-    try {
-        const response =  yield call(getInfUser, [id, 'get'])
+    // try {
+    //     const response =  yield call(getInfUser, [userPersonalId, 'get'])
+
         
-        if (response.status === 200) {
-            yield put(getDataCurrentUser__SUCCESS(response.data))
-        }
-    } catch {
-        yield put(getDataCurrentUser__FAILURE())
-    }
+    //     if (response.status === 200) {
+    //         yield put(getDataCurrentUser__SUCCESS(response.data))
+    //     }
+    // } catch {
+    //     yield put(getDataCurrentUser__FAILURE())
+    // }
 }
 
 export function* changeNick() {

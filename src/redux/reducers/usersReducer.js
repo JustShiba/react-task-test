@@ -4,6 +4,8 @@ export const usersReducer = createSlice({
     name: 'usersSlice',
     initialState: {
         users: [],
+        currentUserId: '',
+        currentUser: {},
         loading: false,
     },
     reducers: {
@@ -11,11 +13,16 @@ export const usersReducer = createSlice({
             state.loading = true
             state.users = action.payload
         },
+
         addUsersSuccess: (state, action) => {
             state.loading = false
         },
+
         apiCallUsers: () => {},
-        check: () => { console.log(`it's working~`);}
+
+        selectUserId: (state, action) => {
+            state.currentUserId = action.payload
+        },
     }
 })
 
@@ -23,5 +30,5 @@ export const {
     addUsers, 
     apiCallUsers, 
     addUsersSuccess, 
-    check 
+    selectUserId
 } = usersReducer.actions

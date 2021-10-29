@@ -1,9 +1,16 @@
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+
+import { selectUserId } from '../../../../redux/reducers/usersReducer'
 
 export const UserCard = ({info}) => {
     const { email, nickname, phone, posts, userId } = info
+    
+    const dispatch = useDispatch()
+
+
     return (
-        <UserCardBox id={userId} onClick={() => console.log(`clicked on user ${userId}`)}> 
+        <UserCardBox id={userId} onClick={() => dispatch(selectUserId(userId))}> 
             <Information>
                 <H3>{nickname || 'Your nickname'}</H3>
                 <Posts>{posts.length} <span>posts</span></Posts>

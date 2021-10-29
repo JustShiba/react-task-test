@@ -1,6 +1,6 @@
 import { takeEvery, all } from 'redux-saga/effects'
 
-import { apiCallUsers } from '../reducers/usersReducer'
+import { apiCallUsers, selectUserId } from '../reducers/usersReducer'
 import { 
     deleteUser__START,
     logIn__START, 
@@ -23,5 +23,7 @@ export default function* allSagas() {
         yield takeEvery(setNick__START, changeNick),
         yield takeEvery(setPhone__START, changePhone),
         yield takeEvery(deleteUser__START, deleteUser),
+        yield takeEvery(selectUserId, currentUser),
+
     ])
 }

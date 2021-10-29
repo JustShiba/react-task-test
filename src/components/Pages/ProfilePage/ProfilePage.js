@@ -11,6 +11,7 @@ import {
     setPhone__START
 } from '../../../redux/reducers/logSignReducer'
 import Loader from '../../Loader'
+import { PostsPage } from '../PostsPage/PostsPage';
 
 
 export const ProfilePage = () => {
@@ -65,8 +66,8 @@ export const ProfilePage = () => {
                     >DELETE ACCAUNT</DeleteBtn>
             </Box>
             </>}
-            
             <Line/>
+            <PostsPage/>
         </ProfilePageContainer>
     )
 }
