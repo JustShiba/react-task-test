@@ -1,9 +1,13 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { selectUserId } from '../../../../redux/reducers/usersReducer'
 
+
 export const UserCard = ({info}) => {
+    const personalUserId = useSelector(state => state.authorization.personalInf.userId)
+
     const { email, nickname, phone, posts, userId } = info
     
     const dispatch = useDispatch()
@@ -19,11 +23,20 @@ export const UserCard = ({info}) => {
                 <Email href='#'>{email}</Email>
                 <Phone href='#'>{phone || 'No phone number'}</Phone>
             </Information>
+            <NewLink to={(userId === personalUserId) ? `/profile` : `/user/${userId}`}/>
         </UserCardBox>
     )
 }
 
+const NewLink = styled(Link)`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: -15px 0 0 -15px;
+`
+
 const UserCardBox = styled.div`
+    position: relative;
     width: 100%;
     height: 100px;
     padding: 15px 15px;

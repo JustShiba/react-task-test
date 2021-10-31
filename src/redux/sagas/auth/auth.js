@@ -1,4 +1,8 @@
-const token = localStorage.getItem('userToken')
+const getToken = () => {
+    return localStorage.getItem('userToken')
+}
+
+const token = getToken();
 
 export const admin = {
     'email': 'ilya@gmail.com', 

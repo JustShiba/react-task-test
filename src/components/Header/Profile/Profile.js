@@ -6,7 +6,7 @@ import { SignUpBtn as ProfileBtn } from '../LogSign/LogSign'
 export const Profile = () => {
 
     return(
-        <Link to='/Profile'> 
+        <Link to='/profile'> 
             <ProfileBtn>Profile</ProfileBtn>
         </Link>
     )

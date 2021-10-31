@@ -2,7 +2,7 @@ import axios from 'axios'
 import { select, put, call } from 'redux-saga/effects'
 
 import { logSign__FAILURE, logSign__SUCCESS } from '../reducers/logSignReducer'
-import { config, admin } from './auth/auth'
+import { config } from './auth/auth'
 
 
 const sendDataUser = ([user, type]) => {

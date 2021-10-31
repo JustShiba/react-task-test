@@ -15,17 +15,15 @@ export const UsersPage = () => {
     useEffect(() => {
         dispatch(apiCallUsers())
     }, [dispatch])
-    
+
     return (
-        <UsersContainer>
-            <H2>All Users</H2>
-            {state.loading ? 
-                <Loader/> : 
-                state.users.map((item) => <UserCard 
-                                            key={item.userId} 
-                                            info={item}/>)
-            }
-        </UsersContainer>
+            <UsersContainer>
+                <H2>All Users</H2>
+                {state.loading ? 
+                    <Loader/> : 
+                    state.users.map((item) => <UserCard key={item.userId} info={item}/>)
+                }
+            </UsersContainer>
     )
 }
 

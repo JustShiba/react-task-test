@@ -34,7 +34,7 @@ export function* currentUser() {
     const userPersonalId = yield select(state => state.authorization.personalInf.userId)
     const userCurrentId = yield select(state => state.users.currentUserId)
 
-    if (userPersonalId === userCurrentId) {
+    if (!userCurrentId || userPersonalId === userCurrentId) {
         try {
             const response =  yield call(getInfUser, [userPersonalId, 'get'])
             

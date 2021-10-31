@@ -10,21 +10,24 @@ import ProfilePage from './ProfilePage'
 
 
 export const Pages = () => {
-    const { auth } = useSelector(state => state.authorization)
+    const { auth } = useSelector(state => state.authorization);
     return (
         <PagesContainer>
             <PagesWrapper>
                 <Route path='/loginSignup' component={LogSignPage}/>
-                {auth ? <>
+                {auth ? 
+                <>
                     <Route path='/users' component={UsersPage}/>
                     <Route path='/posts' component={PostsPage}/>
-                    <Route path='/Profile' component={ProfilePage}/>
+                    <Route path='/profile' component={ProfilePage}/>
+                    <Route path='/user/' component={ProfilePage}/>
                 </>:
                 <>
                     <Route path='/' exact component={NoLogIn}/>
                     <Route path='/users' component={NoLogIn}/>
                     <Route path='/posts' component={NoLogIn}/>
-                    <Route path='/Profile' component={NoLogIn}/>
+                    <Route path='/profile' component={NoLogIn}/>
+                    <Route path='/user/' component={NoLogIn}/>
                 </>
                 }
             </PagesWrapper>
