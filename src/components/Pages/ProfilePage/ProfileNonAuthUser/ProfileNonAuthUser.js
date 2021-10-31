@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getDataCurrentPersone__START } from '../../../../redux/reducers/logSignReducer'
+import { getDataCurrentUser__START } from '../../../../redux/reducers/usersReducer'
 import Loader from '../../../Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
 import {
@@ -17,29 +17,29 @@ import {
 
 
 export const ProfileNonAuthUser = () => {
-    
     const dispatch = useDispatch()
-    const state = useSelector(state => state)
-    const stateAuth = state.authorization
-    const { email, nickname, phone } = stateAuth.personalInf
-    const loading = stateAuth.loading
-
+    
     useEffect(() => {
-        dispatch(getDataCurrentPersone__START())
+        dispatch(getDataCurrentUser__START())
     }, [dispatch])
+    
+    const state = useSelector(state => state.users)
+    const loading = state.loading
 
-    return(
+    return (
         <ProfilePageContainer>
             {loading?
             <Loader/>:
             <>
                 <InpBox>
-                    <H2>{nickname ? `Personal information: ${nickname}`  : 'Your Nickname: '}</H2>
+                    <H2>{state.currentUserInf.nickname ? 
+                        `Personal information: ${state.currentUserInf.nickname}`: 
+                        `Noname`}</H2>
                 </InpBox>
-                <Email>{email}</Email>  
+                <Email>{state.currentUserInf.email}</Email>  
                 <Box>            
                     <InpBox2>
-                        <Phone>{phone}</Phone>
+                        <Phone>{state.currentUserInf.phone ? state.currentUserInf.phone : `No phone number`}</Phone>
                     </InpBox2>
                 </Box>
             </>}

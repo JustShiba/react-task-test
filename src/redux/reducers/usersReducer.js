@@ -21,13 +21,8 @@ export const usersReducer = createSlice({
 
         apiCallUsers: () => {},
 
-        selectUserId__START: (state, action) => {
-            state.loading = true
+        selectUserId: (state, action) => {
             state.currentUserId = action.payload
-        },
-
-        selectUserId__FINISH: (state) => {
-            state.loading = false
         },
 
         getDataCurrentUser__START: (state, action) => {
@@ -41,7 +36,7 @@ export const usersReducer = createSlice({
             state.otherUser = true
         },
 
-        currentUserIsNotAuth: (state, action) => {
+        currentUserIsNotAuth: (state) => {
             state.otherUser = false
         },
 
@@ -52,8 +47,7 @@ export const {
     addUsers, 
     apiCallUsers, 
     addUsersSuccess, 
-    selectUserId__START,
-    selectUserId__FINISH,
+    selectUserId,
     getDataCurrentUser__START,
     getDataCurrentUser__SUCCESS,
     currentUserIsNotAuth,

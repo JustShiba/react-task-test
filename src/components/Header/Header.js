@@ -27,6 +27,7 @@ const HeaderContainer = styled.header`
     justify-content: center;
     position: fixed;
     margin-top: -50px;
+    z-index: 1;
 `
 
 const HeaderWrapper = styled.div`

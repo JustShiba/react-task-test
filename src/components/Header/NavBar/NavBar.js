@@ -10,7 +10,7 @@ export const NavBar = () => {
         <List>
             {arr.map(item => (
             <Links key={v4()}>
-                <Link to={item}>{item.toUpperCase()}</Link>
+                <Link to={`../${item}`}>{item.toUpperCase()}</Link>
             </Links>))}
         </List>
     )

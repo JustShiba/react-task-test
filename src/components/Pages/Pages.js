@@ -20,14 +20,14 @@ export const Pages = () => {
                     <Route path='/users' component={UsersPage}/>
                     <Route path='/posts' component={PostsPage}/>
                     <Route path='/profile' component={ProfilePage}/>
-                    <Route path='/user/' component={ProfilePage}/>
+                    <Route path='/user' component={ProfilePage}/>
                 </>:
                 <>
                     <Route path='/' exact component={NoLogIn}/>
                     <Route path='/users' component={NoLogIn}/>
                     <Route path='/posts' component={NoLogIn}/>
                     <Route path='/profile' component={NoLogIn}/>
-                    <Route path='/user/' component={NoLogIn}/>
+                    <Route path='/user' component={NoLogIn}/>
                 </>
                 }
             </PagesWrapper>

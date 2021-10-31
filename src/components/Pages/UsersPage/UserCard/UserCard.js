@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { selectUserId__START } from '../../../../redux/reducers/usersReducer'
+import { selectUserId } from '../../../../redux/reducers/usersReducer'
 
 
 export const UserCard = ({ info }) => {
@@ -14,9 +14,9 @@ export const UserCard = ({ info }) => {
 
 
     return (
-        <UserCardBox id={userId} onClick={() => dispatch(selectUserId__START(userId))}> 
+        <UserCardBox id={userId} onClick={() => dispatch(selectUserId(userId))}> 
             <Information>
-                <H3>{nickname || 'Your nickname'}</H3>
+                <H3>{nickname || 'Noname'}</H3>
                 <Posts>{posts.length} <span>posts</span></Posts>
             </Information>
             <Information>
