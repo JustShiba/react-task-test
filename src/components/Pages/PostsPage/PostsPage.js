@@ -1,14 +1,23 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { getAllPosts__START } from '../../../redux/reducers/postsReducer'
 import PostCard from './PostCard'
 
 
-const PostsFromApi = [1, 2, 3]
-
 export const PostsPage = () => {
+    const dispatch = useDispatch()
+
+    const state = useSelector(state => state.posts)
+
+    useEffect(() => {
+        dispatch(getAllPosts__START())
+    }, [dispatch])
+
     return(
         <PostsContainer>
             <H2>All posts</H2>
-            {PostsFromApi.map(post => (<PostCard key={post}/>))}
+            {state.allPosts.map(post => (<PostCard key={post.postId} inf={post}/>))}
         </PostsContainer>
     )
 }

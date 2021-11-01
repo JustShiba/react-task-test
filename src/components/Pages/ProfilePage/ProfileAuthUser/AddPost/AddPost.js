@@ -2,23 +2,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Btn } from '../../styled'
 
-import { changePostTitle, changePostBody } from '../../../../../redux/reducers/postsReducer'
+import { 
+    changePostTitle, 
+    changePostBody, 
+    createPost__START 
+} from '../../../../../redux/reducers/postsReducer'
+import Loader from '../../../../Loader'
 
 export const AddPost = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.posts)
 
     const { title, body } = state.postCreateInp
-    // console.log(title, body)
+    const { loading } = state
     return (
         <Box>
-            <AddPostTitleInp value={title} onChange={(e) => {
-                dispatch(changePostTitle(e.target.value))
-            }}/>
-            <AddPostInp rows='5' value={body} onChange={(e) => {
-                dispatch(changePostBody(e.target.value))
-            }}/>
-            <AddPostBtn>Add post!</AddPostBtn>
+            <H2>Create post</H2>
+            {loading ? 
+                <Loader/>:
+                <InputBox>
+                    <AddPostTitleInp value={title} onChange={(e) => {
+                        dispatch(changePostTitle(e.target.value))
+                    }}/>
+                    <AddPostInp rows='5' value={body} onChange={(e) => {
+                        dispatch(changePostBody(e.target.value))
+                    }}/>
+                </InputBox>
+            }
+            <AddPostBtn onClick={() => dispatch(createPost__START())}>Add post!</AddPostBtn>
         </Box>
     )
 }
@@ -28,19 +39,26 @@ const Box = styled.div`
     flex-direction: column;
 `
 
+const InputBox = styled(Box)``
+
+const H2 = styled.h2`
+    color: white;
+    padding-bottom: 15px;
+    font-size: 30px;
+`
+
 const AddPostTitleInp = styled.input`
-    font: 28px system-ui;
-    font-weight: 600;
+    font: 25px system-ui;
+    font-weight: 500;
     color: white;
     background-color: inherit;
-    margin-top: 25px;
     margin-bottom: 10px;
 `
 
 const AddPostInp = styled.textarea`
     max-width: 851px;
     font: 18px system-ui;
-    font-weight: 500;
+    font-weight: 400;
     color: white;
     background-color: inherit;
 `
