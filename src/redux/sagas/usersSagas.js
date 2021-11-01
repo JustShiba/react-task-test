@@ -1,18 +1,13 @@
-import axios from 'axios';
-import { put } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 
 import { addUsers, addUsersSuccess } from '../reducers/usersReducer'
-import { config } from './auth/auth'
+import apiCall from '../../services'
 
-
-const getresponseUsers = () => {
-    return axios.get('http://178.124.178.6:3000/users', config)
-                .then(resp => resp.data);
-}
 
 export function* loadUsers() {
-    const response = yield getresponseUsers();
-    yield put(addUsers(response))
+    const response = yield call(apiCall, ['get', 'users'])
+    const { data } = response
+    yield put(addUsers(data))
     yield put(addUsersSuccess())
 }
 

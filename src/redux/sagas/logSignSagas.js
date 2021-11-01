@@ -1,24 +1,17 @@
-import axios from 'axios'
 import { select, put, call } from 'redux-saga/effects'
 
 import { logSign__FAILURE, logSign__SUCCESS } from '../reducers/logSignReducer'
-import { config } from './auth/auth'
+import apiCall from '../../services'
 
-
-const sendDataUser = ([user, type]) => {
-    return axios.post(`http://178.124.178.6:3000/${type}`, user, config)
-                .then(resp => resp)
-                .catch(error => console.log(error))
-}
 
 export function* logInSaga() {
-    const state = yield select(state => state.authorization.userInfInp);
+    const state = yield select(state => state.authorization.userInfInp)
     try {
-        const response = yield call(sendDataUser, [state, 'login'])
+        const response = yield call(apiCall, ['post', 'login', state])
         if (response.status === 200) {
-            yield put(logSign__SUCCESS(response.data));
-            console.log(response);
-            localStorage.setItem('userToken', response.data.token);
+            yield put(logSign__SUCCESS(response.data))
+            console.log(response)
+            localStorage.setItem('userToken', response.data.token)
         }
     } catch {
         yield put(logSign__FAILURE())
@@ -26,9 +19,9 @@ export function* logInSaga() {
 }
 
 export function* signUpSaga() {
-    const state = yield select(state => state.authorization.userInfInp);
+    const state = yield select(state => state.authorization.userInfInp)
     try{
-        const response = yield call(sendDataUser, [state, 'signup']);
+        const response = yield call(apiCall, ['post', 'signup', state])
         if (response.status === 200) {
             yield put(logSign__SUCCESS(response.data))
         }

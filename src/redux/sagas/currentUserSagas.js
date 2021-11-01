@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { select, put, call } from 'redux-saga/effects'
 
 import {
@@ -16,27 +15,16 @@ import {
     clearPersInf
 } from '../reducers/logSignReducer'
 import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from '../reducers/usersReducer'
-import { config } from './auth/auth'
+import apiCall from '../../services'
 
 
-const getInfUser = ([userId, method, inf]) => {
-    if (inf) {
-        return axios[method](`http://178.124.178.6:3000/users/${userId}`, inf, config)
-                    .then(resp => resp)
-                    .catch(error => console.log(error))
-    }
-    return axios[method](`http://178.124.178.6:3000/users/${userId}`, config)
-                .then(resp => resp)
-                .catch(error => console.log(error))
-}
- 
 export function* currentUser() {
     const userPersonalId = yield select(state => state.authorization.personalInf.userId)
     const userCurrentId = yield select(state => state.users.currentUserId)
 
     if (!userCurrentId || userPersonalId === userCurrentId) {
         try {
-            const response =  yield call(getInfUser, [userPersonalId, 'get'])
+            const response =  yield call(apiCall, ['get', `users/${userPersonalId}`])
             
             if (response.status === 200) {
                 yield put(getDataCurrentPersone__SUCCESS(response.data))
@@ -47,7 +35,7 @@ export function* currentUser() {
         }
     } else {
         try {
-            const response =  yield call(getInfUser, [userCurrentId, 'get'])
+            const response =  yield call(apiCall, ['get', `users/${userCurrentId}`])
             
             if (response.status === 200) {
                 yield put(getDataCurrentUser__SUCCESS(response.data))
@@ -63,7 +51,7 @@ export function* changeNick() {
     const nick = yield select(state => state.authorization.userInfInp.nickName)
     
     try {
-        const response =  yield call(getInfUser, [id, 'patch', {"nickname": nick}])
+        const response =  yield call(apiCall, ['patch', `users/${id}`, {"nickname": nick}])
         
         if (response.status === 200) {
             yield put(setNick__SUCCESS())
@@ -81,7 +69,7 @@ export function* changePhone() {
     const phone = yield select(state => state.authorization.userInfInp.phone)
 
     try {
-        const response =  yield call(getInfUser, [id, 'patch', {"phone": phone}])
+        const response =  yield call(apiCall, ['patch', `users/${id}`, {"phone": phone}])
         
         if (response.status === 200) {
             yield put(setPhone__SUCCESS())
@@ -97,7 +85,7 @@ export function* changePhone() {
 export function* deleteUser() {
     const id = yield select(state => state.authorization.personalInf.userId)
     try {
-        const response =  yield call(getInfUser, [id, 'delete'])
+        const response =  yield call(apiCall, ['delete', `users/${id}`])
         
         if (response.status === 200) {
             yield put(deleteUser__SUCCESS())

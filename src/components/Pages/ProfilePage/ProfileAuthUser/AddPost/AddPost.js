@@ -9,7 +9,7 @@ export const AddPost = () => {
     const state = useSelector(state => state.posts)
 
     const { title, body } = state.postCreateInp
-    console.log(title, body)
+    // console.log(title, body)
     return (
         <Box>
             <AddPostTitleInp value={title} onChange={(e) => {
