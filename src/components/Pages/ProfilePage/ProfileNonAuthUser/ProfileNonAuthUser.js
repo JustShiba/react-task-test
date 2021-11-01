@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getDataCurrentUser__START } from '../../../../redux/reducers/usersReducer'
 import Loader from '../../../Loader'
-import { PostsPage } from '../../PostsPage/PostsPage'
+import PostsPage from '../../PostsPage'
 import {
     Box,
     InpBox,

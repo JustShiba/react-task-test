@@ -4,13 +4,15 @@ import createSagaMiddleware from 'redux-saga'
 import { usersReducer } from './usersReducer'
 import { logSignReducer } from './logSignReducer'
 import allSagas from '../sagas'
+import { postsReducer } from './postsReducer'
 
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const rootReducer = combineReducers({
     users: usersReducer.reducer,
-    authorization: logSignReducer.reducer
+    authorization: logSignReducer.reducer,
+    posts: postsReducer.reducer
 })
 
 const store = configureStore({

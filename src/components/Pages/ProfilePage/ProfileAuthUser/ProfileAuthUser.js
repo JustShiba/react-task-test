@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+
 import { 
     changeNickInp, 
     changePhoneInp,
@@ -9,7 +10,9 @@ import {
     setPhone__START
 } from '../../../../redux/reducers/logSignReducer'
 import Loader from '../../../Loader'
-import { PostsPage } from '../../PostsPage/PostsPage'
+import PostsPage from '../../PostsPage'
+import AddPost from './AddPost'
+
 import {
     Box,
     Btn,
@@ -78,6 +81,8 @@ export const ProfileAuthUser = () => {
                         >DELETE ACCAUNT</DeleteBtn>
                 </Box>
             </>}
+            <Line/>
+            <AddPost/>
             <Line/>
             <PostsPage/>
         </ProfilePageContainer>

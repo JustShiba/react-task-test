@@ -5,7 +5,7 @@ import store from '../../redux/reducers'
 import Header from '../Header'
 import Pages from '../Pages'
 
-function App() {
+export function App() {
   return (
     <Provider store={store}>
       <Router>
@@ -16,4 +16,3 @@ function App() {
   );
 }
 
-export default App;

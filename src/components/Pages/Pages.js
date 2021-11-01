@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import { Route } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import LogSignPage from './LogSignPage'
 import PostsPage from './PostsPage'
 import UsersPage from './UsersPage'
 import NoLogIn from './NoLogIn'
-import { useSelector } from 'react-redux'
 import ProfilePage from './ProfilePage'
 
 
