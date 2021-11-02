@@ -8,6 +8,7 @@ export const postsReducer = createSlice({
             body: ''
         },
         allPosts: [],
+        selectedId: '',
         loading: false
     },
     reducers: {
@@ -25,6 +26,8 @@ export const postsReducer = createSlice({
 
         createPost__SUCCESS: (state) => {
             state.loading = false
+            state.postCreateInp.title = ''
+            state.postCreateInp.body = ''
             alert('Hip, hip, horray!')
         },
 
@@ -33,7 +36,7 @@ export const postsReducer = createSlice({
             alert('Error')
         },
 
-        getAllPosts__START: (state, action) => {
+        getAllPosts__START: (state) => {
             state.loading = true
         },
 
@@ -42,11 +45,27 @@ export const postsReducer = createSlice({
             state.allPosts = action.payload
         },
 
-        getAllPosts__FAILURE: (state, action) => {
+        getAllPosts__FAILURE: (state) => {
             state.loading = false
             alert('Error')
         },
+        
+        deletePost__START: (state, action) => {
+            state.loading = true
+            state.selectedId = action.payload
+        },
 
+        deletePost__SUCCESS: (state) => {
+            state.loading = false
+            state.selectedId = ''
+            alert('SUCCESS')
+        },
+
+        deletePost__FAILURE: (state) => {
+            state.loading = false
+            state.selectedId = ''
+            alert('FAILURE')
+        },
     }
 })
 
@@ -59,4 +78,7 @@ export const {
     getAllPosts__START,
     getAllPosts__SUCCESS,
     getAllPosts__FAILURE,
+    deletePost__START,
+    deletePost__SUCCESS,
+    deletePost__FAILURE,
 } = postsReducer.actions

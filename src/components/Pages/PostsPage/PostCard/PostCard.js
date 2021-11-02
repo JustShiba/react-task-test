@@ -1,23 +1,35 @@
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+
+import { deletePost__START } from '../../../../redux/reducers/postsReducer'
 
 
 export const PostCard = ({inf}) => {
-    const { body, title, likes } = inf
+    const { body, title, likes, postId } = inf
+    
+    const dispatch = useDispatch()
+
     return(
-        <PostCardBox>
-            <Information>
-                <InformationUser>
-                    <H3>Name Lastname</H3>
-                </InformationUser>
-                <InformationLikes>
-                    {likes} Likes
-                </InformationLikes>
-            </Information>
-            <InformstionPost>
-                <H4>{title}</H4>
-                <p>{body}</p>
-            </InformstionPost>
-        </PostCardBox>
+        <PostContainer>
+            <Comments>Comments</Comments>
+            <PostCardBox>
+                <Information>
+                    <InformationUser>
+                        <H3>Name Lastname</H3>
+                    </InformationUser>
+                    <InformationLikes>
+                        {likes} Likes
+                    </InformationLikes>
+                </Information>
+                <InformstionPost>
+                    <H4>{title}</H4>
+                    <p>{body}</p>
+                </InformstionPost>
+            </PostCardBox>
+            <DeletePost onClick={() => {
+                dispatch(deletePost__START(postId))
+            }}>Delete</DeletePost>
+        </PostContainer>
     )
 }
 
@@ -28,6 +40,39 @@ const H3 = styled.h3`
     font-size: 28px;
     font-weight: 600;
     letter-spacing: 2.5px;
+`
+
+const PostContainer = styled.div`
+    display: flex;
+
+`
+const Comments = styled.div`
+    background-color: lightcoral;
+    padding: 35px 10px 0px 10px;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+    writing-mode: vertical-lr; 
+    transition: 200ms;
+    &:hover{
+        padding: 35px 15px 0px 15px;
+    }
+`
+
+const DeletePost = styled.div`
+    background-color: mediumvioletred;
+    padding: 50px 10px 0px 10px;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+    writing-mode: vertical-lr; 
+    cursor: pointer;
+    transition: 200ms;
+    &:hover{
+        padding: 50px 15px 0px 15px;
+    }
 `
 
 const PostCardBox = styled.div`

@@ -22,9 +22,7 @@ export function* signUpSaga() {
     const state = yield select(state => state.authorization.userInfInp)
     try{
         const response = yield call(apiCall, ['post', 'signup', state])
-        if (response.status === 200) {
-            yield put(logSign__SUCCESS(response.data))
-        }
+        if (response.status === 200) yield put(logSign__SUCCESS(response.data))
     }catch{
         yield put(logSign__FAILURE())
     }

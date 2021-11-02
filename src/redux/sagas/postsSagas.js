@@ -4,25 +4,12 @@ import {
     createPost__SUCCESS, 
     createPost__FAILURE, 
     getAllPosts__SUCCESS,
-    getAllPosts__FAILURE, 
+    getAllPosts__FAILURE,
+    deletePost__FAILURE,
+    deletePost__SUCCESS,
+    getAllPosts__START, 
 } from "../reducers/postsReducer";
 
-
-export function* createPost() {
-    const { postCreateInp } = yield select(state => state.posts)
-    
-    if (postCreateInp.title && postCreateInp.body) {
-        try {
-            const response = yield call(apiCall, ['post', 'posts', postCreateInp])
-
-            if (response.status === 200) yield put(createPost__SUCCESS())
-        } catch {
-            yield put(createPost__FAILURE())
-        }
-    } else {
-        yield put(createPost__FAILURE())
-    }
-}
 
 export function* getAllPosts() {
     try {
@@ -31,5 +18,41 @@ export function* getAllPosts() {
         
     } catch {
         yield put(getAllPosts__FAILURE())
+    }
+}
+
+export function* createPost() {
+    const { postCreateInp } = yield select(state => state.posts)
+    
+    if (postCreateInp.title && postCreateInp.body) {
+        try {
+            const response = yield call(apiCall, ['post', 'posts', postCreateInp])
+
+            if (response.status === 200) {
+                yield put(createPost__SUCCESS())
+                yield put(getAllPosts__START())
+            }
+        } catch {
+            yield put(createPost__FAILURE())
+            console.log('1');
+        }
+    } else {
+        yield put(createPost__FAILURE())
+        console.log('2');
+    }
+}
+
+export function* deletePost() {
+    const { selectedId } = yield select(state => state.posts)
+
+    try {
+        const response = yield call(apiCall, ['delete', `posts/${selectedId}`])
+
+        if (response.status === 200) {
+            yield put(deletePost__SUCCESS())
+            getAllPosts()
+        }
+    } catch {
+        yield put(deletePost__FAILURE())
     }
 }

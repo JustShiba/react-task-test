@@ -17,8 +17,8 @@ import {
     deleteUser, 
 } from './currentUserSagas'
 import { getDataCurrentPersone__START } from '../reducers/logSignReducer'
-import { createPost__START, getAllPosts__START } from '../reducers/postsReducer'
-import { createPost, getAllPosts } from './postsSagas'
+import { createPost__START, deletePost__START, getAllPosts__START } from '../reducers/postsReducer'
+import { createPost, deletePost, getAllPosts } from './postsSagas'
 
 
 export default function* allSagas() {
@@ -33,5 +33,6 @@ export default function* allSagas() {
         yield takeEvery(getDataCurrentUser__START, currentUser),
         yield takeEvery(createPost__START, createPost),
         yield takeLatest(getAllPosts__START, getAllPosts),
+        yield takeLatest(deletePost__START, deletePost),
     ])
 }

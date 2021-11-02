@@ -1,9 +1,12 @@
 import axios from 'axios'
 
-import { config } from './auth/auth'
-
-
 export const apiCall = ([ method, path, inf ]) => {
+    const config = {
+        'headers': {
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+        }
+    }
+
     if (inf) {
         return axios[method](`http://178.124.178.6:3000/${path}`, inf, config)
                     .then(resp => resp)
