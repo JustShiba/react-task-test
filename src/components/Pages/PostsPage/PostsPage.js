@@ -5,10 +5,11 @@ import { getAllPosts__START } from '../../../redux/reducers/postsReducer'
 import PostCard from './PostCard'
 
 
-export const PostsPage = () => {
+export const PostsPage = ({ allPostsOrNot }) => {
     const dispatch = useDispatch()
 
-    const state = useSelector(state => state.posts)
+    const state = useSelector(state => state)
+    const statePosts = state.posts 
 
     useEffect(() => {
         dispatch(getAllPosts__START())
@@ -16,8 +17,15 @@ export const PostsPage = () => {
 
     return(
         <PostsContainer>
-            <H2>All posts</H2>
-            {state.allPosts.map(post => (<PostCard key={post.postId} inf={post}/>))}
+            <H2>Posts</H2>
+            {statePosts.allPosts
+                .filter((item) => {
+                    return allPostsOrNot || 
+                        ((!state.users.otherUser && 
+                            item.userId === state.authorization.personalInf.userId) || 
+                        item.userId === state.users.currentUserId)
+                })
+                .map(post => (<PostCard key={post.postId} inf={post}/>))}
         </PostsContainer>
     )
 }

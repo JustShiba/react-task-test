@@ -18,7 +18,7 @@ export const Pages = () => {
                 {auth ? 
                 <>
                     <Route path='/users' component={UsersPage}/>
-                    <Route path='/posts' component={PostsPage}/>
+                    <Route path='/posts' component={() => <PostsPage allPostsOrNot={true}/>}/>
                     <Route path='/profile' component={ProfilePage}/>
                     <Route path='/user' component={ProfilePage}/>
                 </>:
