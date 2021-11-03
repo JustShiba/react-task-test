@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
@@ -6,43 +7,69 @@ import Loader from '../../../Loader'
 
 
 export const PostCard = ({ inf, name, loading, auth }) => {
-    
     const { likes, body, postId, title } = inf
+
+    const [change, setChange] = useState(false)
+    let [titlePost, setTitle] = useState(title)
+    let [bodyPost, setBody] = useState(body)
+    
     
     const dispatch = useDispatch()
 
     return(
-        <PostContainer>
-            {loading ? 
-                <Loader/> : 
-                <>
-                    <Comments>Comments</Comments>
-                    <PostCardBox>
-                        <Information>
-                            <InformationUser>
-                                <H3>{name ? name : 'Noname'}</H3>
-                            </InformationUser>
-                            <InformationLikes>
-                                {likes} Likes
-                            </InformationLikes>
-                        </Information>
-                        <InformstionPost>
-                            <H4>{title}</H4>
-                            <p>{body}</p>
-                        </InformstionPost>
-                    </PostCardBox>
-                    {auth ? 
-                        <DeletePost onClick={() => {
-                            dispatch(deletePost__START(postId))
-                        }}>Delete</DeletePost>:
-                        null
-                    }
-                </>
-            }
-            
-        </PostContainer>
+        <Box>
+            {auth ? 
+                <ChangePost onClick={() => setChange(!change)}>Change Post</ChangePost> : 
+                null}
+            <PostContainer>
+                {loading ? 
+                    <Loader/> : 
+                    <>
+                        <Comments>Comments</Comments>
+                        <PostCardBox>
+                            <Information>
+                                <InformationUser>
+                                    <H3>{name ? name : 'Noname'}</H3>
+                                </InformationUser>
+                                <InformationLikes>
+                                    {likes} Likes
+                                </InformationLikes>
+                            </Information>
+                            <InformstionPost>
+                                {change ? 
+                                    <ChangeInp 
+                                        value={titlePost} 
+                                        onChange={(e) => setTitle(titlePost = e.target.value)}/> : 
+                                    <H4>{title}</H4>
+                                }
+                                {change ? 
+                                    <ChangeInp 
+                                        value={bodyPost} 
+                                        onChange={(e) => setBody(bodyPost = e.target.value)}/> : 
+                                    <p>{body}</p>
+                                }
+                            </InformstionPost>
+                        </PostCardBox>
+                        {auth ? 
+                            <DeletePost onClick={() => {
+                                dispatch(deletePost__START(postId))
+                            }}>Delete</DeletePost> :
+                            null
+                        }
+                    </>
+                }
+            </PostContainer>
+        </Box>
     )
 }
+
+const ChangeInp = styled.input`
+    font: 20px system-ui;
+    font-weight: 500;
+    color: white;
+    background-color: inherit;
+    margin-bottom: 10px;
+`
 
 const H3 = styled.h3`
     margin-block-start: 0;
@@ -53,10 +80,30 @@ const H3 = styled.h3`
     letter-spacing: 2.5px;
 `
 
+const ChangePost = styled.div`
+    background-color: cadetblue;
+    align-text: center;
+    text-align: center;
+    padding: 4px 0px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+    transition: 200ms;
+    cursor: pointer;
+    &:hover{
+        padding: 6px 0px;
+
+    }
+`
+
 const PostContainer = styled.div`
     display: flex;
-
 `
+
+const Box = styled(PostContainer)`
+    flex-direction: column;
+`
+
 const Comments = styled.div`
     background-color: lightcoral;
     padding: 35px 10px 0px 10px;
