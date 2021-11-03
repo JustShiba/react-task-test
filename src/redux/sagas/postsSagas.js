@@ -8,20 +8,32 @@ import {
     getAllPosts__FAILURE,
     deletePost__FAILURE,
     deletePost__SUCCESS,
-    getAllPosts__START,
     getCurrentUserPosts__START,
     getCurrentUserPosts__SUCCESS,
     getCurrentUserPosts__FAILURE, 
 } from "../reducers/postsReducer";
 
 
+const addNames = (users, postUserId) => {
+    const length = users.length
+    for (let i = 0; i < length; i++){
+        if(users[i].userId === postUserId){
+            return users[i].nickname
+        }
+    }
+}
+
 export function* getAllPosts() {
     try {
         const response = yield call(apiCall, [`get`, `posts`])
         
-        if (response.status === 200) 
+        if (response.status === 200) {
+            const { users } = yield select(state => state.users)
+            for (let i = 0; i < response.data.length; i++) {
+                response.data[i].nickname = addNames(users, response.data[i].userId)
+            }
             yield put(getAllPosts__SUCCESS(response.data))
-
+        } 
     } catch {
         yield put(getAllPosts__FAILURE())
     }

@@ -5,7 +5,7 @@ import { deletePost__START } from '../../../../redux/reducers/postsReducer'
 import Loader from '../../../Loader'
 
 
-export const PostCard = ({ inf, name, loading }) => {
+export const PostCard = ({ inf, name, loading, auth }) => {
     
     const { likes, body, postId, title } = inf
     
@@ -31,10 +31,12 @@ export const PostCard = ({ inf, name, loading }) => {
                             <p>{body}</p>
                         </InformstionPost>
                     </PostCardBox>
-                    
-                    <DeletePost onClick={() => {
-                        dispatch(deletePost__START(postId))
-                    }}>Delete</DeletePost>
+                    {auth ? 
+                        <DeletePost onClick={() => {
+                            dispatch(deletePost__START(postId))
+                        }}>Delete</DeletePost>:
+                        null
+                    }
                 </>
             }
             

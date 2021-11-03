@@ -24,7 +24,7 @@ export function* currentUser() {
 
     if (!userCurrentId || userPersonalId === userCurrentId) {
         try {
-            const response =  yield call(apiCall, ['get', `users/${userPersonalId}`])
+            const response =  yield call(apiCall, [`get`, `users/${userPersonalId}`])
             
             if (response.status === 200) {
                 yield put(currentUserIsNotAuth())
@@ -35,7 +35,7 @@ export function* currentUser() {
         }
     } else {
         try {
-            const response =  yield call(apiCall, ['get', `users/${userCurrentId}`])
+            const response =  yield call(apiCall, [`get`, `users/${userCurrentId}`])
             
             if (response.status === 200) {
                 yield put(getDataCurrentUser__SUCCESS(response.data))
@@ -51,7 +51,7 @@ export function* changeNick() {
     const nick = yield select(state => state.authorization.userInfInp.nickName)
     
     try {
-        const response =  yield call(apiCall, ['patch', `users/${id}`, {"nickname": nick}])
+        const response =  yield call(apiCall, [`patch`, `users/${id}`, {"nickname": nick}])
         
         if (response.status === 200) {
             yield put(setNick__SUCCESS())
@@ -69,7 +69,7 @@ export function* changePhone() {
     const phone = yield select(state => state.authorization.userInfInp.phone)
 
     try {
-        const response =  yield call(apiCall, ['patch', `users/${id}`, {"phone": phone}])
+        const response =  yield call(apiCall, [`patch`, `users/${id}`, {"phone": phone}])
         
         if (response.status === 200) {
             yield put(setPhone__SUCCESS())
@@ -85,7 +85,7 @@ export function* changePhone() {
 export function* deleteUser() {
     const id = yield select(state => state.authorization.personalInf.userId)
     try {
-        const response =  yield call(apiCall, ['delete', `users/${id}`])
+        const response =  yield call(apiCall, [`delete`, `users/${id}`])
         
         if (response.status === 200) {
             yield put(deleteUser__SUCCESS())

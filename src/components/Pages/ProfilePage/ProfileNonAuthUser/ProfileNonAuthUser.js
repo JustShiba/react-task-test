@@ -25,26 +25,27 @@ export const ProfileNonAuthUser = () => {
     
     const state = useSelector(state => state.users)
     const loading = state.loading
+    const otherUser = state.otherUser    
+    const { nickname, phone, email, posts } = state.currentUserInf 
 
     return (
         <ProfilePageContainer>
             {loading?
-            <Loader/>:
-            <>
-                <InpBox>
-                    <H2>{state.currentUserInf.nickname ? 
-                        `Personal information: ${state.currentUserInf.nickname}`: 
-                        `Noname`}</H2>
-                </InpBox>
-                <Email>{state.currentUserInf.email}</Email>  
-                <Box>            
-                    <InpBox2>
-                        <Phone>{state.currentUserInf.phone ? state.currentUserInf.phone : `No phone number`}</Phone>
-                    </InpBox2>
-                </Box>
-            </>}
+                <Loader/>:
+                <>
+                    <InpBox>
+                        <H2>{nickname ? `Personal information: ${nickname}`: `Noname`}</H2>
+                    </InpBox>
+                    <Email>{email}</Email>  
+                    <Box>            
+                        <InpBox2>
+                            <Phone>{phone ? phone : `No phone number`}</Phone>
+                        </InpBox2>
+                    </Box>
+                </>
+            }
             <Line/>
-            <PostsPage/>
+            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname} auth={otherUser}/>}
         </ProfilePageContainer>
     )
 }

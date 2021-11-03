@@ -34,7 +34,6 @@ export const logSignReducer = createSlice({
             state.loading = false
             state.auth = true
             state.personalInf = action.payload
-            alert('Congratulations!')
         },
 
         logSign__FAILURE: (state) => {

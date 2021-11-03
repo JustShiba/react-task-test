@@ -25,9 +25,8 @@ export const usersReducer = createSlice({
             state.currentUserId = action.payload
         },
 
-        getDataCurrentUser__START: (state, action) => {
+        getDataCurrentUser__START: (state) => {
             state.loading = true
-            state.currentUserInf = action.payload
         },
 
         getDataCurrentUser__SUCCESS: (state, action) => {

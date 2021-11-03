@@ -3,14 +3,17 @@ import { Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import LogSignPage from './LogSignPage'
-import PostsPage from './PostsPage'
+import { AllPostsPage } from './PostsPage/AllPostsPage'
 import UsersPage from './UsersPage'
 import NoLogIn from './NoLogIn'
 import ProfilePage from './ProfilePage'
 
 
 export const Pages = () => {
-    const { auth } = useSelector(state => state.authorization);
+    const state = useSelector(state => state);
+
+    const { auth } = state.authorization
+
     return (
         <PagesContainer>
             <PagesWrapper>
@@ -18,7 +21,7 @@ export const Pages = () => {
                 {auth ? 
                 <>
                     <Route path='/users' component={UsersPage}/>
-                    <Route path='/posts' component={() => <PostsPage allPostsOrNot={true}/>}/>
+                    <Route path='/posts' exact component={AllPostsPage}/>
                     <Route path='/profile' component={ProfilePage}/>
                     <Route path='/user' component={ProfilePage}/>
                 </>:
