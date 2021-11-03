@@ -1,5 +1,6 @@
 import { call, put, select } from "@redux-saga/core/effects";
 import apiCall from "../../services";
+import { updateUserPosts } from "../reducers/logSignReducer";
 import { 
     createPost__SUCCESS, 
     createPost__FAILURE, 
@@ -7,15 +8,20 @@ import {
     getAllPosts__FAILURE,
     deletePost__FAILURE,
     deletePost__SUCCESS,
-    getAllPosts__START, 
+    getAllPosts__START,
+    getCurrentUserPosts__START,
+    getCurrentUserPosts__SUCCESS,
+    getCurrentUserPosts__FAILURE, 
 } from "../reducers/postsReducer";
 
 
 export function* getAllPosts() {
     try {
-        const response = yield call(apiCall, ['get', 'posts'])
-        if (response.status === 200) yield put(getAllPosts__SUCCESS(response.data))
+        const response = yield call(apiCall, [`get`, `posts`])
         
+        if (response.status === 200) 
+            yield put(getAllPosts__SUCCESS(response.data))
+
     } catch {
         yield put(getAllPosts__FAILURE())
     }
@@ -26,19 +32,29 @@ export function* createPost() {
     
     if (postCreateInp.title && postCreateInp.body) {
         try {
-            const response = yield call(apiCall, ['post', 'posts', postCreateInp])
+            const response = yield call(apiCall, [`post`, `posts`, postCreateInp])
 
             if (response.status === 200) {
                 yield put(createPost__SUCCESS())
-                yield put(getAllPosts__START())
+                yield put(getCurrentUserPosts__START())
             }
         } catch {
             yield put(createPost__FAILURE())
-            console.log('1');
         }
     } else {
         yield put(createPost__FAILURE())
-        console.log('2');
+    }
+}
+
+export function* getCurrentUserPosts() {
+    try {
+        const response = yield call(apiCall, [`get`, `posts/current`])
+        if (response.status === 200) {
+            yield put(getCurrentUserPosts__SUCCESS())
+            yield put(updateUserPosts(response.data))
+        }
+    } catch {
+        yield put(getCurrentUserPosts__FAILURE())
     }
 }
 
@@ -46,11 +62,11 @@ export function* deletePost() {
     const { selectedId } = yield select(state => state.posts)
 
     try {
-        const response = yield call(apiCall, ['delete', `posts/${selectedId}`])
+        const response = yield call(apiCall, [`delete`, `posts/${selectedId}`])
 
         if (response.status === 200) {
             yield put(deletePost__SUCCESS())
-            getAllPosts()
+            yield put(getCurrentUserPosts__START())
         }
     } catch {
         yield put(deletePost__FAILURE())

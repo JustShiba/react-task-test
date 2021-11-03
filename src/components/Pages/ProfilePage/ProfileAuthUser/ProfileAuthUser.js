@@ -34,7 +34,7 @@ export const ProfileAuthUser = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
     const stateAuth = state.authorization
-    const { email, nickname, phone } = stateAuth.personalInf
+    const { email, nickname, phone, posts } = stateAuth.personalInf
     const phoneInp = stateAuth.userInfInp.phone
     const nickInp = stateAuth.userInfInp.nickName
     const loading = stateAuth.loading
@@ -84,7 +84,7 @@ export const ProfileAuthUser = () => {
             <Line/>
             <AddPost/>
             <Line/>
-            <PostsPage/>
+            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname}/>}
         </ProfilePageContainer>
     )
 }

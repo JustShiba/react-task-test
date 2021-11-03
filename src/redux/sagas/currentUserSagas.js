@@ -27,8 +27,8 @@ export function* currentUser() {
             const response =  yield call(apiCall, ['get', `users/${userPersonalId}`])
             
             if (response.status === 200) {
-                yield put(getDataCurrentPersone__SUCCESS(response.data))
                 yield put(currentUserIsNotAuth())
+                yield put(getDataCurrentPersone__SUCCESS(response.data))
             }
         } catch {
             yield put(getDataCurrentPersone__FAILURE())

@@ -107,6 +107,10 @@ export const logSignReducer = createSlice({
 
         clearPersInf: (state) => {
             state.personalInf = {}
+        },
+
+        updateUserPosts: (state, action) => {
+            state.personalInf.posts = action.payload
         }
     }
 })
@@ -132,5 +136,6 @@ export const {
     deleteUser__START,
     deleteUser__SUCCESS,
     deleteUser__FAILURE,
-    clearPersInf
+    clearPersInf,
+    updateUserPosts
 } = logSignReducer.actions

@@ -2,33 +2,42 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { deletePost__START } from '../../../../redux/reducers/postsReducer'
+import Loader from '../../../Loader'
 
 
-export const PostCard = ({inf}) => {
-    const { body, title, likes, postId } = inf
+export const PostCard = ({ inf, name, loading }) => {
+    
+    const { likes, body, postId, title } = inf
     
     const dispatch = useDispatch()
 
     return(
         <PostContainer>
-            <Comments>Comments</Comments>
-            <PostCardBox>
-                <Information>
-                    <InformationUser>
-                        <H3>Name Lastname</H3>
-                    </InformationUser>
-                    <InformationLikes>
-                        {likes} Likes
-                    </InformationLikes>
-                </Information>
-                <InformstionPost>
-                    <H4>{title}</H4>
-                    <p>{body}</p>
-                </InformstionPost>
-            </PostCardBox>
-            <DeletePost onClick={() => {
-                dispatch(deletePost__START(postId))
-            }}>Delete</DeletePost>
+            {loading ? 
+                <Loader/> : 
+                <>
+                    <Comments>Comments</Comments>
+                    <PostCardBox>
+                        <Information>
+                            <InformationUser>
+                                <H3>{name ? name : 'Noname'}</H3>
+                            </InformationUser>
+                            <InformationLikes>
+                                {likes} Likes
+                            </InformationLikes>
+                        </Information>
+                        <InformstionPost>
+                            <H4>{title}</H4>
+                            <p>{body}</p>
+                        </InformstionPost>
+                    </PostCardBox>
+                    
+                    <DeletePost onClick={() => {
+                        dispatch(deletePost__START(postId))
+                    }}>Delete</DeletePost>
+                </>
+            }
+            
         </PostContainer>
     )
 }

@@ -28,7 +28,6 @@ export const postsReducer = createSlice({
             state.loading = false
             state.postCreateInp.title = ''
             state.postCreateInp.body = ''
-            alert('Hip, hip, horray!')
         },
 
         createPost__FAILURE: (state) => {
@@ -45,11 +44,19 @@ export const postsReducer = createSlice({
             state.allPosts = action.payload
         },
 
-        getAllPosts__FAILURE: (state) => {
+        getCurrentUserPosts__START: (state) => {
+            state.loading = true
+        },
+        
+        getCurrentUserPosts__SUCCESS: (state) => {
+            state.loading = false
+        },
+        
+        getCurrentUserPosts__FAILURE: (state) => {
             state.loading = false
             alert('Error')
         },
-        
+
         deletePost__START: (state, action) => {
             state.loading = true
             state.selectedId = action.payload
@@ -58,7 +65,6 @@ export const postsReducer = createSlice({
         deletePost__SUCCESS: (state) => {
             state.loading = false
             state.selectedId = ''
-            alert('SUCCESS')
         },
 
         deletePost__FAILURE: (state) => {
@@ -81,4 +87,7 @@ export const {
     deletePost__START,
     deletePost__SUCCESS,
     deletePost__FAILURE,
+    getCurrentUserPosts__START,
+    getCurrentUserPosts__SUCCESS,
+    getCurrentUserPosts__FAILURE,
 } = postsReducer.actions
