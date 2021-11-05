@@ -1,6 +1,7 @@
-import { call, put, select } from "@redux-saga/core/effects";
-import apiCall from "../../services";
-import { updateUserPosts } from "../reducers/logSignReducer";
+import { call, put, select } from '@redux-saga/core/effects'
+
+import apiCall from '../../services'
+import { updateUserPosts } from '../reducers/logSignReducer'
 import { 
     createPost__SUCCESS, 
     createPost__FAILURE, 
@@ -10,9 +11,25 @@ import {
     deletePost__SUCCESS,
     getCurrentUserPosts__START,
     getCurrentUserPosts__SUCCESS,
-    getCurrentUserPosts__FAILURE, 
-} from "../reducers/postsReducer";
+    getCurrentUserPosts__FAILURE,
+    changePostInf__SUCCESS,
+    changePostInf__FAILURE, 
+} from '../reducers/postsReducer'
 
+
+export function* changePostInf() {
+    const { titlePost, bodyPost, postId } = yield select(state => state.posts.postChangeInf)
+    try {
+        const response = yield call(apiCall, [`put`, `posts/${postId}`, {"title": titlePost, "body": bodyPost}])
+        if (response.status === 200) {
+            yield put(changePostInf__SUCCESS())
+            yield put(getCurrentUserPosts__START())
+        }
+    } catch {
+        console.log('err');
+        yield put(changePostInf__FAILURE())
+    }
+}
 
 const addNames = (users, postUserId) => {
     const length = users.length

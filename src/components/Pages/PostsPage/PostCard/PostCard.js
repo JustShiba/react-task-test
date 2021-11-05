@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { deletePost__START } from '../../../../redux/reducers/postsReducer'
+import { changePostInf__START, deletePost__START } from '../../../../redux/reducers/postsReducer'
 import Loader from '../../../Loader'
 
 
@@ -49,6 +49,15 @@ export const PostCard = ({ inf, name, loading, auth }) => {
                                     <p>{body}</p>
                                 }
                             </InformstionPost>
+                            {change ? 
+                                <ConfirmChangeBtn 
+                                    onClick={() => {
+                                        dispatch(changePostInf__START({titlePost, bodyPost, postId}))
+                                        setChange(!change)
+                                    }}
+                                >Confirm</ConfirmChangeBtn> :
+                                null
+                            }  
                         </PostCardBox>
                         {auth ? 
                             <DeletePost onClick={() => {
@@ -62,6 +71,20 @@ export const PostCard = ({ inf, name, loading, auth }) => {
         </Box>
     )
 }
+
+const ConfirmChangeBtn = styled.button`
+    text-transform: uppercase;
+    color: #4328b7;
+    font-weight: 800;
+    cursor: pointer;    
+    border: none;
+    border-radius: 0px;
+    padding: 5px 0;
+    transition: 200ms;
+    &:hover{
+        padding: 7px 0;
+    }
+`
 
 const ChangeInp = styled.input`
     font: 20px system-ui;
@@ -82,7 +105,6 @@ const H3 = styled.h3`
 
 const ChangePost = styled.div`
     background-color: cadetblue;
-    align-text: center;
     text-align: center;
     padding: 4px 0px;
     text-transform: uppercase;
@@ -106,31 +128,22 @@ const Box = styled(PostContainer)`
 
 const Comments = styled.div`
     background-color: lightcoral;
-    padding: 35px 10px 0px 10px;
+    padding: 0 10px;
+    text-align: center;
     margin-bottom: 35px;
     text-transform: uppercase;
     color: white;
     font-weight: 600;
     writing-mode: vertical-lr; 
     transition: 200ms;
+    cursor: pointer;
     &:hover{
-        padding: 35px 15px 0px 15px;
+        padding: 0 15px;
     }
 `
 
-const DeletePost = styled.div`
+const DeletePost = styled(Comments)`
     background-color: mediumvioletred;
-    padding: 50px 10px 0px 10px;
-    margin-bottom: 35px;
-    text-transform: uppercase;
-    color: white;
-    font-weight: 600;
-    writing-mode: vertical-lr; 
-    cursor: pointer;
-    transition: 200ms;
-    &:hover{
-        padding: 50px 15px 0px 15px;
-    }
 `
 
 const PostCardBox = styled.div`

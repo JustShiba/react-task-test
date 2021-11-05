@@ -56,7 +56,6 @@ const AddPostTitleInp = styled.input`
 `
 
 const AddPostInp = styled.textarea`
-    max-width: 851px;
     font: 18px system-ui;
     font-weight: 400;
     color: white;

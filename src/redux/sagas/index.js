@@ -1,6 +1,9 @@
 import { takeEvery, takeLatest, all } from 'redux-saga/effects'
 
 import { apiCallUsers, getDataCurrentUser__START } from '../reducers/usersReducer'
+import { loadUsers } from './usersSagas'
+import { logInSaga, signUpSaga } from './logSignSagas'
+import { getDataCurrentPersone__START } from '../reducers/logSignReducer'
 import { 
     deleteUser__START,
     logIn__START, 
@@ -8,17 +11,26 @@ import {
     setPhone__START, 
     signUp__START 
 } from '../reducers/logSignReducer'
-import { loadUsers } from './usersSagas'
-import { logInSaga, signUpSaga } from './logSignSagas'
 import { 
     changeNick, 
     currentUser, 
     changePhone, 
     deleteUser, 
 } from './currentUserSagas'
-import { getDataCurrentPersone__START } from '../reducers/logSignReducer'
-import { createPost__START, deletePost__START, getAllPosts__START, getCurrentUserPosts__START } from '../reducers/postsReducer'
-import { createPost, deletePost, getAllPosts, getCurrentUserPosts } from './postsSagas'
+import { 
+    changePostInf__START,
+    createPost__START, 
+    deletePost__START, 
+    getAllPosts__START, 
+    getCurrentUserPosts__START 
+} from '../reducers/postsReducer'
+import { 
+    changePostInf, 
+    createPost, 
+    deletePost, 
+    getAllPosts, 
+    getCurrentUserPosts 
+} from './postsSagas'
 
 
 export default function* allSagas() {
@@ -35,5 +47,6 @@ export default function* allSagas() {
         yield takeLatest(getAllPosts__START, getAllPosts),
         yield takeLatest(deletePost__START, deletePost),
         yield takeLatest(getCurrentUserPosts__START, getCurrentUserPosts),
+        yield takeLatest(changePostInf__START, changePostInf),
     ])
 }

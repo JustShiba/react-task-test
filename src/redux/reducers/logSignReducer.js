@@ -4,7 +4,7 @@ export const logSignReducer = createSlice({
     name: 'logSignReducer',
     initialState: {
         userInfInp: {
-            email: 'user@gmail.com',
+            email: 'nnewuser@gmail.com',
             password: '123456789',
             nickName: '',
             phone: ''

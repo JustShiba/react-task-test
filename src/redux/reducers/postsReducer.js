@@ -9,6 +9,7 @@ export const postsReducer = createSlice({
         },
         allPosts: [],
         selectedId: '',
+        postChangeInf: {},
         loading: false
     },
     reducers: {
@@ -72,6 +73,22 @@ export const postsReducer = createSlice({
             state.selectedId = ''
             alert('FAILURE')
         },
+
+        changePostInf__START: (state, action) => {
+            state.loading = true
+            state.postChangeInf = action.payload
+        },
+
+        changePostInf__SUCCESS: (state) => {
+            state.loading = false
+            state.postChangeInf = {}
+        },
+
+        changePostInf__FAILURE: (state) => {
+            state.loading = false
+            state.postChangeInf = {}
+            alert('Failed to change post information')
+        },
     }
 })
 
@@ -90,4 +107,7 @@ export const {
     getCurrentUserPosts__START,
     getCurrentUserPosts__SUCCESS,
     getCurrentUserPosts__FAILURE,
+    changePostInf__START,
+    changePostInf__SUCCESS,
+    changePostInf__FAILURE,
 } = postsReducer.actions
