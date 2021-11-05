@@ -7,7 +7,6 @@ import UserComment from './UserComment'
 
 export const Comments = ({ inf, postId, loading }) => {
     const dispatch = useDispatch()
-
     let [ comment, setComment ] = useState('')
 
     return (
@@ -22,7 +21,10 @@ export const Comments = ({ inf, postId, loading }) => {
                             onChange={(e) => setComment(comment = e.target.value)}
                         />
                         <SendCommentBtn 
-                            onClick={() => dispatch(sendComment__START({comment, postId}))}
+                            onClick={() => {
+                                dispatch(sendComment__START({comment, postId}))
+                                setComment(comment = '')
+                            }}
                         >Send</SendCommentBtn>
                     </AddCommentBox>
                     <UsersComments>

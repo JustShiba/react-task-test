@@ -121,6 +121,7 @@ export const postsReducer = createSlice({
         deleteComment__FAILURE: (state) => {
             state.loading = false
             state.commentDeletInf = {}
+            alert('fail')
         },
 
         changeComment__START: (state, action) => {
@@ -136,6 +137,7 @@ export const postsReducer = createSlice({
         changeComment__FAILURE: (state) => {
             state.loading = false
             state.commentChangeInf = {}
+            alert('fail')
         },
 
     }

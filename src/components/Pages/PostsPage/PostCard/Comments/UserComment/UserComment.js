@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { changeComment__START, deleteComment__START } from '../../../../../../redux/reducers/postsReducer'
 
 export const UserComment = ({ inf, postId }) => {
-    const { body, commentId } = inf
+    const { body, commentId, userId } = inf
+    const personalUserId = useSelector(state => state.authorization.personalInf.userId)
 
     const dispatch = useDispatch()
     let [comment, setComment] = useState(body)
@@ -19,20 +20,23 @@ export const UserComment = ({ inf, postId }) => {
                 /> :
                 <TextComment>{comment}</TextComment>
             }
-            <ButBox>
-                {changingComment ?  
-                    <CangeCommentBtn 
-                        onClick={() => dispatch(changeComment__START({ postId, commentId, comment }))}
-                    >Save</CangeCommentBtn> : 
-                    <CangeCommentBtn 
-                        onClick={() => setChangingComment(!changingComment)}
-                    >Change</CangeCommentBtn>
-                }
-                
-                <DeleteCommentBtn 
-                    onClick={() => dispatch(deleteComment__START({ postId, commentId }))}
-                >Delete</DeleteCommentBtn>
-            </ButBox>
+            {(userId === personalUserId) ?  
+                <ButBox>
+                    {changingComment ?  
+                        <CangeCommentBtn 
+                            onClick={() => dispatch(changeComment__START({ postId, commentId, comment }))}
+                        >Save</CangeCommentBtn> : 
+                        <CangeCommentBtn 
+                            onClick={() => setChangingComment(!changingComment)}
+                        >Change</CangeCommentBtn>
+                    }
+                    
+                    <DeleteCommentBtn 
+                        onClick={() => dispatch(deleteComment__START({ postId, commentId }))}
+                    >Delete</DeleteCommentBtn>
+                </ButBox> : 
+                null   
+            }
         </UserCommentBox>
     )
 }
