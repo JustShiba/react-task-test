@@ -22,14 +22,16 @@ import {
     createPost__START, 
     deletePost__START, 
     getAllPosts__START, 
-    getCurrentUserPosts__START 
+    getCurrentUserPosts__START, 
+    sendComment__START
 } from '../reducers/postsReducer'
 import { 
     changePostInf, 
     createPost, 
     deletePost, 
     getAllPosts, 
-    getCurrentUserPosts 
+    getCurrentUserPosts, 
+    sendComment
 } from './postsSagas'
 
 
@@ -48,5 +50,6 @@ export default function* allSagas() {
         yield takeLatest(deletePost__START, deletePost),
         yield takeLatest(getCurrentUserPosts__START, getCurrentUserPosts),
         yield takeLatest(changePostInf__START, changePostInf),
+        yield takeLatest(sendComment__START, sendComment),
     ])
 }

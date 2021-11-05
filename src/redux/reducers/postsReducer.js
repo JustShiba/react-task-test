@@ -10,6 +10,7 @@ export const postsReducer = createSlice({
         allPosts: [],
         selectedId: '',
         postChangeInf: {},
+        commentSendInf: {},
         loading: false
     },
     reducers: {
@@ -89,6 +90,21 @@ export const postsReducer = createSlice({
             state.postChangeInf = {}
             alert('Failed to change post information')
         },
+
+        sendComment__START: (state, action) => {
+            state.loading = true
+            state.commentSendInf = action.payload
+        },
+
+        sendComment__SUCCESS: (state) => {
+            state.loading = false
+            state.commentSendInf = ''
+        },
+
+        sendComment__FAILURE: (state) => {
+            state.loading = false
+            state.commentSendInf = ''
+        },
     }
 })
 
@@ -110,4 +126,7 @@ export const {
     changePostInf__START,
     changePostInf__SUCCESS,
     changePostInf__FAILURE,
+    sendComment__START,
+    sendComment__SUCCESS,
+    sendComment__FAILURE,
 } = postsReducer.actions

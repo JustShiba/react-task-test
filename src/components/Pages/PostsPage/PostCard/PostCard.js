@@ -4,28 +4,36 @@ import styled from 'styled-components'
 
 import { changePostInf__START, deletePost__START } from '../../../../redux/reducers/postsReducer'
 import Loader from '../../../Loader'
+import Comments from './Comments'
 
 
 export const PostCard = ({ inf, name, loading, auth }) => {
     const { likes, body, postId, title } = inf
 
-    const [change, setChange] = useState(false)
+    let [change, setChange] = useState(false)
+    let [comments, setComments] = useState(false)
     let [titlePost, setTitle] = useState(title)
     let [bodyPost, setBody] = useState(body)
-    
     
     const dispatch = useDispatch()
 
     return(
         <Box>
             {auth ? 
-                <ChangePost onClick={() => setChange(!change)}>Change Post</ChangePost> : 
-                null}
+                <ChangePost onClick={() => {
+                    setChange(!change)
+                    setComments(comments = false)
+                }}>Change Post</ChangePost> : 
+                null
+            }
             <PostContainer>
                 {loading ? 
                     <Loader/> : 
                     <>
-                        <Comments>Comments</Comments>
+                        <CommentsBtn onClick={() => {
+                            setComments(!comments)
+                            setChange(change = false)
+                        }}>Comments</CommentsBtn>
                         <PostCardBox>
                             <Information>
                                 <InformationUser>
@@ -68,6 +76,10 @@ export const PostCard = ({ inf, name, loading, auth }) => {
                     </>
                 }
             </PostContainer>
+            {comments ? 
+                <Comments postId={postId} loading={loading}/> : 
+                null
+            }
         </Box>
     )
 }
@@ -126,7 +138,7 @@ const Box = styled(PostContainer)`
     flex-direction: column;
 `
 
-const Comments = styled.div`
+const CommentsBtn = styled.div`
     background-color: lightcoral;
     padding: 0 10px;
     text-align: center;
@@ -142,7 +154,7 @@ const Comments = styled.div`
     }
 `
 
-const DeletePost = styled(Comments)`
+const DeletePost = styled(CommentsBtn)`
     background-color: mediumvioletred;
 `
 

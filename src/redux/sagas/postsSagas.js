@@ -13,7 +13,9 @@ import {
     getCurrentUserPosts__SUCCESS,
     getCurrentUserPosts__FAILURE,
     changePostInf__SUCCESS,
-    changePostInf__FAILURE, 
+    changePostInf__FAILURE,
+    sendComment__SUCCESS,
+    sendComment__FAILURE, 
 } from '../reducers/postsReducer'
 
 
@@ -99,5 +101,19 @@ export function* deletePost() {
         }
     } catch {
         yield put(deletePost__FAILURE())
+    }
+}
+
+export function* sendComment() {
+    const { comment, postId } = yield select(state => state.posts.commentSendInf)
+
+    try {
+        const response = yield call(apiCall, [`post`, `posts/${postId}/comments`, {"body": comment}])
+
+        if (response.status === 200) {
+            yield put(sendComment__SUCCESS())
+        }
+    } catch {
+        yield put(sendComment__FAILURE())
     }
 }
