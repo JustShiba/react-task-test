@@ -8,10 +8,10 @@ import Comments from './Comments'
 
 
 export const PostCard = ({ inf, name, loading, auth }) => {
-    const { likes, body, postId, title } = inf
+    const { likes, body, postId, title, comments } = inf
 
     let [change, setChange] = useState(false)
-    let [comments, setComments] = useState(false)
+    let [commentsSate, setComments] = useState(false)
     let [titlePost, setTitle] = useState(title)
     let [bodyPost, setBody] = useState(body)
     
@@ -22,7 +22,7 @@ export const PostCard = ({ inf, name, loading, auth }) => {
             {auth ? 
                 <ChangePost onClick={() => {
                     setChange(!change)
-                    setComments(comments = false)
+                    setComments(commentsSate = false)
                 }}>Change Post</ChangePost> : 
                 null
             }
@@ -31,7 +31,7 @@ export const PostCard = ({ inf, name, loading, auth }) => {
                     <Loader/> : 
                     <>
                         <CommentsBtn onClick={() => {
-                            setComments(!comments)
+                            setComments(!commentsSate)
                             setChange(change = false)
                         }}>Comments</CommentsBtn>
                         <PostCardBox>
@@ -76,8 +76,8 @@ export const PostCard = ({ inf, name, loading, auth }) => {
                     </>
                 }
             </PostContainer>
-            {comments ? 
-                <Comments postId={postId} loading={loading}/> : 
+            {commentsSate ? 
+                <Comments inf={comments} postId={postId} loading={loading}/> : 
                 null
             }
         </Box>

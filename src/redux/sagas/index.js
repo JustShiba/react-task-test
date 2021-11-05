@@ -18,16 +18,20 @@ import {
     deleteUser, 
 } from './currentUserSagas'
 import { 
+    changeComment__START,
     changePostInf__START,
     createPost__START, 
+    deleteComment__START, 
     deletePost__START, 
     getAllPosts__START, 
     getCurrentUserPosts__START, 
     sendComment__START
 } from '../reducers/postsReducer'
 import { 
+    changeComment,
     changePostInf, 
     createPost, 
+    deleteComment, 
     deletePost, 
     getAllPosts, 
     getCurrentUserPosts, 
@@ -51,5 +55,7 @@ export default function* allSagas() {
         yield takeLatest(getCurrentUserPosts__START, getCurrentUserPosts),
         yield takeLatest(changePostInf__START, changePostInf),
         yield takeLatest(sendComment__START, sendComment),
+        yield takeLatest(changeComment__START, changeComment),
+        yield takeLatest(deleteComment__START, deleteComment),
     ])
 }

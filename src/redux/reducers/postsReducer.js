@@ -11,6 +11,8 @@ export const postsReducer = createSlice({
         selectedId: '',
         postChangeInf: {},
         commentSendInf: {},
+        commentDeletInf: {},
+        commentChangeInf: {},
         loading: false
     },
     reducers: {
@@ -105,6 +107,37 @@ export const postsReducer = createSlice({
             state.loading = false
             state.commentSendInf = ''
         },
+
+        deleteComment__START: (state, action) => {
+            state.loading = true
+            state.commentDeletInf = action.payload
+        },
+
+        deleteComment__SUCCESS: (state) => {
+            state.loading = false
+            state.commentDeletInf = {}
+        },
+
+        deleteComment__FAILURE: (state) => {
+            state.loading = false
+            state.commentDeletInf = {}
+        },
+
+        changeComment__START: (state, action) => {
+            state.loading = true
+            state.commentChangeInf = action.payload
+        },
+        
+        changeComment__SUCCESS: (state) => {
+            state.loading = false
+            state.commentChangeInf = {}
+        },
+
+        changeComment__FAILURE: (state) => {
+            state.loading = false
+            state.commentChangeInf = {}
+        },
+
     }
 })
 
@@ -129,4 +162,10 @@ export const {
     sendComment__START,
     sendComment__SUCCESS,
     sendComment__FAILURE,
+    deleteComment__START,
+    deleteComment__SUCCESS,
+    deleteComment__FAILURE,
+    changeComment__START,
+    changeComment__SUCCESS,
+    changeComment__FAILURE,
 } = postsReducer.actions

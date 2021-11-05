@@ -15,7 +15,11 @@ import {
     changePostInf__SUCCESS,
     changePostInf__FAILURE,
     sendComment__SUCCESS,
-    sendComment__FAILURE, 
+    sendComment__FAILURE,
+    changeComment__SUCCESS,
+    changeComment__FAILURE,
+    deleteComment__SUCCESS,
+    deleteComment__FAILURE, 
 } from '../reducers/postsReducer'
 
 
@@ -115,5 +119,35 @@ export function* sendComment() {
         }
     } catch {
         yield put(sendComment__FAILURE())
+    }
+}
+
+export function* changeComment() {
+    const { postId, commentId, comment } = yield select(state => state.posts.commentChangeInf)
+    try {
+        const response = yield call(apiCall, [`put`, `posts/${postId}/comments/${commentId}`, { "body": comment}])
+        
+        if (response.status === 200) {
+            yield put(changeComment__SUCCESS())
+            console.log(response);
+        }
+    } catch {
+        yield put(changeComment__FAILURE())
+        console.log('fail to change');
+    }
+}
+
+export function* deleteComment() {
+    const { postId, commentId } = yield select(state => state.posts.commentDeletInf)
+    try {
+        const response = yield call(apiCall, [`delete`, `posts/${postId}/comments/${commentId}`])
+
+        if (response.status === 200) {
+            yield put(deleteComment__SUCCESS())
+            console.log(response);
+        }
+    } catch {
+        yield put(deleteComment__FAILURE())
+        console.log('fail to delete');
     }
 }

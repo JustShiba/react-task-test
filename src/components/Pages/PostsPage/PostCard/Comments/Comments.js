@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+
 import { sendComment__START } from '../../../../../redux/reducers/postsReducer'
+import UserComment from './UserComment'
 
-export const Comments = ({ postId, loading }) => {
+export const Comments = ({ inf, postId, loading }) => {
     const dispatch = useDispatch()
-    
-    let [ comment, setComment ] = useState('')
 
+    let [ comment, setComment ] = useState('')
 
     return (
         <>
@@ -24,18 +25,25 @@ export const Comments = ({ postId, loading }) => {
                             onClick={() => dispatch(sendComment__START({comment, postId}))}
                         >Send</SendCommentBtn>
                     </AddCommentBox>
+                    <UsersComments>
+                        {inf[0] ?
+                            inf.map((comment) => <UserComment inf={comment} postId={postId} key={comment.commentId}/>): 
+                            <h2>There is no comments yet</h2>}
+                    </UsersComments>
                 </Cont>
             }
         </>
     )
 }
 
+const UsersComments = styled.div``
+
 const AddCommentBox = styled.div`
     display: flex;
     margin-bottom: 25px;
 `
 
-const AddCommentInp = styled.input`
+export const AddCommentInp = styled.input`
     width: 100%;
     font: 20px system-ui;
     font-weight: 500;
@@ -65,7 +73,7 @@ const SendCommentBtn = styled.button`
 const Cont = styled.div`
     color: white;
     margin: -35px 0 25px 0;
-    padding-left: 15px;
+    padding: 0 0 10px 15px;
     border: 4px solid lightcoral;
     border-top: none;
     border-right: none;
