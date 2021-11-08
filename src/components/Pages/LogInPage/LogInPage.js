@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 import Loader from '../../Loader'
 import { changeInpPass, changeInpEmail, logIn__START } from '../../../redux/reducers/logSignReducer'
@@ -14,9 +15,13 @@ import { Link } from 'react-router-dom'
 
 
 export const LogInPage = () => {
-    const dispatch = useDispatch();
+    const location = useLocation()
+    const dispatch = useDispatch()
     const { email, password } = useSelector(state => state.authorization.userInfInp)
-    const { loading } = useSelector(state => state.authorization)
+    const { loading, auth } = useSelector(state => state.authorization)
+    
+    location.pathname = `${auth ? `/profile` : location.pathname}`
+
     return (
         <LogSignBox>
             {loading ?
