@@ -43,7 +43,7 @@ export const ProfileAuthUser = () => {
     useEffect(() => {
         dispatch(selectUserId(state.authorization.personalInf.userId))
         dispatch(getDataCurrentPersone__START())
-    }, [dispatch])
+    }, [dispatch, state.authorization.personalInf.userId])
 
     return(
         <ProfilePageContainer>
