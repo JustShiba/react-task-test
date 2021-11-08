@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 
 import Loader from '../../Loader'
 import { changeInpPass, changeInpEmail, signUp__START } from '../../../redux/reducers/logSignReducer'
@@ -16,15 +15,14 @@ import {
 
 export const SignUpPage = () => {
     const dispatch = useDispatch()
-    const [isSign, setIsSign] = useState(false)
     const { email, password } = useSelector(state => state.authorization.userInfInp)
-    const { loading } = useSelector(state => state.authorization)
+    const { loading, sign } = useSelector(state => state.authorization)
 
     return (
         <LogSignBox>
             {loading ?
                 <Loader /> :
-                !isSign ?
+                !sign ?
                     <>
                         <H2>Sign Up</H2>
                         <Title>Email:</Title>
@@ -45,7 +43,6 @@ export const SignUpPage = () => {
                         <Paragraph>If you already have account, you can <Link to={'./login'}>Log in</Link></Paragraph>
                         <LogSignBtn onClick={(e) => {
                             e.preventDefault()
-                            setIsSign(!isSign)
                             dispatch(signUp__START())
                         }}>Sign Up</LogSignBtn>
                     </> :

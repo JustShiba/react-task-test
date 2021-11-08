@@ -11,6 +11,7 @@ export const logSignReducer = createSlice({
         },
         personalInf: {},
         auth: false,
+        sign: false,
         loading: false,
     },
     reducers: {
@@ -36,17 +37,19 @@ export const logSignReducer = createSlice({
             state.loading = false
             alert('Error: try again')
         },
-
+        
         signUp__START: (state) => {
             state.loading = true
         },
-
+        
         signUp__SUCCESS: (state) => {
             state.loading = false
+            state.sign = true
         },
-
+        
         signUp__FAILURE: (state) => {
             state.loading = false
+            alert('Error: try again')
         },
 
         getDataCurrentPersone__START: (state) => {
