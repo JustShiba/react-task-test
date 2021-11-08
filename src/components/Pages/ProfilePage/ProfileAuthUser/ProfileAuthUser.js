@@ -27,6 +27,7 @@ import {
     Phone,
     Email
 } from '../styled'
+import { selectUserId } from '../../../../redux/reducers/usersReducer'
 
 
 export const ProfileAuthUser = () => {
@@ -40,6 +41,7 @@ export const ProfileAuthUser = () => {
     const loading = stateAuth.loading
 
     useEffect(() => {
+        dispatch(selectUserId(state.authorization.personalInf.userId))
         dispatch(getDataCurrentPersone__START())
     }, [dispatch])
 

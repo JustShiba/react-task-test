@@ -22,10 +22,9 @@ export function* currentUser() {
     const userPersonalId = yield select(state => state.authorization.personalInf.userId)
     const userCurrentId = yield select(state => state.users.currentUserId)
 
-    if (!userCurrentId || userPersonalId === userCurrentId) {
+    if (userPersonalId === userCurrentId) {
         try {
             const response =  yield call(apiCall, [`get`, `users/${userPersonalId}`])
-            
             if (response.status === 200) {
                 yield put(currentUserIsNotAuth())
                 yield put(getDataCurrentPersone__SUCCESS(response.data))

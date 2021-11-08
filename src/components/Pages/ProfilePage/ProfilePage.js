@@ -1,15 +1,18 @@
-import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router'
 
 import ProfileAuthUser from './ProfileAuthUser'
 import ProfileNonAuthUser from './ProfileNonAuthUser'
 
+
 export const ProfilePage = () => {
-    
-    const { otherUser } = useSelector(state => state.users)
+    const location = useLocation() 
 
     return (
         <>
-            {otherUser ? <ProfileNonAuthUser/> : <ProfileAuthUser/>}
+            {(location.pathname.indexOf('/profile') === 0) ?
+                <ProfileAuthUser/> :
+                <ProfileNonAuthUser/>
+            }
         </>
     )
 }
