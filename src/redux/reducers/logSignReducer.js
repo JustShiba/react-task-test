@@ -25,20 +25,28 @@ export const logSignReducer = createSlice({
         logIn__START: (state) => {
             state.loading = true
         },
+        
+        logIn__SUCCESS: (state, action) => {
+            state.loading = false
+            state.auth = true
+            state.personalInf = action.payload
+        },
+        
+        logIn__FAILURE: (state) => {
+            state.loading = false
+            alert('Error: try again')
+        },
 
         signUp__START: (state) => {
             state.loading = true
         },
 
-        logSign__SUCCESS: (state, action) => {
+        signUp__SUCCESS: (state) => {
             state.loading = false
-            state.auth = true
-            state.personalInf = action.payload
         },
 
-        logSign__FAILURE: (state) => {
+        signUp__FAILURE: (state) => {
             state.loading = false
-            alert('Error: try again')
         },
 
         getDataCurrentPersone__START: (state) => {
@@ -116,9 +124,11 @@ export const logSignReducer = createSlice({
 
 export const { 
     logIn__START, 
+    logIn__SUCCESS, 
+    logIn__FAILURE, 
     signUp__START,
-    logSign__SUCCESS, 
-    logSign__FAILURE,
+    signUp__SUCCESS,
+    signUp__FAILURE,
     changeInpEmail,
     changeInpPass,
     getDataCurrentPersone__START,

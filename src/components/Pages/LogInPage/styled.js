@@ -54,3 +54,10 @@ export const H2 = styled.h2`
     padding-bottom: 15px;
     font-size: 30px;
 `
+
+export const Paragraph = styled.p`
+    color: white;
+    & a{
+        color: white;
+    }
+`

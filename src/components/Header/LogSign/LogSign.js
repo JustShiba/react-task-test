@@ -5,12 +5,12 @@ import styled from 'styled-components'
 export const LogSign = () => {
     return (
         <div>
-            <Link to='/loginSignup'>
+            <Link to='/login'>
                 <LogInBtn>
                     Log In
                 </LogInBtn>
             </Link>
-            <Link to='/loginSignup'> 
+            <Link to='/signup'> 
                 <SignUpBtn>
                     Sign Up
                 </SignUpBtn>

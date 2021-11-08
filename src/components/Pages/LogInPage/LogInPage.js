@@ -8,7 +8,9 @@ import {
     Title,
     LogSignBtn,
     H2,
+    Paragraph,
 } from './styled'
+import { Link } from 'react-router-dom'
 
 
 export const LogInPage = () => {
@@ -20,7 +22,7 @@ export const LogInPage = () => {
             {loading ?
                 <Loader /> :
                 <>
-                    <H2>Log in / Sign Up</H2>
+                    <H2>Log in</H2>
                     <Title>Email:</Title>
                     <LogInInp
                         value={email}
@@ -36,6 +38,7 @@ export const LogInPage = () => {
                             dispatch(changeInpPass(e.target.value))
                         }}
                     />
+                    <Paragraph>If you have no account, you should <Link to={'./signup'}>Sign up</Link></Paragraph>
                     <LogSignBtn onClick={(e) => {
                         e.preventDefault()
                         dispatch(logIn__START())

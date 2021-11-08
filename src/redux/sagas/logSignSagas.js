@@ -1,6 +1,6 @@
 import { select, put, call } from 'redux-saga/effects'
 
-import { logSign__FAILURE, logSign__SUCCESS } from '../reducers/logSignReducer'
+import { logIn__FAILURE, logIn__SUCCESS, signUp__FAILURE, signUp__SUCCESS } from '../reducers/logSignReducer'
 import apiCall from '../../services'
 
 
@@ -9,12 +9,12 @@ export function* logInSaga() {
     try {
         const response = yield call(apiCall, ['post', 'login', state])
         if (response.status === 200) {
-            yield put(logSign__SUCCESS(response.data))
+            yield put(logIn__SUCCESS(response.data))
             console.log(response)
             localStorage.setItem('userToken', response.data.token)
         }
     } catch {
-        yield put(logSign__FAILURE())
+        yield put(logIn__FAILURE())
     }
 }
 
@@ -22,8 +22,8 @@ export function* signUpSaga() {
     const state = yield select(state => state.authorization.userInfInp)
     try{
         const response = yield call(apiCall, ['post', 'signup', state])
-        if (response.status === 200) yield put(logSign__SUCCESS(response.data))
+        if (response.status === 200) yield put(signUp__SUCCESS())
     }catch{
-        yield put(logSign__FAILURE())
+        yield put(signUp__FAILURE())
     }
 }
