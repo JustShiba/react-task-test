@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import LogSignPage from './LogSignPage'
+import LogInPage from './LogInPage'
+import SignUpPage from './SignUpPage'
 import { AllPostsPage } from './PostsPage/AllPostsPage'
 import UsersPage from './UsersPage'
 import NoLogIn from './NoLogIn'
@@ -17,7 +18,8 @@ export const Pages = () => {
     return (
         <PagesContainer>
             <PagesWrapper>
-                <Route path='/loginSignup' component={LogSignPage}/>
+                <Route path='/login' component={LogInPage}/>
+                <Route path='/signup' component={SignUpPage}/>
                 {auth ? 
                 <>
                     <Route path='/users' component={UsersPage}/>
