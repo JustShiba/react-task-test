@@ -10,7 +10,6 @@ export function* logInSaga() {
         const response = yield call(apiCall, [`post`, `login`, state])
         if (response.status === 200) {
             yield put(logIn__SUCCESS(response.data))
-            console.log(response)
             localStorage.setItem(`userToken`, response.data.token)
             localStorage.setItem(`userId`, response.data.userId)
         }
