@@ -26,7 +26,7 @@ import {
 export function* changePostInf() {
     const { titlePost, bodyPost, postId } = yield select(state => state.posts.postChangeInf)
     try {
-        const response = yield call(apiCall, [`put`, `posts/${postId}`, {"title": titlePost, "body": bodyPost}])
+        const response = yield call(apiCall, [`put`, `posts/${postId}`, {'title': titlePost, 'body': bodyPost}])
         if (response.status === 200) {
             yield put(changePostInf__SUCCESS())
             yield put(getCurrentUserPosts__START())
@@ -112,7 +112,7 @@ export function* sendComment() {
     const { comment, postId } = yield select(state => state.posts.commentSendInf)
 
     try {
-        const response = yield call(apiCall, [`post`, `posts/${postId}/comments`, {"body": comment}])
+        const response = yield call(apiCall, [`post`, `posts/${postId}/comments`, {'body': comment}])
 
         if (response.status === 200) {
             yield put(sendComment__SUCCESS())
@@ -125,7 +125,7 @@ export function* sendComment() {
 export function* changeComment() {
     const { postId, commentId, comment } = yield select(state => state.posts.commentChangeInf)
     try {
-        const response = yield call(apiCall, [`put`, `posts/${postId}/comments/${commentId}`, { "body": comment}])
+        const response = yield call(apiCall, [`put`, `posts/${postId}/comments/${commentId}`, { 'body': comment}])
         
         if (response.status === 200) {
             yield put(changeComment__SUCCESS())

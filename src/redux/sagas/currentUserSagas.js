@@ -50,7 +50,7 @@ export function* changeNick() {
     const nick = yield select(state => state.authorization.userInfInp.nickName)
     
     try {
-        const response =  yield call(apiCall, [`patch`, `users/${id}`, {"nickname": nick}])
+        const response =  yield call(apiCall, [`patch`, `users/${id}`, {'nickname': nick}])
         
         if (response.status === 200) {
             yield put(setNick__SUCCESS())
@@ -68,7 +68,7 @@ export function* changePhone() {
     const phone = yield select(state => state.authorization.userInfInp.phone)
 
     try {
-        const response =  yield call(apiCall, [`patch`, `users/${id}`, {"phone": phone}])
+        const response =  yield call(apiCall, [`patch`, `users/${id}`, {'phone': phone}])
         
         if (response.status === 200) {
             yield put(setPhone__SUCCESS())
