@@ -12,7 +12,8 @@ import {
     changePhoneInp,
     deleteUser__SUCCESS,
     deleteUser__FAILURE,
-    clearPersInf
+    clearPersInf,
+    localChangeComment__AUTH
 } from '../reducers/logSignReducer'
 import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from '../reducers/usersReducer'
 import apiCall from '../../services'

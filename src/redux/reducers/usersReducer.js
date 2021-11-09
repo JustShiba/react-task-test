@@ -39,6 +39,19 @@ export const usersReducer = createSlice({
             state.otherUser = false
         },
 
+        localChangeComment__NONAUTH: (state, action) => {
+            state.currentUserInf.posts[action.payload.postIndex]
+                .comments[action.payload.commentIndex] = action.payload.comment
+        },
+
+        localAddComment__NONAUTH: (state, action) => {
+            state.currentUserInf.posts[action.payload.postIndex].comments.push(action.payload.comment)
+        },
+
+        localDeleteComment__NONAUTH: (state, action) => {
+            const { postIndex, commentIndex } = action.payload
+            delete state.currentUserInf.posts[postIndex].comments[commentIndex]
+        }
     }
 })
 
@@ -50,6 +63,7 @@ export const {
     getDataCurrentUser__START,
     getDataCurrentUser__SUCCESS,
     currentUserIsNotAuth,
-    // loading__START,
-    // loading__FINISH,
+    localChangeComment__NONAUTH,
+    localAddComment__NONAUTH,
+    localDeleteComment__NONAUTH
 } = usersReducer.actions

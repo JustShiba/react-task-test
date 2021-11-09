@@ -132,6 +132,20 @@ export const logSignReducer = createSlice({
 
         updateUserPosts: (state, action) => {
             state.personalInf.posts = action.payload
+        },
+
+        localChangeComment__AUTH: (state, action) => {
+            state.personalInf.posts[action.payload.postIndex]
+                .comments[action.payload.commentIndex] = action.payload.comment
+        },
+
+        localAddComment__AUTH: (state, action) => {
+            state.personalInf.posts[action.payload.postIndex].comments.push(action.payload.comment)
+        },
+
+        localDeleteComment__AUTH: (state, action) => {
+            const { postIndex, commentIndex } = action.payload
+            delete state.personalInf.posts[postIndex].comments[commentIndex]
         }
     }
 })
@@ -163,5 +177,8 @@ export const {
     deleteUser__SUCCESS,
     deleteUser__FAILURE,
     clearPersInf,
-    updateUserPosts
+    updateUserPosts,
+    localChangeComment__AUTH,
+    localAddComment__AUTH,
+    localDeleteComment__AUTH
 } = logSignReducer.actions

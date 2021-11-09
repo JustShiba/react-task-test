@@ -86,7 +86,7 @@ export const ProfileAuthUser = () => {
             <Line/>
             <AddPost/>
             <Line/>
-            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname}/>}
+            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname} curUser={'authUser'}/>}
         </ProfilePageContainer>
     )
 }

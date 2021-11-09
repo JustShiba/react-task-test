@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, all } from 'redux-saga/effects'
+import { takeEvery, all } from 'redux-saga/effects'
 
 import { apiCallUsers, getDataCurrentUser__START } from '../reducers/usersReducer'
 import { loadUsers } from './usersSagas'
@@ -15,7 +15,7 @@ import {
     changeNick, 
     currentUser, 
     changePhone, 
-    deleteUser, 
+    deleteUser,
 } from './currentUserSagas'
 import { 
     changeComment__START,
@@ -42,7 +42,7 @@ import {
 export default function* allSagas() {
     yield all([
         yield takeEvery(apiCallUsers, loadUsers),
-        yield takeLatest(checkLogIn__START, checkLogIn),
+        yield takeEvery(checkLogIn__START, checkLogIn),
         yield takeEvery(logIn__START, logInSaga),
         yield takeEvery(signUp__START, signUpSaga),
         yield takeEvery(getDataCurrentPersone__START, currentUser),
@@ -51,12 +51,13 @@ export default function* allSagas() {
         yield takeEvery(deleteUser__START, deleteUser),
         yield takeEvery(getDataCurrentUser__START, currentUser),
         yield takeEvery(createPost__START, createPost),
-        yield takeLatest(getAllPosts__START, getAllPosts),
-        yield takeLatest(deletePost__START, deletePost),
-        yield takeLatest(getCurrentUserPosts__START, getCurrentUserPosts),
-        yield takeLatest(changePostInf__START, changePostInf),
-        yield takeLatest(sendComment__START, sendComment),
-        yield takeLatest(changeComment__START, changeComment),
-        yield takeLatest(deleteComment__START, deleteComment),
+        yield takeEvery(getAllPosts__START, getAllPosts),
+        yield takeEvery(deletePost__START, deletePost),
+        yield takeEvery(getCurrentUserPosts__START, getCurrentUserPosts),
+        yield takeEvery(changePostInf__START, changePostInf),
+        yield takeEvery(sendComment__START, sendComment),
+        yield takeEvery(changeComment__START, changeComment),
+        yield takeEvery(deleteComment__START, deleteComment),
+        // yield takeEvery(localChangeComment, localChangeCommentSaga),
     ])
 }

@@ -7,7 +7,7 @@ import Loader from '../../../Loader'
 import Comments from './Comments'
 
 
-export const PostCard = ({ inf, name, loading, auth }) => {
+export const PostCard = ({ inf, name, loading, auth, curUser }) => {
     const { likes, body, postId, title, comments } = inf
 
     let [change, setChange] = useState(false)
@@ -77,7 +77,7 @@ export const PostCard = ({ inf, name, loading, auth }) => {
                 }
             </PostContainer>
             {commentsSate ? 
-                <Comments inf={comments} postId={postId} loading={loading}/> : 
+                <Comments inf={comments} postId={postId} loading={loading} curUser={curUser}/> : 
                 null
             }
         </Box>

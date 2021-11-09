@@ -45,7 +45,7 @@ export const ProfileNonAuthUser = () => {
                 </>
             }
             <Line/>
-            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname} auth={otherUser}/>}
+            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname} auth={otherUser} curUser={'nonAuthUser'}/>}
         </ProfilePageContainer>
     )
 }

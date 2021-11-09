@@ -3,9 +3,8 @@ import styled from 'styled-components'
 import PostCard from './PostCard'
 
 
-export const PostsPage = ({ posts, nickname, auth }) => {
+export const PostsPage = ({ posts, nickname, auth, curUser }) => {
     const { loading } = useSelector(state => state.posts)
-    
     return(
         <PostsContainer>
             {(!posts) ? 
@@ -18,6 +17,7 @@ export const PostsPage = ({ posts, nickname, auth }) => {
                                             name={nickname} 
                                             loading={loading} 
                                             auth={!auth}
+                                            curUser={curUser}
                                         />))}
                 </>
             }

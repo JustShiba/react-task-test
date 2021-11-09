@@ -1,14 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { localChangeComment } from '../../../../../../redux/reducers/logSignReducer'
 import { changeComment__START, deleteComment__START } from '../../../../../../redux/reducers/postsReducer'
 
-export const UserComment = ({ inf, postId }) => {
+export const UserComment = ({ inf, postId, curUser }) => {
     const { body, commentId, userId } = inf
     const personalUserId = useSelector(state => state.authorization.personalInf.userId)
 
     const dispatch = useDispatch()
     let [comment, setComment] = useState(body)
+    
+    useEffect(() => {
+        setComment(body)
+    }, [body])
+
     const [changingComment, setChangingComment] = useState(false)
 
     return (
@@ -24,7 +30,10 @@ export const UserComment = ({ inf, postId }) => {
                 <ButBox>
                     {changingComment ?  
                         <CangeCommentBtn 
-                            onClick={() => dispatch(changeComment__START({ postId, commentId, comment }))}
+                            onClick={() => {
+                                const config = curUser 
+                                dispatch(changeComment__START({ postId, commentId, comment, config }))
+                            }}
                         >Save</CangeCommentBtn> : 
                         <CangeCommentBtn 
                             onClick={() => setChangingComment(!changingComment)}
@@ -32,7 +41,11 @@ export const UserComment = ({ inf, postId }) => {
                     }
                     
                     <DeleteCommentBtn 
-                        onClick={() => dispatch(deleteComment__START({ postId, commentId }))}
+                        onClick={() => {
+                            const config = curUser
+                            dispatch(deleteComment__START({ postId, commentId, config }))
+                        }}
+
                     >Delete</DeleteCommentBtn>
                 </ButBox> : 
                 null   
