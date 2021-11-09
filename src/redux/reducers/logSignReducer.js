@@ -23,6 +23,13 @@ export const logSignReducer = createSlice({
             state.userInfInp.password = action.payload
         },
 
+        checkLogIn__START: () => {},
+
+        checkLogIn__SUCCESS: (state, action) => {
+            state.personalInf = action.payload
+            state.auth = true
+        },
+        
         logIn__START: (state) => {
             state.loading = true
         },
@@ -126,6 +133,8 @@ export const logSignReducer = createSlice({
 })
 
 export const { 
+    checkLogIn__START,
+    checkLogIn__SUCCESS,
     logIn__START, 
     logIn__SUCCESS, 
     logIn__FAILURE, 

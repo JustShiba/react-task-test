@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Route } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import LogInPage from './LogInPage'
 import SignUpPage from './SignUpPage'
@@ -8,10 +8,18 @@ import { AllPostsPage } from './PostsPage/AllPostsPage'
 import UsersPage from './UsersPage'
 import NoLogIn from './NoLogIn'
 import ProfilePage from './ProfilePage'
+import { useEffect } from 'react'
+import { checkLogIn__START } from '../../redux/reducers/logSignReducer'
 
 
 export const Pages = () => {
     const state = useSelector(state => state);
+
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        dispatch(checkLogIn__START())
+    }, [dispatch])
 
     const { auth } = state.authorization
 

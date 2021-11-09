@@ -6,6 +6,7 @@ import Header from '../Header'
 import Pages from '../Pages'
 
 export function App() {
+  
   return (
     <Provider store={store}>
       <Router>

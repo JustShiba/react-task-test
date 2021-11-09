@@ -2,8 +2,8 @@ import { takeEvery, takeLatest, all } from 'redux-saga/effects'
 
 import { apiCallUsers, getDataCurrentUser__START } from '../reducers/usersReducer'
 import { loadUsers } from './usersSagas'
-import { logInSaga, signUpSaga } from './logSignSagas'
-import { getDataCurrentPersone__START } from '../reducers/logSignReducer'
+import { checkLogIn, logInSaga, signUpSaga } from './logSignSagas'
+import { checkLogIn__START, getDataCurrentPersone__START } from '../reducers/logSignReducer'
 import { 
     deleteUser__START,
     logIn__START, 
@@ -42,6 +42,7 @@ import {
 export default function* allSagas() {
     yield all([
         yield takeEvery(apiCallUsers, loadUsers),
+        yield takeLatest(checkLogIn__START, checkLogIn),
         yield takeEvery(logIn__START, logInSaga),
         yield takeEvery(signUp__START, signUpSaga),
         yield takeEvery(getDataCurrentPersone__START, currentUser),
