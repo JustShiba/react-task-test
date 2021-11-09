@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import LogOut from './LogOut'
 
 import LogSign from './LogSign'
 import NavBar from './NavBar'
@@ -12,11 +13,15 @@ export const Header = () => {
         <HeaderContainer>
             <HeaderWrapper>
                 <NavBar/>
-                {auth ? <Profile/> : <LogSign/>}
+                {auth ? <AuthContHeaderBtn><Profile/><LogOut/></AuthContHeaderBtn> : <LogSign/>}
             </HeaderWrapper>
         </HeaderContainer>
     )
 }
+
+const AuthContHeaderBtn = styled.div`
+    max-width: 250px;
+`
 
 const HeaderContainer = styled.header`
     width: 100%;

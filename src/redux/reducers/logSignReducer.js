@@ -59,6 +59,10 @@ export const logSignReducer = createSlice({
             alert('Error: try again')
         },
 
+        logOutReducer: (state) => {
+            state.auth = false
+        },
+        
         getDataCurrentPersone__START: (state) => {
             state.loading = true
         },
@@ -141,6 +145,7 @@ export const {
     signUp__START,
     signUp__SUCCESS,
     signUp__FAILURE,
+    logOutReducer,
     changeInpEmail,
     changeInpPass,
     getDataCurrentPersone__START,
