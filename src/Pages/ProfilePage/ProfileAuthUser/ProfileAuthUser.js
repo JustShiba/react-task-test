@@ -29,24 +29,22 @@ import {
 import { selectUserId } from '../../../../src/redux/reducers/usersReducer'
 
 
-export const ProfileAuthUser = ({ userId }) => {
-
+export const ProfileAuthUser = ({ user }) => {
     const dispatch = useDispatch()
-    const state = useSelector(state => state)
-    const stateAuth = state.authorization
-    const { email, nickname, phone, posts } = stateAuth.personalInf
-    const phoneInp = stateAuth.userInfInp.phone
-    const nickInp = stateAuth.userInfInp.nickName
-    const loading = stateAuth.loading
+    const state = useSelector(state => state.authorization)
+    const { email, nickname, phone, posts, userId } = state.personalInf
+    const phoneInp = state.userInfInp.phone
+    const nickInp = state.userInfInp.nickName
+    const loading = state.loading
 
     useEffect(() => {
-        if (userId) {
-            dispatch(selectUserId(userId))
+        if (user) {
+            dispatch(selectUserId(user))
         } else {
-            dispatch(selectUserId(state.authorization.personalInf.userId))
+            dispatch(selectUserId(userId))
         }
         dispatch(getDataCurrentPersone__START())
-    }, [dispatch, state.authorization.personalInf.userId, userId])
+    }, [dispatch, userId, user])
 
     return(
         <ProfilePageContainer>
