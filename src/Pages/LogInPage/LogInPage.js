@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 import { Loader } from '../../../src/components/Loader/Loader'
 import { changeInpPass, changeInpEmail, logIn__START } from '../../../src/redux/reducers/logSignReducer'
@@ -11,7 +11,6 @@ import {
     H2,
     Paragraph,
 } from './styled'
-import { Link } from 'react-router-dom'
 
 
 export const LogInPage = () => {
