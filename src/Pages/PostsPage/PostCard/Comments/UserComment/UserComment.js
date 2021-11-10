@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { changeComment__START, deleteComment__START } from '../../../../../../src/redux/reducers/postsReducer'
+import { changeComment__START, deleteComment__START } from '../../../../../../src/redux/posts/postsReducer'
 
 export const UserComment = ({ inf, postId, curUser }) => {
     const { body, commentId, userId } = inf

@@ -1,22 +1,22 @@
 import { takeEvery, all } from 'redux-saga/effects'
 
-import { apiCallUsers, getDataCurrentUser__START } from '../reducers/usersReducer'
-import { loadUsers } from './usersSagas'
-import { checkLogIn, logInSaga, signUpSaga } from './logSignSagas'
-import { checkLogIn__START, getDataCurrentPersone__START } from '../reducers/logSignReducer'
+import { apiCallUsers, getDataCurrentUser__START } from '../users/usersReducer'
+import { loadUsers } from '../users/usersSagas'
+import { checkLogIn, logInSaga, signUpSaga } from '../auth/authSagas'
+import { checkLogIn__START, getDataCurrentPersone__START } from '../auth/authReducer'
 import { 
     deleteUser__START,
     logIn__START, 
     setNick__START, 
     setPhone__START, 
     signUp__START 
-} from '../reducers/logSignReducer'
+} from '../auth/authReducer'
 import { 
     changeNick, 
     currentUser, 
     changePhone, 
     deleteUser,
-} from './currentUserSagas'
+} from '../users/currentUserSagas'
 import { 
     changeComment__START,
     changePostInf__START,
@@ -26,7 +26,7 @@ import {
     getAllPosts__START, 
     getCurrentUserPosts__START, 
     sendComment__START
-} from '../reducers/postsReducer'
+} from '../posts/postsReducer'
 import { 
     changeComment,
     changePostInf, 
@@ -36,7 +36,7 @@ import {
     getAllPosts, 
     getCurrentUserPosts, 
     sendComment
-} from './postsSagas'
+} from '../posts/postsSagas'
 
 
 export default function* allSagas() {

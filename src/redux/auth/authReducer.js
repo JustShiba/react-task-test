@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-export const logSignReducer = createSlice({
-    name: 'logSignReducer',
+export const authReducer = createSlice({
+    name: 'authReducer',
     initialState: {
         userInfInp: {
             email: '',
@@ -195,4 +195,4 @@ export const {
     localChangeComment__AUTH,
     localAddComment__AUTH,
     localDeleteComment__AUTH
-} = logSignReducer.actions
+} = authReducer.actions

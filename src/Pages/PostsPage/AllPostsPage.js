@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { getAllPosts__START } from '../../../src/redux/reducers/postsReducer'
-import { apiCallUsers } from '../../../src/redux/reducers/usersReducer'
+import { getAllPosts__START } from '../../../src/redux/posts/postsReducer'
+import { apiCallUsers } from '../../../src/redux/users/usersReducer'
 import { Loader } from '../../../src/components/Loader/Loader'
 import { PostCard } from './PostCard/PostCard'
 

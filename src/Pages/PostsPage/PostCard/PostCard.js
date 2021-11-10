@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { changePostInf__START, deletePost__START } from '../../../../src/redux/reducers/postsReducer'
+import { changePostInf__START, deletePost__START } from '../../../../src/redux/posts/postsReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { Comments } from './Comments/Comments'
 

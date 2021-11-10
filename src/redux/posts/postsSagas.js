@@ -6,7 +6,7 @@ import {
     localChangeComment__AUTH, 
     localDeleteComment__AUTH, 
     updateUserPosts 
-} from '../reducers/logSignReducer'
+} from '../auth/authReducer'
 import { 
     createPost__SUCCESS, 
     createPost__FAILURE, 
@@ -28,12 +28,12 @@ import {
     localChangeComment__ALL,
     localAddComment__ALL,
     localDeleteComment__ALL, 
-} from '../reducers/postsReducer'
+} from './postsReducer'
 import { 
     localAddComment__NONAUTH, 
     localChangeComment__NONAUTH, 
     localDeleteComment__NONAUTH 
-} from '../reducers/usersReducer'
+} from '../users/usersReducer'
 
 
 export function* changePostInf() {

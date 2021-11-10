@@ -6,7 +6,7 @@ import {
     changePostTitle, 
     changePostBody, 
     createPost__START 
-} from '../../../../../src/redux/reducers/postsReducer'
+} from '../../../../../src/redux/posts/postsReducer'
 import { Loader } from '../../../../../src/components/Loader/Loader'
 
 export const AddPost = () => {

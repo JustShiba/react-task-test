@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { UserCard } from './UserCard/UserCard'
-import { apiCallUsers } from '../../../src/redux/reducers/usersReducer'
+import { apiCallUsers } from '../../../src/redux/users/usersReducer'
 import { Loader } from '../../../src/components/Loader/Loader'
 
 

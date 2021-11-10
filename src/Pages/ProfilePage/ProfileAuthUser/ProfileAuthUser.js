@@ -8,7 +8,7 @@ import {
     getDataCurrentPersone__START,
     setNick__START,
     setPhone__START
-} from '../../../../src/redux/reducers/logSignReducer'
+} from '../../../../src/redux/auth/authReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
 import { AddPost } from './AddPost/AddPost'
@@ -26,7 +26,7 @@ import {
     Phone,
     Email
 } from '../styled'
-import { selectUserId } from '../../../../src/redux/reducers/usersReducer'
+import { selectUserId } from '../../../../src/redux/users/usersReducer'
 
 
 export const ProfileAuthUser = ({ user }) => {

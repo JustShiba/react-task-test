@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 
-import { logOutReducer } from '../../../redux/reducers/logSignReducer'
+import { logOutReducer } from '../../../redux/auth/authReducer'
 import { SignUpBtn as ProfileBtn } from '../LogSign/LogSign'
 
 

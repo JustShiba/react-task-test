@@ -7,7 +7,7 @@ import {
     signUp__FAILURE, 
     signUp__SUCCESS,
     checkLogIn__FAILURE
-} from '../reducers/logSignReducer'
+} from './authReducer'
 import { apiCall } from '../../services/service'
 
 

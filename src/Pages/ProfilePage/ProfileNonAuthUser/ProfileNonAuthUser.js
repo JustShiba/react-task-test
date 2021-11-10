@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getDataCurrentUser__START } from '../../../../src/redux/reducers/usersReducer'
+import { getDataCurrentUser__START } from '../../../../src/redux/users/usersReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
 import {

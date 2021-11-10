@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Loader } from '../../../src/components/Loader/Loader'
 import { 
     signUp__START 
-} from '../../../src/redux/reducers/logSignReducer'
+} from '../../../src/redux/auth/authReducer'
 import {
     LogSignBox,
     LogInInp,
