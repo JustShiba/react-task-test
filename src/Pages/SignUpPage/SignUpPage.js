@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { Loader } from '../../../src/components/Loader/Loader'
-import { changeInpPass, changeInpEmail, signUp__START } from '../../../src/redux/reducers/logSignReducer'
+import { 
+    signUp__START 
+} from '../../../src/redux/reducers/logSignReducer'
 import {
     LogSignBox,
     LogInInp,
@@ -15,8 +18,14 @@ import {
 
 export const SignUpPage = () => {
     const dispatch = useDispatch()
-    const { email, password } = useSelector(state => state.authorization.userInfInp)
     const { loading, sign } = useSelector(state => state.authorization)
+
+    const [ pass, setPass ] = useState('')
+    const [ email, setEmail ] = useState('')  
+    useEffect(() => {
+        setPass('')
+        setEmail('')
+    }, [])
 
     return (
         <LogSignBox>
@@ -29,21 +38,21 @@ export const SignUpPage = () => {
                         <LogInInp
                             value={email}
                             onChange={(e) => {
-                                dispatch(changeInpEmail(e.target.value))
+                                setEmail(e.target.value)
                             }
                             } />
                         <Title>Password:</Title>
                         <LogInInp
                             type='password'
-                            value={password}
+                            value={pass}
                             onChange={(e) => {
-                                dispatch(changeInpPass(e.target.value))
+                                setPass(e.target.value)
                             }}
                         />
                         <Paragraph>If you already have account, you can <Link to={'./login'}>Log in</Link></Paragraph>
                         <LogSignBtn onClick={(e) => {
                             e.preventDefault()
-                            dispatch(signUp__START())
+                            dispatch(signUp__START({email, pass}))
                         }}>Sign Up</LogSignBtn>
                     </> :
                     <H2>Please, confirm registration on your mail</H2>

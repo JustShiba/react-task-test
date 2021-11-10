@@ -41,10 +41,10 @@ import {
 
 export default function* allSagas() {
     yield all([
-        yield takeEvery(apiCallUsers, loadUsers),
         yield takeEvery(checkLogIn__START, checkLogIn),
-        yield takeEvery(logIn__START, logInSaga),
+        yield takeEvery(apiCallUsers, loadUsers),
         yield takeEvery(signUp__START, signUpSaga),
+        yield takeEvery(logIn__START, logInSaga),
         yield takeEvery(getDataCurrentPersone__START, currentUser),
         yield takeEvery(setNick__START, changeNick),
         yield takeEvery(setPhone__START, changePhone),
@@ -58,6 +58,5 @@ export default function* allSagas() {
         yield takeEvery(sendComment__START, sendComment),
         yield takeEvery(changeComment__START, changeComment),
         yield takeEvery(deleteComment__START, deleteComment),
-        // yield takeEvery(localChangeComment, localChangeCommentSaga),
     ])
 }

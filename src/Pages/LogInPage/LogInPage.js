@@ -1,8 +1,13 @@
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 
 import { Loader } from '../../../src/components/Loader/Loader'
-import { changeInpPass, changeInpEmail, logIn__START } from '../../../src/redux/reducers/logSignReducer'
+import { 
+    // changeInpPass, 
+    // changeInpEmail, 
+    logIn__START 
+} from '../../../src/redux/reducers/logSignReducer'
 import {
     LogSignBox,
     LogInInp,
@@ -14,10 +19,16 @@ import {
 
 
 export const LogInPage = () => {
-    const location = useLocation()
     const dispatch = useDispatch()
-    const { email, password } = useSelector(state => state.authorization.userInfInp)
+    const location = useLocation()
     const { loading, auth } = useSelector(state => state.authorization)
+
+    const [ pass, setPass ] = useState('')
+    const [ email, setEmail ] = useState('')  
+    useEffect(() => {
+        setPass('')
+        setEmail('')
+    }, [])  
     
     location.pathname = `${auth ? `/profile` : location.pathname}`
 
@@ -31,21 +42,21 @@ export const LogInPage = () => {
                     <LogInInp
                         value={email}
                         onChange={(e) => {
-                            dispatch(changeInpEmail(e.target.value))
+                            setEmail(e.target.value)
                         }
                         } />
                     <Title>Password:</Title>
                     <LogInInp
                         type='password'
-                        value={password}
+                        value={pass}
                         onChange={(e) => {
-                            dispatch(changeInpPass(e.target.value))
+                            setPass(e.target.value)
                         }}
                     />
                     <Paragraph>If you have no account, you should <Link to={'./signup'}>Sign up</Link></Paragraph>
                     <LogSignBtn onClick={(e) => {
                         e.preventDefault()
-                        dispatch(logIn__START())
+                        dispatch(logIn__START({email, pass}))
                     }}>Log In</LogSignBtn>
                 </>
             }

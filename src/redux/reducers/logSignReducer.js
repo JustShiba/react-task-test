@@ -16,14 +16,6 @@ export const logSignReducer = createSlice({
         loading: false,
     },
     reducers: {
-        changeInpEmail: (state, action) => {
-            state.userInfInp.email = action.payload
-        },
-
-        changeInpPass: (state, action) => {
-            state.userInfInp.password = action.payload
-        },
-
         checkLogIn__START: () => {},
 
         checkLogIn__SUCCESS: (state, action) => {
@@ -31,7 +23,10 @@ export const logSignReducer = createSlice({
             state.auth = true
         },
         
-        logIn__START: (state) => {
+        logIn__START: (state, action) => {
+            const { email, pass } = action.payload
+            state.userInfInp.email = email
+            state.userInfInp.password = pass
             state.loading = true
         },
         
@@ -39,23 +34,34 @@ export const logSignReducer = createSlice({
             state.loading = false
             state.auth = true
             state.personalInf = action.payload
+            state.userInfInp.email = ''
+            state.userInfInp.password = ''
         },
         
         logIn__FAILURE: (state) => {
             state.loading = false
+            state.userInfInp.email = ''
+            state.userInfInp.password = ''
             alert('Error: try again')
         },
         
-        signUp__START: (state) => {
+        signUp__START: (state, action) => {
+            const { email, pass } = action.payload
+            state.userInfInp.email = email
+            state.userInfInp.password = pass
             state.loading = true
         },
         
         signUp__SUCCESS: (state) => {
-            state.loading = false
             state.sign = true
+            state.userInfInp.email = ''
+            state.userInfInp.password = ''
+            state.loading = false
         },
         
         signUp__FAILURE: (state) => {
+            state.userInfInp.email = ''
+            state.userInfInp.password = ''
             state.loading = false
             alert('Error: try again')
         },
