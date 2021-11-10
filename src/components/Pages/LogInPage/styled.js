@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 export const LogSignBox = styled.form`
     width: 100%;
     display: flex;

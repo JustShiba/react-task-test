@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { Btn } from '../../styled'
 
+import { Btn } from '../../styled'
 import { 
     changePostTitle, 
     changePostBody, 

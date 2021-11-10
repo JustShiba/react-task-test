@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { localChangeComment } from '../../../../../../redux/reducers/logSignReducer'
+
 import { changeComment__START, deleteComment__START } from '../../../../../../redux/reducers/postsReducer'
 
 export const UserComment = ({ inf, postId, curUser }) => {

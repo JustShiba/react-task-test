@@ -1,6 +1,12 @@
 import { select, put, call } from 'redux-saga/effects'
 
-import { checkLogIn__SUCCESS, logIn__FAILURE, logIn__SUCCESS, signUp__FAILURE, signUp__SUCCESS } from '../reducers/logSignReducer'
+import { 
+    checkLogIn__SUCCESS, 
+    logIn__FAILURE, 
+    logIn__SUCCESS, 
+    signUp__FAILURE, 
+    signUp__SUCCESS 
+} from '../reducers/logSignReducer'
 import apiCall from '../../services'
 
 

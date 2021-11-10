@@ -1,14 +1,14 @@
-import styled from 'styled-components'
-import { Route } from 'react-router-dom'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Route } from 'react-router-dom'
+import styled from 'styled-components'
 
 import LogInPage from './LogInPage'
 import SignUpPage from './SignUpPage'
-import { AllPostsPage } from './PostsPage/AllPostsPage'
 import UsersPage from './UsersPage'
 import NoLogIn from './NoLogIn'
 import ProfilePage from './ProfilePage'
-import { useEffect } from 'react'
+import { AllPostsPage } from './PostsPage/AllPostsPage'
 import { checkLogIn__START } from '../../redux/reducers/logSignReducer'
 
 

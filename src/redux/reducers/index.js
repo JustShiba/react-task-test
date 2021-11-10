@@ -3,8 +3,8 @@ import createSagaMiddleware from 'redux-saga'
 
 import { usersReducer } from './usersReducer'
 import { logSignReducer } from './logSignReducer'
-import allSagas from '../sagas'
 import { postsReducer } from './postsReducer'
+import allSagas from '../sagas'
 
 
 const sagaMiddleware = createSagaMiddleware();

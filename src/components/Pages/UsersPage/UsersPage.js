@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import UserCard from './UserCard'
 import { apiCallUsers } from '../../../redux/reducers/usersReducer'
-import { useEffect } from 'react'
 import Loader from '../../Loader'
 
 

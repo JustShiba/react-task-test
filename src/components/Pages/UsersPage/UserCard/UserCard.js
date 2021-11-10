@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { selectUserId } from '../../../../redux/reducers/usersReducer'
 

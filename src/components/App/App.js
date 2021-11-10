@@ -5,6 +5,7 @@ import store from '../../redux/reducers'
 import Header from '../Header'
 import Pages from '../Pages'
 
+
 export function App() {
   
   return (

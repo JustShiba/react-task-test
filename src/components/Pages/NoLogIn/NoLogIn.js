@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+
 export const NoLogIn = () => {
     return (
         <H2>You must <Link to={'./login'}>log in...</Link></H2>

@@ -12,7 +12,6 @@ import {
 import Loader from '../../../Loader'
 import PostsPage from '../../PostsPage'
 import AddPost from './AddPost'
-
 import {
     Box,
     Btn,

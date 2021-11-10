@@ -1,7 +1,12 @@
 import { call, put, select } from '@redux-saga/core/effects'
 
 import apiCall from '../../services'
-import { localAddComment__AUTH, localChangeComment__AUTH, localDeleteComment__AUTH, updateUserPosts } from '../reducers/logSignReducer'
+import { 
+    localAddComment__AUTH, 
+    localChangeComment__AUTH, 
+    localDeleteComment__AUTH, 
+    updateUserPosts 
+} from '../reducers/logSignReducer'
 import { 
     createPost__SUCCESS, 
     createPost__FAILURE, 
@@ -24,7 +29,11 @@ import {
     localAddComment__ALL,
     localDeleteComment__ALL, 
 } from '../reducers/postsReducer'
-import { localAddComment__NONAUTH, localChangeComment__NONAUTH, localDeleteComment__NONAUTH } from '../reducers/usersReducer'
+import { 
+    localAddComment__NONAUTH, 
+    localChangeComment__NONAUTH, 
+    localDeleteComment__NONAUTH 
+} from '../reducers/usersReducer'
 
 
 export function* changePostInf() {
