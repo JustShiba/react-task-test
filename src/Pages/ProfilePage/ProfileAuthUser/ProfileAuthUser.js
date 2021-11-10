@@ -29,8 +29,8 @@ import {
 import { selectUserId } from '../../../../src/redux/reducers/usersReducer'
 
 
-export const ProfileAuthUser = () => {
-    
+export const ProfileAuthUser = ({ userId }) => {
+
     const dispatch = useDispatch()
     const state = useSelector(state => state)
     const stateAuth = state.authorization
@@ -40,9 +40,13 @@ export const ProfileAuthUser = () => {
     const loading = stateAuth.loading
 
     useEffect(() => {
-        dispatch(selectUserId(state.authorization.personalInf.userId))
+        if (userId) {
+            dispatch(selectUserId(userId))
+        } else {
+            dispatch(selectUserId(state.authorization.personalInf.userId))
+        }
         dispatch(getDataCurrentPersone__START())
-    }, [dispatch, state.authorization.personalInf.userId])
+    }, [dispatch, state.authorization.personalInf.userId, userId])
 
     return(
         <ProfilePageContainer>

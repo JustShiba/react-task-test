@@ -11,6 +11,7 @@ export const logSignReducer = createSlice({
             phone: ''
         },
         personalInf: {},
+        firstAuth: true,
         auth: false,
         sign: false,
         loading: false,
@@ -21,6 +22,10 @@ export const logSignReducer = createSlice({
         checkLogIn__SUCCESS: (state, action) => {
             state.personalInf = action.payload
             state.auth = true
+        },
+
+        checkLogIn__FAILURE: (state, action) => {
+            state.firstAuth = false
         },
         
         logIn__START: (state, action) => {
@@ -68,6 +73,7 @@ export const logSignReducer = createSlice({
 
         logOutReducer: (state) => {
             state.auth = false
+            state.firstAuth = false
         },
         
         getDataCurrentPersone__START: (state) => {
@@ -160,6 +166,7 @@ export const logSignReducer = createSlice({
 export const { 
     checkLogIn__START,
     checkLogIn__SUCCESS,
+    checkLogIn__FAILURE,
     logIn__START, 
     logIn__SUCCESS, 
     logIn__FAILURE, 

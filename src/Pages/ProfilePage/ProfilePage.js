@@ -10,7 +10,7 @@ export const ProfilePage = () => {
     return (
         <>
             {(location.pathname.indexOf('/profile') === 0) ?
-                <ProfileAuthUser/> :
+                <ProfileAuthUser userId = {localStorage.getItem('userId')} /> :
                 <ProfileNonAuthUser/>
             }
         </>

@@ -5,7 +5,8 @@ import {
     logIn__FAILURE, 
     logIn__SUCCESS, 
     signUp__FAILURE, 
-    signUp__SUCCESS 
+    signUp__SUCCESS,
+    checkLogIn__FAILURE
 } from '../reducers/logSignReducer'
 import { apiCall } from '../../services/service'
 
@@ -27,7 +28,7 @@ export function* logInSaga() {
 export function* checkLogIn() {
     const userId = yield localStorage.getItem(`userId`)
     const userToken = yield localStorage.getItem(`userToken`)
-    if (!userId || !userToken) return
+    if (!userId || !userToken) put(checkLogIn__FAILURE())
     let response = {}
     try {
         response = yield call(apiCall, [`get`, `users/${userId}`, null, userToken])
@@ -37,6 +38,7 @@ export function* checkLogIn() {
     } catch {
         localStorage.removeItem(`userToken`)
         localStorage.removeItem(`userId`)
+        put(checkLogIn__FAILURE())
     }
 }
 

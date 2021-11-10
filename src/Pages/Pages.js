@@ -1,23 +1,22 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { LogInPage } from './LogInPage/LogInPage'
 import { SignUpPage } from './SignUpPage/SignUpPage'
 import { UsersPage } from './UsersPage/UsersPage'
-import { NoLogIn } from './NoLogIn/NoLogIn'
+// import { NoLogIn } from './NoLogIn/NoLogIn'
 import { ProfilePage } from './ProfilePage/ProfilePage'
 import { AllPostsPage } from './PostsPage/AllPostsPage'
 import { checkLogIn__START } from '../../src/redux/reducers/logSignReducer'
-import { NoPage } from './NoPage/NoPage'
+// import { NoPage } from './NoPage/NoPage'
+import { PrivateRoute } from './PrivateRoute'
 
 
 export const Pages = () => {
-    const { auth } = useSelector(state => state.authorization);
-
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(checkLogIn__START())
     }, [dispatch])
@@ -25,26 +24,16 @@ export const Pages = () => {
     return (
         <PagesContainer>
             <PagesWrapper>
-                {auth ? 
-                    <Switch>
-                        <Route path='/login' component={LogInPage}/>
-                        <Route path='/signup' component={SignUpPage}/>
-                        <Route path='/users' component={UsersPage}/>
-                        <Route path='/posts' exact component={AllPostsPage}/>
-                        <Route path='/profile' component={ProfilePage}/>
-                        <Route path='/user' component={ProfilePage}/>
-                    </Switch>:
-                    <Switch>
-                        <Route path='/login' component={LogInPage}/>
-                        <Route path='/signup' component={SignUpPage}/>
-                        <Route path='/' exact component={NoLogIn}/>
-                        <Route path='/users' component={NoLogIn}/>
-                        <Route path='/posts' component={NoLogIn}/>
-                        <Route path='/profile' component={NoLogIn}/>
-                        <Route path='/user' component={NoLogIn}/>
-                        <Route path='*' component={NoPage}/>
-                    </Switch>
-                }
+                <Switch>
+                    <PrivateRoute exact path="/" component={AllPostsPage}/>
+                    <PrivateRoute path='/users' component={UsersPage} />
+                    <PrivateRoute path='/posts' exact component={AllPostsPage} />
+                    <PrivateRoute path='/profile' component={ProfilePage} />
+                    <PrivateRoute path='/user' component={ProfilePage} />
+                    <Route path="/login" component={LogInPage} />
+                    <Route path="/signup" component={SignUpPage} />
+                    <Redirect from="*" to="/" />
+                </Switch>
             </PagesWrapper>
         </PagesContainer>
     )

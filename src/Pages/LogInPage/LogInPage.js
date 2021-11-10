@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 
 import { Loader } from '../../../src/components/Loader/Loader'
-import { 
-    // changeInpPass, 
-    // changeInpEmail, 
-    logIn__START 
-} from '../../../src/redux/reducers/logSignReducer'
+import { logIn__START } from '../../../src/redux/reducers/logSignReducer'
 import {
     LogSignBox,
     LogInInp,
