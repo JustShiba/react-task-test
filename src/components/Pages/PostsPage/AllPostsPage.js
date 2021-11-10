@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import { getAllPosts__START } from '../../../redux/reducers/postsReducer'
 import { apiCallUsers } from '../../../redux/reducers/usersReducer'
-import Loader from '../../Loader'
-import PostCard from './PostCard'
+import { Loader } from '../../Loader/Loader'
+import { PostCard } from './PostCard/PostCard'
 
 
 export const AllPostsPage = () => {

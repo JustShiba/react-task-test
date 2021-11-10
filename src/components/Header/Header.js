@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import LogOut from './LogOut'
-import LogSign from './LogSign'
-import NavBar from './NavBar'
-import Profile from './Profile'
+import { LogOut } from './LogOut/LogOut'
+import { LogSign } from './LogSign/LogSign'
+import { NavBar } from './NavBar/NavBar'
+import { Profile } from './Profile/Profile'
 
 
 export const Header = () => {

@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { sendComment__START } from '../../../../../redux/reducers/postsReducer'
-import UserComment from './UserComment'
+import { UserComment } from './UserComment/UserComment'
+
 
 export const Comments = ({ inf, postId, loading, curUser }) => {
     const dispatch = useDispatch()

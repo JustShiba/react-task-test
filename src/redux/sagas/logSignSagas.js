@@ -7,7 +7,7 @@ import {
     signUp__FAILURE, 
     signUp__SUCCESS 
 } from '../reducers/logSignReducer'
-import apiCall from '../../services'
+import { apiCall } from '../../services/service'
 
 
 export function* logInSaga() {

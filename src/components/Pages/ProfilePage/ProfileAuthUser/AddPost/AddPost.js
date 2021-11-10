@@ -7,7 +7,7 @@ import {
     changePostBody, 
     createPost__START 
 } from '../../../../../redux/reducers/postsReducer'
-import Loader from '../../../../Loader'
+import { Loader } from '../../../../Loader/Loader'
 
 export const AddPost = () => {
     const dispatch = useDispatch()

@@ -9,9 +9,9 @@ import {
     setNick__START,
     setPhone__START
 } from '../../../../redux/reducers/logSignReducer'
-import Loader from '../../../Loader'
-import PostsPage from '../../PostsPage'
-import AddPost from './AddPost'
+import { Loader } from '../../../Loader/Loader'
+import { PostsPage } from '../../PostsPage/PostsPage'
+import { AddPost } from './AddPost/AddPost'
 import {
     Box,
     Btn,

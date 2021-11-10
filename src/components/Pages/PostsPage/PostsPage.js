@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import PostCard from './PostCard'
+import { PostCard } from './PostCard/PostCard'
 
 
 export const PostsPage = ({ posts, nickname, auth, curUser }) => {

@@ -1,6 +1,6 @@
 import { call, put, select } from '@redux-saga/core/effects'
 
-import apiCall from '../../services'
+import { apiCall } from '../../services/service'
 import { 
     localAddComment__AUTH, 
     localChangeComment__AUTH, 

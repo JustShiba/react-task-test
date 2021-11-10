@@ -1,7 +1,7 @@
 import { put, call } from 'redux-saga/effects'
 
 import { addUsers, addUsersSuccess } from '../reducers/usersReducer'
-import apiCall from '../../services'
+import { apiCall } from '../../services/service'
 
 
 export function* loadUsers() {

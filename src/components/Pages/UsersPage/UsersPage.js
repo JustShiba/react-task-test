@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import UserCard from './UserCard'
+import { UserCard } from './UserCard/UserCard'
 import { apiCallUsers } from '../../../redux/reducers/usersReducer'
-import Loader from '../../Loader'
+import { Loader } from '../../Loader/Loader'
 
 
 export const UsersPage = () => {

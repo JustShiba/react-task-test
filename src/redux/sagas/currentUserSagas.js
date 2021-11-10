@@ -15,7 +15,7 @@ import {
     clearPersInf,
 } from '../reducers/logSignReducer'
 import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from '../reducers/usersReducer'
-import apiCall from '../../services'
+import { apiCall } from '../../services/service'
 
 
 export function* currentUser() {

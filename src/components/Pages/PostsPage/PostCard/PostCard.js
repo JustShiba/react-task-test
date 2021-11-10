@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { changePostInf__START, deletePost__START } from '../../../../redux/reducers/postsReducer'
-import Loader from '../../../Loader'
-import Comments from './Comments'
+import { Loader } from '../../../Loader/Loader'
+import { Comments } from './Comments/Comments'
 
 
 export const PostCard = ({ inf, name, loading, auth, curUser }) => {
