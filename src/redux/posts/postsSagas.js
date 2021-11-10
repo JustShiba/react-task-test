@@ -76,11 +76,11 @@ export function* getAllPosts() {
 }
 
 export function* createPost() {
-    const { postCreateInp } = yield select(state => state.posts)
+    const { title, body } = yield select(state => state.posts.postCreateInp)
     
-    if (postCreateInp.title && postCreateInp.body) {
+    if (title && body) {
         try {
-            const response = yield call(apiCall, [`post`, `posts`, postCreateInp])
+            const response = yield call(apiCall, [`post`, `posts`, { title, body }])
 
             if (response.status === 200) {
                 yield put(createPost__SUCCESS())

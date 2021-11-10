@@ -1,45 +1,82 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik';
 import styled from 'styled-components'
 
+import { createPost__START } from '../../../../../src/redux/posts/postsReducer'
+import { validate } from './validate'
 import { Btn } from '../../styled'
-import { 
-    changePostTitle, 
-    changePostBody, 
-    createPost__START 
-} from '../../../../../src/redux/posts/postsReducer'
 import { Loader } from '../../../../../src/components/Loader/Loader'
+
 
 export const AddPost = () => {
     const dispatch = useDispatch()
-    const state = useSelector(state => state.posts)
-    
-    const { title, body } = state.postCreateInp
-    const { loading } = state
+    const { title, body, loading } = useSelector(state => state.posts.postCreateInp)
+
+    const formik = useFormik({
+        initialValues: {
+            title,
+            body,
+        },
+        validate,
+        onSubmit: values => {
+            dispatch(createPost__START(values))
+            formik.resetForm();
+        },
+    })
+
     return (
-        <Box>
-            <H2>Create post</H2>
-            {loading ? 
-                <Loader/>:
-                <InputBox>
-                    <AddPostTitleInp value={title} onChange={(e) => {
-                        dispatch(changePostTitle(e.target.value))
-                    }}/>
-                    <AddPostInp rows='5' value={body} onChange={(e) => {
-                        dispatch(changePostBody(e.target.value))
-                    }}/>
-                </InputBox>
-            }
-            <AddPostBtn onClick={() => dispatch(createPost__START())}>Add post!</AddPostBtn>
-        </Box>
-    )
+        <form onSubmit={formik.handleSubmit}>
+            {loading ? <Loader/> :
+                <>
+                    <H2>Create post</H2>
+                    <Box>
+                        <TitleSection htmlFor="title">Title</TitleSection>
+                        <AddPostTitleInp
+                            id="title"
+                            name="title"
+                            type="text"
+                            onChange={formik.handleChange}
+                            value={formik.values.title}
+                        />
+                        {formik.errors.title ? <Err>{formik.errors.title}</Err> : null}
+                    </Box>
+
+                    <Box>
+                        <TitleSection htmlFor="body">Body</TitleSection>
+                        <AddPostInp
+                            id="body"
+                            name="body"
+                            type="text"
+                            onChange={formik.handleChange}
+                            value={formik.values.body}
+                        />
+                        {formik.errors.body ? <Err>{formik.errors.body}</Err> : null}
+                    </Box>
+
+                    <AddPostBtn type="submit">Submit</AddPostBtn>
+                </>}
+        </form>
+    );
 }
+
+const Err = styled.span`
+    text-align: center;
+    color: red;
+    text-transform: uppercase;
+    font-size: 10px;
+`
 
 const Box = styled.div`
     display: flex;
     flex-direction: column;
 `
 
-const InputBox = styled(Box)``
+const TitleSection = styled.label`
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 15px;
+`
 
 const H2 = styled.h2`
     color: white;
@@ -53,6 +90,7 @@ const AddPostTitleInp = styled.input`
     color: white;
     background-color: inherit;
     margin-bottom: 10px;
+    margin-bottom: 0;
 `
 
 const AddPostInp = styled.textarea`
@@ -64,9 +102,10 @@ const AddPostInp = styled.textarea`
 
 const AddPostBtn = styled(Btn)`
     font-family: Montserrat;
-    padding: 15px;
+    padding: 15px 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin: 10px auto;
+    display: block;
 `
