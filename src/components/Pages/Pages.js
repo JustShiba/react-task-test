@@ -14,15 +14,13 @@ import { NoPage } from './NoPage/NoPage'
 
 
 export const Pages = () => {
-    const state = useSelector(state => state);
+    const { auth } = useSelector(state => state.authorization);
 
     const dispatch = useDispatch()
     
     useEffect(() => {
         dispatch(checkLogIn__START())
     }, [dispatch])
-
-    const { auth } = state.authorization
 
     return (
         <PagesContainer>
