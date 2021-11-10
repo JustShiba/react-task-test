@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { UserCard } from './UserCard/UserCard'
-import { apiCallUsers } from '../../../redux/reducers/usersReducer'
-import { Loader } from '../../Loader/Loader'
+import { apiCallUsers } from '../../../src/redux/reducers/usersReducer'
+import { Loader } from '../../../src/components/Loader/Loader'
 
 
 export const UsersPage = () => {

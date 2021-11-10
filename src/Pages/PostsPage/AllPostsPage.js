@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { getAllPosts__START } from '../../../redux/reducers/postsReducer'
-import { apiCallUsers } from '../../../redux/reducers/usersReducer'
-import { Loader } from '../../Loader/Loader'
+import { getAllPosts__START } from '../../../src/redux/reducers/postsReducer'
+import { apiCallUsers } from '../../../src/redux/reducers/usersReducer'
+import { Loader } from '../../../src/components/Loader/Loader'
 import { PostCard } from './PostCard/PostCard'
 
 

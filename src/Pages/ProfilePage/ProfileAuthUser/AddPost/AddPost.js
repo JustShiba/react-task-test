@@ -6,8 +6,8 @@ import {
     changePostTitle, 
     changePostBody, 
     createPost__START 
-} from '../../../../../redux/reducers/postsReducer'
-import { Loader } from '../../../../Loader/Loader'
+} from '../../../../../src/redux/reducers/postsReducer'
+import { Loader } from '../../../../../src/components/Loader/Loader'
 
 export const AddPost = () => {
     const dispatch = useDispatch()

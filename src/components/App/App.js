@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import store from '../../redux/reducers'
 import { Header } from '../Header/Header'
-import { Pages } from '../Pages/Pages'
+import { Pages } from '../../Pages/Pages'
 
 
 export function App() {

@@ -9,7 +9,7 @@ import { UsersPage } from './UsersPage/UsersPage'
 import { NoLogIn } from './NoLogIn/NoLogIn'
 import { ProfilePage } from './ProfilePage/ProfilePage'
 import { AllPostsPage } from './PostsPage/AllPostsPage'
-import { checkLogIn__START } from '../../redux/reducers/logSignReducer'
+import { checkLogIn__START } from '../../src/redux/reducers/logSignReducer'
 import { NoPage } from './NoPage/NoPage'
 
 

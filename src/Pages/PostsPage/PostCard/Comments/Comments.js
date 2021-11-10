@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { sendComment__START } from '../../../../../redux/reducers/postsReducer'
+import { sendComment__START } from '../../../../../src/redux/reducers/postsReducer'
 import { UserComment } from './UserComment/UserComment'
 
 
