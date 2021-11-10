@@ -12,7 +12,7 @@ import { Loader } from '../../../../../src/components/Loader/Loader'
 export const AddPost = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.posts)
-
+    
     const { title, body } = state.postCreateInp
     const { loading } = state
     return (

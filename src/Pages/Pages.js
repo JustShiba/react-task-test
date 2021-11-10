@@ -10,7 +10,7 @@ import { UsersPage } from './UsersPage/UsersPage'
 import { ProfilePage } from './ProfilePage/ProfilePage'
 import { AllPostsPage } from './PostsPage/AllPostsPage'
 import { checkLogIn__START } from '../../src/redux/reducers/logSignReducer'
-// import { NoPage } from './NoPage/NoPage'
+import { NoPage } from './NoPage/NoPage'
 import { PrivateRoute } from './PrivateRoute'
 
 
@@ -25,7 +25,7 @@ export const Pages = () => {
         <PagesContainer>
             <PagesWrapper>
                 <Switch>
-                    <PrivateRoute exact path="/" component={AllPostsPage}/>
+                    <PrivateRoute exact path="/" component={NoPage}/>
                     <PrivateRoute path='/users' component={UsersPage} />
                     <PrivateRoute path='/posts' exact component={AllPostsPage} />
                     <PrivateRoute path='/profile' component={ProfilePage} />

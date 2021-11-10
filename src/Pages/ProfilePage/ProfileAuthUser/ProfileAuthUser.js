@@ -83,7 +83,7 @@ export const ProfileAuthUser = ({ userId }) => {
                         onClick={() => {
                             dispatch(deleteUser__START())
                         }}
-                        >DELETE ACCAUNT</DeleteBtn>
+                        >DELETE ACCOUNT</DeleteBtn>
                 </Box>
             </>}
             <Line/>
