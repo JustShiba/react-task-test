@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { LogInPage } from './LogInPage/LogInPage'
@@ -10,6 +10,7 @@ import { NoLogIn } from './NoLogIn/NoLogIn'
 import { ProfilePage } from './ProfilePage/ProfilePage'
 import { AllPostsPage } from './PostsPage/AllPostsPage'
 import { checkLogIn__START } from '../../redux/reducers/logSignReducer'
+import { NoPage } from './NoPage/NoPage'
 
 
 export const Pages = () => {
@@ -26,22 +27,25 @@ export const Pages = () => {
     return (
         <PagesContainer>
             <PagesWrapper>
-                <Route path='/login' component={LogInPage}/>
-                <Route path='/signup' component={SignUpPage}/>
                 {auth ? 
-                <>
-                    <Route path='/users' component={UsersPage}/>
-                    <Route path='/posts' exact component={AllPostsPage}/>
-                    <Route path='/profile' component={ProfilePage}/>
-                    <Route path='/user' component={ProfilePage}/>
-                </>:
-                <>
-                    <Route path='/' exact component={NoLogIn}/>
-                    <Route path='/users' component={NoLogIn}/>
-                    <Route path='/posts' component={NoLogIn}/>
-                    <Route path='/profile' component={NoLogIn}/>
-                    <Route path='/user' component={NoLogIn}/>
-                </>
+                    <Switch>
+                        <Route path='/login' component={LogInPage}/>
+                        <Route path='/signup' component={SignUpPage}/>
+                        <Route path='/users' component={UsersPage}/>
+                        <Route path='/posts' exact component={AllPostsPage}/>
+                        <Route path='/profile' component={ProfilePage}/>
+                        <Route path='/user' component={ProfilePage}/>
+                    </Switch>:
+                    <Switch>
+                        <Route path='/login' component={LogInPage}/>
+                        <Route path='/signup' component={SignUpPage}/>
+                        <Route path='/' exact component={NoLogIn}/>
+                        <Route path='/users' component={NoLogIn}/>
+                        <Route path='/posts' component={NoLogIn}/>
+                        <Route path='/profile' component={NoLogIn}/>
+                        <Route path='/user' component={NoLogIn}/>
+                        <Route path='*' component={NoPage}/>
+                    </Switch>
                 }
             </PagesWrapper>
         </PagesContainer>
