@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { 
-    changeNickInp, 
+import {
+    changeNickInp,
     changePhoneInp,
     deleteUser__START,
     getDataCurrentPersone__START,
@@ -32,6 +32,7 @@ import { selectUserId } from '../../../../src/redux/users/usersReducer'
 export const ProfileAuthUser = ({ user }) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.authorization)
+    const { auth } = state
     const { email, nickname, phone, posts, userId } = state.personalInf
     const phoneInp = state.userInfInp.phone
     const nickInp = state.userInfInp.nickName
@@ -43,51 +44,52 @@ export const ProfileAuthUser = ({ user }) => {
         } else {
             dispatch(selectUserId(userId))
         }
-        dispatch(getDataCurrentPersone__START())
-    }, [dispatch, userId, user])
 
-    return(
+        if (auth) dispatch(getDataCurrentPersone__START())
+    }, [dispatch, userId, user, auth])
+
+    return (
         <ProfilePageContainer>
-            {loading?
-            <Loader/>:
-            <>
-                <InpBox>
-                    <H2>{nickname ? `Personal information: ${nickname}`  : 'Your Nickname: '}</H2>
-                    <CustomInp 
-                        value={nickInp} 
-                        onChange={(e) => {
-                            dispatch(changeNickInp(e.target.value))
-                        }}
-                    /> 
-                    <Btn onClick={() => {
-                        dispatch(setNick__START())
-                    }}>{nickname ? 'change nick' : 'add nick'}</Btn>
-                </InpBox>
-                <Email>{email}</Email>  
-                <Box>            
-                    <InpBox2>
-                        <Phone>{phone}</Phone>
-                        <CustomInp2 
-                            value={phoneInp} 
+            {loading ?
+                <Loader /> :
+                <>
+                    <InpBox>
+                        <H2>{nickname ? `Personal information: ${nickname}` : 'Your Nickname: '}</H2>
+                        <CustomInp
+                            value={nickInp}
                             onChange={(e) => {
-                                dispatch(changePhoneInp(e.target.value))
+                                dispatch(changeNickInp(e.target.value))
                             }}
-                        /> 
+                        />
                         <Btn onClick={() => {
-                            dispatch(setPhone__START())
-                        }}>{phone ?  'change phone' :'add phone'}</Btn>
-                    </InpBox2>
-                    <DeleteBtn
-                        onClick={() => {
-                            dispatch(deleteUser__START())
-                        }}
+                            dispatch(setNick__START())
+                        }}>{nickname ? 'change nick' : 'add nick'}</Btn>
+                    </InpBox>
+                    <Email>{email}</Email>
+                    <Box>
+                        <InpBox2>
+                            <Phone>{phone}</Phone>
+                            <CustomInp2
+                                value={phoneInp}
+                                onChange={(e) => {
+                                    dispatch(changePhoneInp(e.target.value))
+                                }}
+                            />
+                            <Btn onClick={() => {
+                                dispatch(setPhone__START())
+                            }}>{phone ? 'change phone' : 'add phone'}</Btn>
+                        </InpBox2>
+                        <DeleteBtn
+                            onClick={() => {
+                                dispatch(deleteUser__START())
+                            }}
                         >DELETE ACCOUNT</DeleteBtn>
-                </Box>
-            </>}
-            <Line/>
-            <AddPost/>
-            <Line/>
-            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname} curUser={'authUser'}/>}
+                    </Box>
+                </>}
+            <Line />
+            <AddPost />
+            <Line />
+            {loading ? <Loader /> : <PostsPage posts={posts} nickname={nickname} curUser={'authUser'} />}
         </ProfilePageContainer>
     )
 }

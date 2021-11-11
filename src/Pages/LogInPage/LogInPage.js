@@ -18,15 +18,16 @@ export const LogInPage = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const { loading, auth } = useSelector(state => state.authorization)
-
+    
     const [ pass, setPass ] = useState('')
     const [ email, setEmail ] = useState('')  
+
     useEffect(() => {
         setPass('')
         setEmail('')
     }, [])  
     
-    location.pathname = `${auth ? `/profile` : location.pathname}`
+    location.pathname = `${auth ? `profile` : location.pathname}`
 
     return (
         <LogSignBox>
