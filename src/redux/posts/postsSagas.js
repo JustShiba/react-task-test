@@ -2,9 +2,7 @@ import { call, put, select } from '@redux-saga/core/effects'
 
 import { apiCall } from '../../services/service'
 import { 
-    localAddComment__AUTH, 
-    localChangeComment__AUTH, 
-    localDeleteComment__AUTH, 
+    getDataCurrentPersone__START,
     updateUserPosts 
 } from '../auth/authReducer'
 import { 
@@ -25,15 +23,11 @@ import {
     changeComment__FAILURE,
     deleteComment__SUCCESS,
     deleteComment__FAILURE,
-    localChangeComment__ALL,
-    localAddComment__ALL,
-    localDeleteComment__ALL,
-    removeError, 
+    removeError,
+    getAllPosts__START, 
 } from './postsReducer'
 import { 
-    localAddComment__NONAUTH, 
-    localChangeComment__NONAUTH, 
-    localDeleteComment__NONAUTH 
+    getDataCurrentUser__START,
 } from '../users/usersReducer'
 import { waitErrRemove } from '../removeError/removeError'
 
@@ -136,28 +130,21 @@ export function* deletePost() {
 
 export function* sendComment() {
     const { comment, postId, config } = yield select(state => state.posts.commentSendInf)
-    const state = yield select(state => state)
 
     try {
         const response = yield call(apiCall, [`post`, `posts/${postId}/comments`, {'body': comment}])
 
         if (response.status === 200) {
             if (config === 'authUser') {
-                const { posts } = state.authorization.personalInf
-                const postIndex = posts.findIndex(item => item.postId === postId)
-                yield put(localAddComment__AUTH({postIndex, comment: response.data}))
+                yield put(getDataCurrentPersone__START())
             }
             
             if (config === 'nonAuthUser') {
-                const { posts } = state.users.currentUserInf
-                const postIndex = posts.findIndex(item => item.postId === postId)
-                yield put(localAddComment__NONAUTH({postIndex, comment: response.data}))
+                yield put(getDataCurrentUser__START())
             }
             
             if (!config) {
-                const { allPosts } = state.posts
-                const postIndex = allPosts.findIndex(item => item.postId === postId)
-                yield put(localAddComment__ALL({postIndex, comment: response.data}))
+                yield put(getAllPosts__START())
             }
             yield put(sendComment__SUCCESS())
         }
@@ -170,7 +157,6 @@ export function* sendComment() {
 
 export function* deleteComment() {
     const { postId, commentId, config } = yield select(state => state.posts.commentDeletInf)
-    const state = yield select(state => state)
 
     try {
         const response = yield call(apiCall, [`delete`, `posts/${postId}/comments/${commentId}`])
@@ -178,24 +164,15 @@ export function* deleteComment() {
         if (response.status === 200) {
             yield put(deleteComment__SUCCESS())
             if (config === 'authUser') {
-                const { posts } = state.authorization.personalInf
-                const postIndex = posts.findIndex(item => item.postId === postId)
-                const commentIndex = posts[postIndex].comments.findIndex(item => item.commentId === commentId)
-                yield put(localDeleteComment__AUTH({postIndex, commentIndex}))
+                yield put(getDataCurrentPersone__START())
             }
             
             if (config === 'nonAuthUser') {
-                const { posts } = state.users.currentUserInf
-                const postIndex = posts.findIndex(item => item.postId === postId)
-                const commentIndex = posts[postIndex].comments.findIndex(item => item.commentId === commentId)
-                yield put(localDeleteComment__NONAUTH({postIndex, commentIndex}))
+                yield put(getDataCurrentUser__START())
             }
             
             if (!config) {
-                const { allPosts } = state.posts
-                const postIndex = allPosts.findIndex(item => item.postId === postId)
-                const commentIndex = allPosts[postIndex].comments.findIndex(item => item.commentId === commentId)
-                yield put(localDeleteComment__ALL({postIndex, commentIndex}))
+                yield put(getAllPosts__START())
             }
         }
     } catch (error) {
@@ -205,7 +182,6 @@ export function* deleteComment() {
 
 export function* changeComment() {
     const { postId, commentId, comment, config } = yield select(state => state.posts.commentChangeInf)
-    const state = yield select(state => state)
 
     try {
         const response = yield call(apiCall, [`put`, `posts/${postId}/comments/${commentId}`, { 'body': comment}])
@@ -213,24 +189,15 @@ export function* changeComment() {
         if (response.status === 200) {
             yield put(changeComment__SUCCESS())
             if (config === 'authUser') {
-                const { posts } = state.authorization.personalInf
-                const postIndex = posts.findIndex(item => item.postId === postId)
-                const commentIndex = posts[postIndex].comments.findIndex(item => item.commentId === commentId)
-                yield put(localChangeComment__AUTH({postIndex, commentIndex, comment: response.data}))
+                yield put(getDataCurrentPersone__START())
             }
             
             if (config === 'nonAuthUser') {
-                const { posts } = state.users.currentUserInf
-                const postIndex = posts.findIndex(item => item.postId === postId)
-                const commentIndex = posts[postIndex].comments.findIndex(item => item.commentId === commentId)
-                yield put(localChangeComment__NONAUTH({postIndex, commentIndex, comment: response.data}))
+                yield put(getDataCurrentUser__START())
             }
             
             if (!config) {
-                const { allPosts } = state.posts
-                const postIndex = allPosts.findIndex(item => item.postId === postId)
-                const commentIndex = allPosts[postIndex].comments.findIndex(item => item.commentId === commentId)
-                yield put(localChangeComment__ALL({postIndex, commentIndex, comment: response.data}))
+                yield put(getAllPosts__START())
             }
         }
     } catch (error) {

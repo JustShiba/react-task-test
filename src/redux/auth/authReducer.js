@@ -139,20 +139,6 @@ export const authReducer = createSlice({
             state.personalInf.posts = action.payload
         },
 
-        localChangeComment__AUTH: (state, action) => {
-            state.personalInf.posts[action.payload.postIndex]
-                .comments[action.payload.commentIndex] = action.payload.comment
-        },
-
-        localAddComment__AUTH: (state, action) => {
-            state.personalInf.posts[action.payload.postIndex].comments.push(action.payload.comment)
-        },
-
-        localDeleteComment__AUTH: (state, action) => {
-            const { postIndex, commentIndex } = action.payload
-            delete state.personalInf.posts[postIndex].comments[commentIndex]
-        }, 
-
         removeError: (state) => {
             state.errorInf = {
                 error: false,
@@ -184,8 +170,5 @@ export const {
     deleteUser__FAILURE,
     clearPersInf,
     updateUserPosts,
-    localChangeComment__AUTH,
-    localAddComment__AUTH,
-    localDeleteComment__AUTH,
     removeError
 } = authReducer.actions

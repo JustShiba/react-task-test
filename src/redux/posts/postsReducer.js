@@ -156,21 +156,6 @@ export const postsReducer = createSlice({
             state.errorInf.errorText = action.payload
         },
 
-        localChangeComment__ALL: (state, action) => {
-            state.allPosts[action.payload.postIndex]
-                .comments[action.payload.commentIndex] = action.payload.comment
-        },
-
-        localAddComment__ALL: (state, action) => {
-            const { postIndex, comment } = action.payload
-            state.allPosts[postIndex].comments.push(comment)
-        }, 
-
-        localDeleteComment__ALL: (state, action) => {
-            const { postIndex, commentIndex } = action.payload
-            delete state.allPosts[postIndex].comments[commentIndex]
-        },
-
         removeError: (state) => {
             state.errorInf = {
                 error: false,
@@ -205,8 +190,5 @@ export const {
     changeComment__START,
     changeComment__SUCCESS,
     changeComment__FAILURE,
-    localChangeComment__ALL,
-    localAddComment__ALL,
-    localDeleteComment__ALL,
     removeError
 } = postsReducer.actions
