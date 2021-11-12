@@ -19,67 +19,68 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
 
     return(
         <Box>
-            {auth ? 
-                <ChangePost onClick={() => {
-                    setChange(!change)
-                    setComments(commentsSate = false)
-                }}>Change Post</ChangePost> : 
-                null
-            }
-            <PostContainer>
-                {loading ? 
-                    <Loader/> : 
-                    <>
-                        <CommentsBtn onClick={() => {
-                            setComments(!commentsSate)
-                            setChange(change = false)
-                        }}>Comments</CommentsBtn>
-                        <PostCardBox>
-                            <Information>
-                                <InformationUser>
-                                    <H3>{name ? name : 'Noname'}</H3>
-                                </InformationUser>
-                                <InformationLikes>
-                                    {likes} Likes
-                                </InformationLikes>
-                            </Information>
-                            <InformstionPost>
-                                {change ? 
-                                    <ChangeInp 
-                                        value={titlePost} 
-                                        onChange={(e) => setTitle(titlePost = e.target.value)}/> : 
-                                    <H4>{title}</H4>
-                                }
-                                {change ? 
-                                    <ChangeInp 
-                                        value={bodyPost} 
-                                        onChange={(e) => setBody(bodyPost = e.target.value)}/> : 
-                                    <p>{body}</p>
-                                }
-                            </InformstionPost>
-                            {change ? 
-                                <ConfirmChangeBtn 
-                                    onClick={() => {
-                                        dispatch(changePostInf__START({titlePost, bodyPost, postId}))
-                                        setChange(!change)
-                                    }}
-                                >Confirm</ConfirmChangeBtn> :
-                                null
-                            }  
-                        </PostCardBox>
-                        {auth ? 
-                            <DeletePost onClick={() => {
-                                dispatch(deletePost__START(postId))
-                            }}>Delete</DeletePost> :
-                            null
-                        }
-                    </>
+            {loading ? 
+                <Loader/> :
+                <>
+                    {auth ? 
+                    <ChangePost onClick={() => {
+                        setChange(!change)
+                        setComments(commentsSate = false)
+                    }}>Change Post</ChangePost> : 
+                    null
                 }
-            </PostContainer>
-            {commentsSate ? 
-                <Comments inf={comments} postId={postId} loading={loading} curUser={curUser}/> : 
-                null
+                <PostContainer>
+                    <CommentsBtn onClick={() => {
+                        setComments(!commentsSate)
+                        setChange(change = false)
+                    }}>Comments</CommentsBtn>
+                    <PostCardBox>
+                        <Information>
+                            <InformationUser>
+                                <H3>{name ? name : 'Noname'}</H3>
+                            </InformationUser>
+                            <InformationLikes>
+                                {likes} Likes
+                            </InformationLikes>
+                        </Information>
+                        <InformstionPost>
+                            {change ? 
+                                <ChangeInp 
+                                    value={titlePost} 
+                                    onChange={(e) => setTitle(titlePost = e.target.value)}/> : 
+                                <H4>{title}</H4>
+                            }
+                            {change ? 
+                                <ChangeInp 
+                                    value={bodyPost} 
+                                    onChange={(e) => setBody(bodyPost = e.target.value)}/> : 
+                                <p>{body}</p>
+                            }
+                        </InformstionPost>
+                        {change ? 
+                            <ConfirmChangeBtn 
+                                onClick={() => {
+                                    dispatch(changePostInf__START({titlePost, bodyPost, postId}))
+                                    setChange(!change)
+                                }}
+                            >Confirm</ConfirmChangeBtn> :
+                            null
+                        }  
+                    </PostCardBox>
+                    {auth ? 
+                        <DeletePost onClick={() => {
+                            dispatch(deletePost__START(postId))
+                        }}>Delete</DeletePost> :
+                        null
+                    }
+                </PostContainer>
+                {commentsSate ? 
+                    <Comments inf={comments} postId={postId} loading={loading} curUser={curUser}/> : 
+                    null
+                }
+                </>
             }
+            
         </Box>
     )
 }
