@@ -47,38 +47,22 @@ export const ProfileAuthUser = ({ user }) => {
 
         if (auth) dispatch(getDataCurrentPersone__START())
     }, [dispatch, userId, user, auth])
-
+    /**
+     * dispatch(changeNickInp(e.target.value))
+     * dispatch(setNick__START())
+     * 
+     * dispatch(changePhoneInp(e.target.value))
+     * dispatch(setPhone__START())
+    */
     return (
         <ProfilePageContainer>
             {loading ?
                 <Loader /> :
                 <>
-                    <InpBox>
-                        <H2>{nickname ? `Personal information: ${nickname}` : 'Your Nickname: '}</H2>
-                        <CustomInp
-                            value={nickInp}
-                            onChange={(e) => {
-                                dispatch(changeNickInp(e.target.value))
-                            }}
-                        />
-                        <Btn onClick={() => {
-                            dispatch(setNick__START())
-                        }}>{nickname ? 'change nick' : 'add nick'}</Btn>
-                    </InpBox>
+                    <H2>{nickname ? `Personal information: ${nickname}` : 'Your Nickname: '}</H2>
                     <Email>{email}</Email>
                     <Box>
-                        <InpBox2>
-                            <Phone>{phone}</Phone>
-                            <CustomInp2
-                                value={phoneInp}
-                                onChange={(e) => {
-                                    dispatch(changePhoneInp(e.target.value))
-                                }}
-                            />
-                            <Btn onClick={() => {
-                                dispatch(setPhone__START())
-                            }}>{phone ? 'change phone' : 'add phone'}</Btn>
-                        </InpBox2>
+                        <Phone>{phone}</Phone>
                         <DeleteBtn
                             onClick={() => {
                                 dispatch(deleteUser__START())
