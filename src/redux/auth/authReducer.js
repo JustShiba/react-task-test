@@ -8,7 +8,8 @@ export const authReducer = createSlice({
             email: '',
             password: '',
             nickName: '',
-            phone: ''
+            phone: '',
+            loading: false
         },
         personalInf: {},
         firstAuth: true,
@@ -90,36 +91,21 @@ export const authReducer = createSlice({
             alert('Error: try again')
         },
 
-        changeNickInp: (state, action) => {
-            state.userInfInp.nickName = action.payload
-        },
-
-        changePhoneInp: (state, action) => {
-            state.userInfInp.phone = action.payload
-        },
-
-        setNick__START: (state) => {
+        setNickPhone__START: (state, action) => {
+            state.userInfInp.nickName = action.payload.nickname
+            state.userInfInp.phone = action.payload.phone
             state.loading = true
         },
 
-        setPhone__START: (state) => {
-            state.loading = true
-        },
-
-        setNick__SUCCESS: (state) => {
+        setNickPhone__SUCCESS: (state) => {
+            state.userInfInp.nickName = ''
+            state.userInfInp.phone = ''
             state.loading = false
         },
 
-        setPhone__SUCCESS: (state) => {
-            state.loading = false
-        },
-
-        setNick__FAILURE: (state) => {
-            state.loading = false
-            alert('Error: try again')
-        },
-
-        setPhone__FAILURE: (state) => {
+        setNickPhone__FAILURE: (state) => {
+            state.userInfInp.nickName = ''
+            state.userInfInp.phone = ''
             state.loading = false
             alert('Error: try again')
         },
@@ -174,19 +160,12 @@ export const {
     signUp__SUCCESS,
     signUp__FAILURE,
     logOutReducer,
-    changeInpEmail,
-    changeInpPass,
     getDataCurrentPersone__START,
     getDataCurrentPersone__SUCCESS,
     getDataCurrentPersone__FAILURE,
-    changeNickInp,
-    changePhoneInp,
-    setNick__START,
-    setPhone__START,
-    setNick__SUCCESS,
-    setPhone__SUCCESS,
-    setNick__FAILURE,
-    setPhone__FAILURE,
+    setNickPhone__START,
+    setNickPhone__SUCCESS,
+    setNickPhone__FAILURE,
     deleteUser__START,
     deleteUser__SUCCESS,
     deleteUser__FAILURE,

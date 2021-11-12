@@ -12,6 +12,7 @@ export const Btn = styled.button`
     border: none;
     transition: 300ms;
     cursor: pointer;
+    text-transform: uppercase;
     &:hover{
         background-color: #1b1f50
     }
@@ -19,6 +20,11 @@ export const Btn = styled.button`
 
 export const DeleteBtn = styled(Btn)`
     background-color: crimson;
+`
+
+export const ChangeBtn = styled(DeleteBtn)`
+    background-color: blue;
+    margin-right: 10px;
 `
 
 export const InpBox = styled.div`
@@ -53,9 +59,14 @@ export const CustomInp2 = styled(CustomInp)`
 
 export const Line = styled.hr`
     width: 100%;
+    height: 70px;
+    background-color: none;
+    border: none;
+`
+
+export const Marge = styled(Line)`
     height: 1px;
     background-color: #BBB5CD;
-    border: none;
 `
 
 export const ProfilePageContainer = styled.div`

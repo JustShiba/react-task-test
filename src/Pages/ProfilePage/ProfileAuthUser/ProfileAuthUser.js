@@ -1,32 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
-    changeNickInp,
-    changePhoneInp,
     deleteUser__START,
     getDataCurrentPersone__START,
-    setNick__START,
-    setPhone__START
 } from '../../../../src/redux/auth/authReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
 import { AddPost } from './AddPost/AddPost'
 import {
     Box,
-    Btn,
     DeleteBtn,
-    InpBox,
-    InpBox2,
-    CustomInp,
-    CustomInp2,
     Line,
     ProfilePageContainer,
     H2,
     Phone,
-    Email
+    Email,
+    InpBox2,
+    ChangeBtn,
+    Marge
 } from '../styled'
 import { selectUserId } from '../../../../src/redux/users/usersReducer'
+import { ChangeInf } from './ChangeInf/ChangeInf';
 
 
 export const ProfileAuthUser = ({ user }) => {
@@ -34,9 +29,8 @@ export const ProfileAuthUser = ({ user }) => {
     const state = useSelector(state => state.authorization)
     const { auth } = state
     const { email, nickname, phone, posts, userId } = state.personalInf
-    const phoneInp = state.userInfInp.phone
-    const nickInp = state.userInfInp.nickName
     const loading = state.loading
+    const [ changeInf, setChangeInf ] = useState(false)
 
     useEffect(() => {
         if (user) {
@@ -47,13 +41,7 @@ export const ProfileAuthUser = ({ user }) => {
 
         if (auth) dispatch(getDataCurrentPersone__START())
     }, [dispatch, userId, user, auth])
-    /**
-     * dispatch(changeNickInp(e.target.value))
-     * dispatch(setNick__START())
-     * 
-     * dispatch(changePhoneInp(e.target.value))
-     * dispatch(setPhone__START())
-    */
+    
     return (
         <ProfilePageContainer>
             {loading ?
@@ -63,13 +51,16 @@ export const ProfileAuthUser = ({ user }) => {
                     <Email>{email}</Email>
                     <Box>
                         <Phone>{phone}</Phone>
-                        <DeleteBtn
-                            onClick={() => {
-                                dispatch(deleteUser__START())
-                            }}
-                        >DELETE ACCOUNT</DeleteBtn>
+                        <InpBox2>
+                            <ChangeBtn onClick={() => setChangeInf(!changeInf)}>
+                                {nickname ?  `Change information` : `Add information`}
+                            </ChangeBtn>
+                            <DeleteBtn onClick={() => dispatch(deleteUser__START())}>Delete account</DeleteBtn>
+                        </InpBox2>
                     </Box>
                 </>}
+            <Marge />
+            {changeInf ? <ChangeInf nickname={nickname} phone={phone}/> : null}
             <Line />
             <AddPost />
             <Line />

@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import styled from 'styled-components'
 
 import { createPost__START } from '../../../../../src/redux/posts/postsReducer'
-import { validate } from './validate'
+import { validate } from './validatePost'
 import { Btn } from '../../styled'
 import { Loader } from '../../../../../src/components/Loader/Loader'
 
@@ -101,7 +101,6 @@ const AddPostInp = styled.textarea`
 `
 
 const AddPostBtn = styled(Btn)`
-    font-family: Montserrat;
     padding: 15px 30px;
     text-transform: uppercase;
     letter-spacing: 2px;

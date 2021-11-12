@@ -7,14 +7,12 @@ import { checkLogIn__START, getDataCurrentPersone__START } from '../auth/authRed
 import { 
     deleteUser__START,
     logIn__START, 
-    setNick__START, 
-    setPhone__START, 
+    setNickPhone__START, 
     signUp__START 
 } from '../auth/authReducer'
 import { 
-    changeNick, 
+    changeNickPhone, 
     currentUser, 
-    changePhone, 
     deleteUser,
 } from '../users/currentUserSagas'
 import { 
@@ -46,8 +44,7 @@ export default function* allSagas() {
         yield takeEvery(signUp__START, signUpSaga),
         yield takeEvery(logIn__START, logInSaga),
         yield takeEvery(getDataCurrentPersone__START, currentUser),
-        yield takeEvery(setNick__START, changeNick),
-        yield takeEvery(setPhone__START, changePhone),
+        yield takeEvery(setNickPhone__START, changeNickPhone),
         yield takeEvery(deleteUser__START, deleteUser),
         yield takeEvery(getDataCurrentUser__START, currentUser),
         yield takeEvery(createPost__START, createPost),

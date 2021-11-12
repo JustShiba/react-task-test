@@ -4,12 +4,8 @@ import {
     getDataCurrentPersone__START,
     getDataCurrentPersone__SUCCESS,
     getDataCurrentPersone__FAILURE,
-    setNick__SUCCESS,
-    setPhone__SUCCESS,
-    setNick__FAILURE,
-    setPhone__FAILURE,
-    changeNickInp,
-    changePhoneInp,
+    setNickPhone__SUCCESS,
+    setNickPhone__FAILURE,
     deleteUser__SUCCESS,
     deleteUser__FAILURE,
     clearPersInf,
@@ -45,41 +41,22 @@ export function* currentUser() {
     }
 }
 
-export function* changeNick() {
+export function* changeNickPhone() {
     const id = yield select(state => state.authorization.personalInf.userId)
     const nick = yield select(state => state.authorization.userInfInp.nickName)
+    const phone = yield select(state => state.authorization.userInfInp.phone)
     
     try {
-        const response =  yield call(apiCall, [`patch`, `users/${id}`, {'nickname': nick}])
+        const response =  yield call(apiCall, [`patch`, `users/${id}`, {'nickname': nick, 'phone': phone}])
         
         if (response.status === 200) {
-            yield put(setNick__SUCCESS())
+            yield put(setNickPhone__SUCCESS())
             yield put(getDataCurrentPersone__START())
-            yield put(changeNickInp(''))
         }
     } catch {
-        yield put(setNick__FAILURE())
+        yield put(setNickPhone__FAILURE())
     }
 }
-
-
-export function* changePhone() {
-    const id = yield select(state => state.authorization.personalInf.userId)
-    const phone = yield select(state => state.authorization.userInfInp.phone)
-
-    try {
-        const response =  yield call(apiCall, [`patch`, `users/${id}`, {'phone': phone}])
-        
-        if (response.status === 200) {
-            yield put(setPhone__SUCCESS())
-            yield put(getDataCurrentPersone__START())
-            yield put(changePhoneInp(''))
-        }
-    } catch {
-        yield put(setPhone__FAILURE())
-    }
-}
-
 
 export function* deleteUser() {
     const id = yield select(state => state.authorization.personalInf.userId)
