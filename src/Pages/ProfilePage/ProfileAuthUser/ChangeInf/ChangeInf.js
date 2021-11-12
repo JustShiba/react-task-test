@@ -17,9 +17,7 @@ export const ChangeInf = ({ nickname, phone }) => {
         },
         validate,
         onSubmit: values => {
-            console.log(values);
             dispatch(setNickPhone__START(values))
-            
         },
     })
 

@@ -9,8 +9,9 @@ import {
     deleteUser__SUCCESS,
     deleteUser__FAILURE,
     clearPersInf,
+    removeError,
 } from '../auth/authReducer'
-import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth, removeError } from './usersReducer'
+import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from './usersReducer'
 import { apiCall } from '../../services/service'
 import { waitErrRemove } from '../removeError/removeError'
 
