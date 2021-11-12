@@ -21,14 +21,6 @@ export const ChangeInf = ({ nickname, phone }) => {
         },
     })
 
-    /**
-     * DELETE dispatch(changeNickInp(e.target.value))
-     * dispatch(setNick__START())
-     * 
-     * DELETE dispatch(changePhoneInp(e.target.value))
-     * dispatch(setPhone__START())
-    */
-
     return (
         <form onSubmit={formik.handleSubmit}>
             <Line />
