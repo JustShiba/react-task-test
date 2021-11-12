@@ -15,7 +15,11 @@ export const postsReducer = createSlice({
         commentSendInf: {},
         commentDeletInf: {},
         commentChangeInf: {},
-        loading: false
+        loading: false,
+        errorInf: {
+            error: false,
+            errorText: ''
+        }
     },
     reducers: {
         createPost__START: (state, action) => {
@@ -30,11 +34,12 @@ export const postsReducer = createSlice({
             state.postCreateInp.body = ''
         },
 
-        createPost__FAILURE: (state) => {
+        createPost__FAILURE: (state, action) => {
             state.postCreateInp.loading = false
             state.postCreateInp.title = ''
             state.postCreateInp.body = ''
-            alert('Error')
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         getAllPosts__START: (state) => {
@@ -46,6 +51,12 @@ export const postsReducer = createSlice({
             state.allPosts = action.payload
         },
 
+        getAllPosts__FAILRE: (state, action) => {
+            state.loading = false
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
+        },
+
         getCurrentUserPosts__START: (state) => {
             state.loading = true
         },
@@ -54,9 +65,10 @@ export const postsReducer = createSlice({
             state.loading = false
         },
         
-        getCurrentUserPosts__FAILURE: (state) => {
+        getCurrentUserPosts__FAILURE: (state, action) => {
             state.loading = false
-            alert('Error')
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         deletePost__START: (state, action) => {
@@ -69,10 +81,11 @@ export const postsReducer = createSlice({
             state.selectedId = ''
         },
 
-        deletePost__FAILURE: (state) => {
+        deletePost__FAILURE: (state, action) => {
             state.loading = false
             state.selectedId = ''
-            alert('FAILURE')
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         changePostInf__START: (state, action) => {
@@ -85,10 +98,11 @@ export const postsReducer = createSlice({
             state.postChangeInf = {}
         },
 
-        changePostInf__FAILURE: (state) => {
+        changePostInf__FAILURE: (state, action) => {
             state.loading = false
             state.postChangeInf = {}
-            alert('Failed to change post information')
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         sendComment__START: (state, action) => {
@@ -101,9 +115,11 @@ export const postsReducer = createSlice({
             state.commentSendInf = ''
         },
 
-        sendComment__FAILURE: (state) => {
+        sendComment__FAILURE: (state, action) => {
             state.loading = false
             state.commentSendInf = ''
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         deleteComment__START: (state, action) => {
@@ -116,10 +132,11 @@ export const postsReducer = createSlice({
             state.commentDeletInf = {}
         },
 
-        deleteComment__FAILURE: (state) => {
+        deleteComment__FAILURE: (state, action) => {
             state.loading = false
             state.commentDeletInf = {}
-            alert('fail')
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         changeComment__START: (state, action) => {
@@ -132,10 +149,11 @@ export const postsReducer = createSlice({
             state.commentChangeInf = {}
         },
 
-        changeComment__FAILURE: (state) => {
+        changeComment__FAILURE: (state, action) => {
             state.loading = false
             state.commentChangeInf = {}
-            alert('fail')
+            state.errorInf.error = true
+            state.errorInf.errorText = action.payload
         },
 
         localChangeComment__ALL: (state, action) => {
@@ -151,6 +169,13 @@ export const postsReducer = createSlice({
         localDeleteComment__ALL: (state, action) => {
             const { postIndex, commentIndex } = action.payload
             delete state.allPosts[postIndex].comments[commentIndex]
+        },
+
+        removeError: (state) => {
+            state.errorInf = {
+                error: false,
+                errorText: ''
+            }
         }
     }
 })
@@ -182,5 +207,6 @@ export const {
     changeComment__FAILURE,
     localChangeComment__ALL,
     localAddComment__ALL,
-    localDeleteComment__ALL
+    localDeleteComment__ALL,
+    removeError
 } = postsReducer.actions

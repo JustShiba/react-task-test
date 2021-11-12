@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { getAllPosts__START } from '../../../src/redux/posts/postsReducer'
-import { apiCallUsers } from '../../../src/redux/users/usersReducer'
+import { addUsers__START } from '../../../src/redux/users/usersReducer'
 import { Loader } from '../../../src/components/Loader/Loader'
 import { PostCard } from './PostCard/PostCard'
 
@@ -12,7 +12,7 @@ export const AllPostsPage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(apiCallUsers())
+        dispatch(addUsers__START())
         dispatch(getAllPosts__START())
     }, [dispatch])
 

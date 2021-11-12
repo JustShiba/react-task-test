@@ -27,13 +27,15 @@ import {
     deleteComment__FAILURE,
     localChangeComment__ALL,
     localAddComment__ALL,
-    localDeleteComment__ALL, 
+    localDeleteComment__ALL,
+    removeError, 
 } from './postsReducer'
 import { 
     localAddComment__NONAUTH, 
     localChangeComment__NONAUTH, 
     localDeleteComment__NONAUTH 
 } from '../users/usersReducer'
+import { waitErrRemove } from '../removeError/removeError'
 
 
 export function* changePostInf() {
@@ -45,8 +47,9 @@ export function* changePostInf() {
             yield put(getCurrentUserPosts__START())
         }
     } catch {
-        console.log('err');
         yield put(changePostInf__FAILURE())
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -72,6 +75,8 @@ export function* getAllPosts() {
         } 
     } catch {
         yield put(getAllPosts__FAILURE())
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -86,11 +91,15 @@ export function* createPost() {
                 yield put(createPost__SUCCESS())
                 yield put(getCurrentUserPosts__START())
             }
-        } catch {
-            yield put(createPost__FAILURE())
+        } catch (error) {
+            yield put(createPost__FAILURE(error.response.data.message))
+            yield call(waitErrRemove, 5000)
+            yield put(removeError())
         }
     } else {
-        yield put(createPost__FAILURE())
+        yield put(createPost__FAILURE('No title or body'))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -101,8 +110,10 @@ export function* getCurrentUserPosts() {
             yield put(getCurrentUserPosts__SUCCESS())
             yield put(updateUserPosts(response.data))
         }
-    } catch {
-        yield put(getCurrentUserPosts__FAILURE())
+    } catch (error) {
+        yield put(getCurrentUserPosts__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -116,8 +127,10 @@ export function* deletePost() {
             yield put(deletePost__SUCCESS())
             yield put(getCurrentUserPosts__START())
         }
-    } catch {
-        yield put(deletePost__FAILURE())
+    } catch (error) {
+        yield put(deletePost__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -148,8 +161,10 @@ export function* sendComment() {
             }
             yield put(sendComment__SUCCESS())
         }
-    } catch {
-        yield put(sendComment__FAILURE())
+    } catch (error) {
+        yield put(sendComment__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -183,9 +198,8 @@ export function* deleteComment() {
                 yield put(localDeleteComment__ALL({postIndex, commentIndex}))
             }
         }
-    } catch {
-        yield put(deleteComment__FAILURE())
-        console.log('fail to delete');
+    } catch (error) {
+        yield put(deleteComment__FAILURE(error.response.data.message))
     }
 }
 
@@ -219,8 +233,9 @@ export function* changeComment() {
                 yield put(localChangeComment__ALL({postIndex, commentIndex, comment: response.data}))
             }
         }
-    } catch {
-        yield put(changeComment__FAILURE())
-        console.log('fail to change');
+    } catch (error) {
+        yield put(changeComment__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }

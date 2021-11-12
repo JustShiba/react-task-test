@@ -10,8 +10,9 @@ import {
     deleteUser__FAILURE,
     clearPersInf,
 } from '../auth/authReducer'
-import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from './usersReducer'
+import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth, removeError } from './usersReducer'
 import { apiCall } from '../../services/service'
+import { waitErrRemove } from '../removeError/removeError'
 
 
 export function* currentUser() {
@@ -25,8 +26,10 @@ export function* currentUser() {
                 yield put(currentUserIsNotAuth())
                 yield put(getDataCurrentPersone__SUCCESS(response.data))
             }
-        } catch {
-            yield put(getDataCurrentPersone__FAILURE())
+        } catch (error) {
+            yield put(getDataCurrentPersone__FAILURE(error.response.data.message))
+            yield call(waitErrRemove, 5000)
+            yield put(removeError())
         }
     } else {
         try {
@@ -35,8 +38,10 @@ export function* currentUser() {
             if (response.status === 200) {
                 yield put(getDataCurrentUser__SUCCESS(response.data))
             }
-        } catch {
-            yield put(getDataCurrentPersone__FAILURE())
+        } catch (error) {
+            yield put(getDataCurrentPersone__FAILURE(error.response.data.message))
+            yield call(waitErrRemove, 5000)
+            yield put(removeError())
         }
     }
 }
@@ -53,8 +58,10 @@ export function* changeNickPhone() {
             yield put(setNickPhone__SUCCESS())
             yield put(getDataCurrentPersone__START())
         }
-    } catch {
-        yield put(setNickPhone__FAILURE())
+    } catch (error) {
+        yield put(setNickPhone__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -67,7 +74,9 @@ export function* deleteUser() {
             yield put(deleteUser__SUCCESS())
             yield put(clearPersInf())
         }
-    } catch {
-        yield put(deleteUser__FAILURE())
+    } catch (error) {
+        yield put(deleteUser__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 } 

@@ -1,13 +1,21 @@
 import { put, call } from 'redux-saga/effects'
 
-import { addUsers, addUsersSuccess } from './usersReducer'
+import { addUsers__SUCCESS, addUsers__FAILURE, removeError } from './usersReducer'
 import { apiCall } from '../../services/service'
+import { waitErrRemove } from '../removeError/removeError'
 
 
 export function* loadUsers() {
-    const response = yield call(apiCall, ['get', 'users'])
-    const { data } = response
-    yield put(addUsers(data))
-    yield put(addUsersSuccess())
+    try {
+        const response = yield call(apiCall, ['get', 'users'])
+        if (response.status === 200) {
+            yield put(addUsers__SUCCESS(response.data))
+        }
+    } catch (error) {
+        yield put(addUsers__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
+    }
+    
 }
 

@@ -13,12 +13,16 @@ import { AllPostsPage } from '../../Pages/PostsPage/AllPostsPage'
 import { checkLogIn__START } from '../../../src/redux/auth/authReducer'
 // import { NoPage } from '../../Pages/NoPage/NoPage'
 import { PrivateRoute } from './PrivateRoute'
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 
 
 export function App() {
     const { auth } = useSelector(state => state.authorization)
     const dispatch = useDispatch()
-
+    const errorAuth =  useSelector(state => state.authorization.errorInf)
+    const errorUser =  useSelector(state => state.users.errorInf)
+    const errorPost =  useSelector(state => state.posts.errorInf)
+    
     useEffect(() => {
         dispatch(checkLogIn__START())
     }, [dispatch])
@@ -26,6 +30,14 @@ export function App() {
     return (
         <Router>
             <Header />
+            {(errorAuth.error === true) || (errorUser.error === true) || (errorPost.error === true) ? 
+                <ErrorMessage 
+                    errorAuth={errorAuth.errorText}
+                    errorUser={errorUser.errorText}
+                    errorPost={errorPost.errorText}
+                /> :
+                    null
+            }
             <PagesContainer>
                 <PagesWrapper>
                     <Switch>

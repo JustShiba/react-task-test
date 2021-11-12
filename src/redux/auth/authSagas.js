@@ -6,9 +6,12 @@ import {
     logIn__SUCCESS, 
     signUp__FAILURE, 
     signUp__SUCCESS,
-    checkLogIn__FAILURE
+    checkLogIn__FAILURE,
+    removeError
 } from './authReducer'
 import { apiCall } from '../../services/service'
+import { waitErrRemove } from '../removeError/removeError'
+
 
 
 export function* logInSaga() {
@@ -20,8 +23,10 @@ export function* logInSaga() {
             localStorage.setItem(`userToken`, response.data.token)
             localStorage.setItem(`userId`, response.data.userId)
         }
-    } catch {
-        yield put(logIn__FAILURE())
+    } catch (error) {
+        yield put(logIn__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
 
@@ -44,10 +49,12 @@ export function* checkLogIn() {
 
 export function* signUpSaga() {
     const state = yield select(state => state.authorization.userInfInp)
-    try{
+    try {
         const response = yield call(apiCall, [`post`, `signup`, state])
         if (response.status === 200) yield put(signUp__SUCCESS())
-    }catch{
-        yield put(signUp__FAILURE())
+    } catch (error) {
+        yield put(signUp__FAILURE(error.response.data.message))
+        yield call(waitErrRemove, 5000)
+        yield put(removeError())
     }
 }
