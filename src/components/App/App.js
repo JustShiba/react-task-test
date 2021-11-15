@@ -25,9 +25,7 @@ export function App() {
     useEffect(() => {
         dispatch(checkLogInStart())
     }, [dispatch])
-    console.log(errorAuth,
-        errorUser,
-        errorPost);
+
     return (
         <Router>
             <Header />

@@ -122,7 +122,6 @@ export const authReducer = createSlice({
         deleteUserSuccess: (state) => {
             state.loading = false
             state.auth = false
-            alert('Your acc was deleted')
         },
 
         deleteUserFailure: (state, action) => {
