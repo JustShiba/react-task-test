@@ -24,7 +24,7 @@ export const usersReducer = createSlice({
             state.users = action.payload
         },
 
-        addUsers__FAILURE: (state, action) => {
+        addUsersFailure: (state, action) => {
             state.loading = false
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
@@ -60,7 +60,7 @@ export const usersReducer = createSlice({
 export const { 
     addUsersStart, 
     addUsersSuccess, 
-    addUsers__FAILURE,
+    addUsersFailure,
     selectUserId,
     getDataCurrentUserStart,
     getDataCurrentUserSuccess,
