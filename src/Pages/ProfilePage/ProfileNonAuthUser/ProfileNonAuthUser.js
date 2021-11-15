@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getDataCurrentUser__START } from '../../../../src/redux/users/usersReducer'
+import { getDataCurrentUserStart } from '../../../../src/redux/users/usersReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
 import {
@@ -20,7 +20,7 @@ export const ProfileNonAuthUser = () => {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(getDataCurrentUser__START())
+        dispatch(getDataCurrentUserStart())
     }, [dispatch])
     
     const state = useSelector(state => state.users)

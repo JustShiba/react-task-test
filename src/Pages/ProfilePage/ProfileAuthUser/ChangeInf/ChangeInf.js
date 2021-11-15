@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { H2, Line } from '../../styled'
 import { validate } from './validateUser'
 import { Loader } from '../../../../components/Loader/Loader'
-import { setNickPhone__START } from '../../../../redux/auth/authReducer'
+import { setNickPhoneStart } from '../../../../redux/auth/authReducer'
 
 export const ChangeInf = ({ nickname, phone }) => {
     const { loading } = useSelector(state => state.authorization.userInfInp)
@@ -17,7 +17,7 @@ export const ChangeInf = ({ nickname, phone }) => {
         },
         validate,
         onSubmit: values => {
-            dispatch(setNickPhone__START(values))
+            dispatch(setNickPhoneStart(values))
         },
     })
 

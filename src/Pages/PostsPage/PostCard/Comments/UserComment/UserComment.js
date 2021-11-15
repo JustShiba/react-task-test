@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { changeComment__START, deleteComment__START } from '../../../../../../src/redux/posts/postsReducer'
+import { changeCommentStart, deleteCommentStart } from '../../../../../../src/redux/posts/postsReducer'
 
 export const UserComment = ({ inf, postId, curUser }) => {
     const { body, commentId, userId } = inf
@@ -32,7 +32,7 @@ export const UserComment = ({ inf, postId, curUser }) => {
                         <CangeCommentBtn 
                             onClick={() => {
                                 const config = curUser 
-                                dispatch(changeComment__START({ postId, commentId, comment, config }))
+                                dispatch(changeCommentStart({ postId, commentId, comment, config }))
                             }}
                         >Save</CangeCommentBtn> : 
                         <CangeCommentBtn 
@@ -43,7 +43,7 @@ export const UserComment = ({ inf, postId, curUser }) => {
                     <DeleteCommentBtn 
                         onClick={() => {
                             const config = curUser
-                            dispatch(deleteComment__START({ postId, commentId, config }))
+                            dispatch(deleteCommentStart({ postId, commentId, config }))
                         }}
 
                     >Delete</DeleteCommentBtn>

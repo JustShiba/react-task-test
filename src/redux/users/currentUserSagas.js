@@ -1,17 +1,17 @@
 import { select, put, call, delay } from 'redux-saga/effects'
 
 import {
-    getDataCurrentPersone__START,
-    getDataCurrentPersone__SUCCESS,
-    getDataCurrentPersone__FAILURE,
-    setNickPhone__SUCCESS,
-    setNickPhone__FAILURE,
-    deleteUser__SUCCESS,
-    deleteUser__FAILURE,
+    getDataCurrentPersoneStart,
+    getDataCurrentPersoneSuccess,
+    getDataCurrentPersoneFailure,
+    setNickPhoneSuccess,
+    setNickPhoneFailure,
+    deleteUserSuccess,
+    deleteUserFailure,
     clearPersInf,
     removeError,
 } from '../auth/authReducer'
-import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from './usersReducer'
+import { getDataCurrentUserSuccess, currentUserIsNotAuth } from './usersReducer'
 import { apiCall } from '../../services/service'
 
 
@@ -24,10 +24,10 @@ export function* currentUser() {
             const response =  yield call(apiCall, [`get`, `users/${userPersonalId}`])
             if (response.status === 200) {
                 yield put(currentUserIsNotAuth())
-                yield put(getDataCurrentPersone__SUCCESS(response.data))
+                yield put(getDataCurrentPersoneSuccess(response.data))
             }
         } catch (error) {
-            yield put(getDataCurrentPersone__FAILURE(error.response.data.message))
+            yield put(getDataCurrentPersoneFailure(error.response.data.message))
             yield delay(5000)
             yield put(removeError())
         }
@@ -36,10 +36,10 @@ export function* currentUser() {
             const response =  yield call(apiCall, [`get`, `users/${userCurrentId}`])
             
             if (response.status === 200) {
-                yield put(getDataCurrentUser__SUCCESS(response.data))
+                yield put(getDataCurrentUserSuccess(response.data))
             }
         } catch (error) {
-            yield put(getDataCurrentPersone__FAILURE(error.response.data.message))
+            yield put(getDataCurrentPersoneFailure(error.response.data.message))
             yield delay(5000)
             yield put(removeError())
         }
@@ -55,11 +55,11 @@ export function* changeNickPhone() {
         const response =  yield call(apiCall, [`patch`, `users/${id}`, {'nickname': nick, 'phone': phone}])
         
         if (response.status === 200) {
-            yield put(setNickPhone__SUCCESS())
-            yield put(getDataCurrentPersone__START())
+            yield put(setNickPhoneSuccess())
+            yield put(getDataCurrentPersoneStart())
         }
     } catch (error) {
-        yield put(setNickPhone__FAILURE(error.response.data.message))
+        yield put(setNickPhoneFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -71,11 +71,11 @@ export function* deleteUser() {
         const response =  yield call(apiCall, [`delete`, `users/${id}`])
         
         if (response.status === 200) {
-            yield put(deleteUser__SUCCESS())
+            yield put(deleteUserSuccess())
             yield put(clearPersInf())
         }
     } catch (error) {
-        yield put(deleteUser__FAILURE(error.response.data.message))
+        yield put(deleteUserFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }

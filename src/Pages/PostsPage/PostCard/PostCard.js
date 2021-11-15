@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { changePostInf__START, deletePost__START } from '../../../../src/redux/posts/postsReducer'
+import { changePostInfStart, deletePostStart } from '../../../../src/redux/posts/postsReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { Comments } from './Comments/Comments'
 
@@ -60,7 +60,7 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
                         {change ? 
                             <ConfirmChangeBtn 
                                 onClick={() => {
-                                    dispatch(changePostInf__START({titlePost, bodyPost, postId}))
+                                    dispatch(changePostInfStart({titlePost, bodyPost, postId}))
                                     setChange(!change)
                                 }}
                             >Confirm</ConfirmChangeBtn> :
@@ -69,7 +69,7 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
                     </PostCardBox>
                     {auth ? 
                         <DeletePost onClick={() => {
-                            dispatch(deletePost__START(postId))
+                            dispatch(deletePostStart(postId))
                         }}>Delete</DeletePost> :
                         null
                     }

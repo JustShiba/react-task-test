@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 
 import { Loader } from '../../../src/components/Loader/Loader'
-import { logIn__START } from '../../../src/redux/auth/authReducer'
+import { logInStart } from '../../../src/redux/auth/authReducer'
 import {
     LogSignBox,
     LogInInp,
@@ -53,7 +53,7 @@ export const LogInPage = () => {
                     <Paragraph>If you have no account, you should <Link to={'./signup'}>Sign up</Link></Paragraph>
                     <LogSignBtn onClick={(e) => {
                         e.preventDefault()
-                        dispatch(logIn__START({email, pass}))
+                        dispatch(logInStart({email, pass}))
                     }}>Log In</LogSignBtn>
                 </>
             }

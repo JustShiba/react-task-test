@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { UserCard } from './UserCard/UserCard'
-import { addUsers__START } from '../../../src/redux/users/usersReducer'
+import { addUsersStart } from '../../../src/redux/users/usersReducer'
 import { Loader } from '../../../src/components/Loader/Loader'
 
 
@@ -13,7 +13,7 @@ export const UsersPage = () => {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(addUsers__START())
+        dispatch(addUsersStart())
     }, [dispatch])
 
     return (

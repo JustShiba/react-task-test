@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
-    deleteUser__START,
-    getDataCurrentPersone__START,
+    deleteUserStart,
+    getDataCurrentPersoneStart,
 } from '../../../../src/redux/auth/authReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
@@ -39,7 +39,7 @@ export const ProfileAuthUser = ({ user }) => {
             dispatch(selectUserId(userId))
         }
 
-        if (auth) dispatch(getDataCurrentPersone__START())
+        if (auth) dispatch(getDataCurrentPersoneStart())
     }, [dispatch, userId, user, auth])
     
     return (
@@ -55,7 +55,7 @@ export const ProfileAuthUser = ({ user }) => {
                             <ChangeBtn onClick={() => setChangeInf(!changeInf)}>
                                 {nickname ?  `Change information` : `Add information`}
                             </ChangeBtn>
-                            <DeleteBtn onClick={() => dispatch(deleteUser__START())}>Delete account</DeleteBtn>
+                            <DeleteBtn onClick={() => dispatch(deleteUserStart())}>Delete account</DeleteBtn>
                         </InpBox2>
                     </Box>
                 </>}

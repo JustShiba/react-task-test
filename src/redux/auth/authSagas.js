@@ -1,12 +1,12 @@
 import { select, put, call, delay } from 'redux-saga/effects'
 
 import { 
-    checkLogIn__SUCCESS, 
-    logIn__FAILURE, 
-    logIn__SUCCESS, 
-    signUp__FAILURE, 
-    signUp__SUCCESS,
-    checkLogIn__FAILURE,
+    checkLogInSuccess, 
+    logInFailure, 
+    logInSuccess, 
+    signUpFailure, 
+    signUpSuccess,
+    checkLogInFailure,
     removeError
 } from './authReducer'
 import { apiCall } from '../../services/service'
@@ -18,12 +18,12 @@ export function* logInSaga() {
     try {
         const response = yield call(apiCall, [`post`, `login`, state])
         if (response.status === 200) {
-            yield put(logIn__SUCCESS(response.data))
+            yield put(logInSuccess(response.data))
             localStorage.setItem(`userToken`, response.data.token)
             localStorage.setItem(`userId`, response.data.userId)
         }
     } catch (error) {
-        yield put(logIn__FAILURE(error.response.data.message))
+        yield put(logInFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -32,17 +32,17 @@ export function* logInSaga() {
 export function* checkLogIn() {
     const userId = yield localStorage.getItem(`userId`)
     const userToken = yield localStorage.getItem(`userToken`)
-    if (!userId || !userToken) put(checkLogIn__FAILURE())
+    if (!userId || !userToken) put(checkLogInFailure())
     let response = {}
     try {
         response = yield call(apiCall, [`get`, `users/${userId}`, null, userToken])
         if (response.status === 200) {
-            yield put(checkLogIn__SUCCESS(response.data))
+            yield put(checkLogInSuccess(response.data))
         }
     } catch {
         localStorage.removeItem(`userToken`)
         localStorage.removeItem(`userId`)
-        put(checkLogIn__FAILURE())
+        put(checkLogInFailure())
     }
 }
 
@@ -50,9 +50,9 @@ export function* signUpSaga() {
     const state = yield select(state => state.authorization.userInfInp)
     try {
         const response = yield call(apiCall, [`post`, `signup`, state])
-        if (response.status === 200) yield put(signUp__SUCCESS())
+        if (response.status === 200) yield put(signUpSuccess())
     } catch (error) {
-        yield put(signUp__FAILURE(error.response.data.message))
+        yield put(signUpFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }

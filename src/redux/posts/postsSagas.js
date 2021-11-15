@@ -2,32 +2,32 @@ import { call, put, select, delay } from '@redux-saga/core/effects'
 
 import { apiCall } from '../../services/service'
 import { 
-    getDataCurrentPersone__START,
+    getDataCurrentPersoneStart,
     updateUserPosts 
 } from '../auth/authReducer'
 import { 
-    createPost__SUCCESS, 
-    createPost__FAILURE, 
-    getAllPosts__SUCCESS,
-    getAllPosts__FAILURE,
-    deletePost__FAILURE,
-    deletePost__SUCCESS,
-    getCurrentUserPosts__START,
-    getCurrentUserPosts__SUCCESS,
-    getCurrentUserPosts__FAILURE,
-    changePostInf__SUCCESS,
-    changePostInf__FAILURE,
-    sendComment__SUCCESS,
-    sendComment__FAILURE,
-    changeComment__SUCCESS,
-    changeComment__FAILURE,
-    deleteComment__SUCCESS,
-    deleteComment__FAILURE,
+    createPostSuccess, 
+    createPostFailure, 
+    getAllPostsSuccess,
+    getAllPostsFailure,
+    deletePostFailure,
+    deletePostSuccess,
+    getCurrentUserPostsStart,
+    getCurrentUserPostsSuccess,
+    getCurrentUserPostsFailure,
+    changePostInfSuccess,
+    changePostInfFailure,
+    sendCommentSuccess,
+    sendCommentFailure,
+    changeCommentSuccess,
+    changeCommentFailure,
+    deleteCommentSuccess,
+    deleteCommentFailure,
     removeError,
-    getAllPosts__START, 
+    getAllPostsStart, 
 } from './postsReducer'
 import { 
-    getDataCurrentUser__START,
+    getDataCurrentUserStart,
 } from '../users/usersReducer'
 
 
@@ -36,11 +36,11 @@ export function* changePostInf() {
     try {
         const response = yield call(apiCall, [`put`, `posts/${postId}684684wefwef`, {'title': titlePost, 'body': bodyPost}])
         if (response.status === 200) {
-            yield put(changePostInf__SUCCESS())
-            yield put(getCurrentUserPosts__START())
+            yield put(changePostInfSuccess())
+            yield put(getCurrentUserPostsStart())
         }
     } catch (error) {
-        yield put(changePostInf__FAILURE(error.response.data.message))
+        yield put(changePostInfFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -64,10 +64,10 @@ export function* getAllPosts() {
             for (let i = 0; i < response.data.length; i++) {
                 response.data[i].nickname = addNames(users, response.data[i].userId)
             }
-            yield put(getAllPosts__SUCCESS(response.data))
+            yield put(getAllPostsSuccess(response.data))
         } 
     } catch (error) {
-        yield put(getAllPosts__FAILURE(error.response.data.message))
+        yield put(getAllPostsFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -81,16 +81,16 @@ export function* createPost() {
             const response = yield call(apiCall, [`post`, `posts`, { title, body }])
 
             if (response.status === 200) {
-                yield put(createPost__SUCCESS())
-                yield put(getCurrentUserPosts__START())
+                yield put(createPostSuccess())
+                yield put(getCurrentUserPostsStart())
             }
         } catch (error) {
-            yield put(createPost__FAILURE(error.response.data.message))
+            yield put(createPostFailure(error.response.data.message))
             yield delay(5000)
             yield put(removeError())
         }
     } else {
-        yield put(createPost__FAILURE('No title or body'))
+        yield put(createPostFailure('No title or body'))
         yield delay(5000)
         yield put(removeError())
     }
@@ -100,11 +100,11 @@ export function* getCurrentUserPosts() {
     try {
         const response = yield call(apiCall, [`get`, `posts/current`])
         if (response.status === 200) {
-            yield put(getCurrentUserPosts__SUCCESS())
+            yield put(getCurrentUserPostsSuccess())
             yield put(updateUserPosts(response.data))
         }
     } catch (error) {
-        yield put(getCurrentUserPosts__FAILURE(error.response.data.message))
+        yield put(getCurrentUserPostsFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -117,11 +117,11 @@ export function* deletePost() {
         const response = yield call(apiCall, [`delete`, `posts/${selectedId}`])
 
         if (response.status === 200) {
-            yield put(deletePost__SUCCESS())
-            yield put(getCurrentUserPosts__START())
+            yield put(deletePostSuccess())
+            yield put(getCurrentUserPostsStart())
         }
     } catch (error) {
-        yield put(deletePost__FAILURE(error.response.data.message))
+        yield put(deletePostFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -135,20 +135,20 @@ export function* sendComment() {
 
         if (response.status === 200) {
             if (config === 'authUser') {
-                yield put(getDataCurrentPersone__START())
+                yield put(getDataCurrentPersoneStart())
             }
             
             if (config === 'nonAuthUser') {
-                yield put(getDataCurrentUser__START())
+                yield put(getDataCurrentUserStart())
             }
             
             if (!config) {
-                yield put(getAllPosts__START())
+                yield put(getAllPostsStart())
             }
-            yield put(sendComment__SUCCESS())
+            yield put(sendCommentSuccess())
         }
     } catch (error) {
-        yield put(sendComment__FAILURE(error.response.data.message))
+        yield put(sendCommentFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }
@@ -161,21 +161,21 @@ export function* deleteComment() {
         const response = yield call(apiCall, [`delete`, `posts/${postId}/comments/${commentId}`])
         
         if (response.status === 200) {
-            yield put(deleteComment__SUCCESS())
+            yield put(deleteCommentSuccess())
             if (config === 'authUser') {
-                yield put(getDataCurrentPersone__START())
+                yield put(getDataCurrentPersoneStart())
             }
             
             if (config === 'nonAuthUser') {
-                yield put(getDataCurrentUser__START())
+                yield put(getDataCurrentUserStart())
             }
             
             if (!config) {
-                yield put(getAllPosts__START())
+                yield put(getAllPostsStart())
             }
         }
     } catch (error) {
-        yield put(deleteComment__FAILURE(error.response.data.message))
+        yield put(deleteCommentFailure(error.response.data.message))
     }
 }
 
@@ -186,21 +186,21 @@ export function* changeComment() {
         const response = yield call(apiCall, [`put`, `posts/${postId}/comments/${commentId}`, { 'body': comment}])
         
         if (response.status === 200) {
-            yield put(changeComment__SUCCESS())
+            yield put(changeCommentSuccess())
             if (config === 'authUser') {
-                yield put(getDataCurrentPersone__START())
+                yield put(getDataCurrentPersoneStart())
             }
             
             if (config === 'nonAuthUser') {
-                yield put(getDataCurrentUser__START())
+                yield put(getDataCurrentUserStart())
             }
             
             if (!config) {
-                yield put(getAllPosts__START())
+                yield put(getAllPostsStart())
             }
         }
     } catch (error) {
-        yield put(changeComment__FAILURE(error.response.data.message))
+        yield put(changeCommentFailure(error.response.data.message))
         yield delay(5000)
         yield put(removeError())
     }

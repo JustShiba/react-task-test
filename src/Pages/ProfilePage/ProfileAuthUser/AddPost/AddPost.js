@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik';
 import styled from 'styled-components'
 
-import { createPost__START } from '../../../../../src/redux/posts/postsReducer'
+import { createPostStart } from '../../../../../src/redux/posts/postsReducer'
 import { validate } from './validatePost'
 import { Btn } from '../../styled'
 import { Loader } from '../../../../../src/components/Loader/Loader'
@@ -19,7 +19,7 @@ export const AddPost = () => {
         },
         validate,
         onSubmit: values => {
-            dispatch(createPost__START(values))
+            dispatch(createPostStart(values))
             formik.resetForm();
         },
     })

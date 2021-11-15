@@ -22,19 +22,19 @@ export const postsReducer = createSlice({
         }
     },
     reducers: {
-        createPost__START: (state, action) => {
+        createPostStart: (state, action) => {
             state.postCreateInp.loading = true
             state.postCreateInp.title = action.payload.title
             state.postCreateInp.body = action.payload.body
         },
 
-        createPost__SUCCESS: (state) => {
+        createPostSuccess: (state) => {
             state.postCreateInp.loading = false
             state.postCreateInp.title = ''
             state.postCreateInp.body = ''
         },
 
-        createPost__FAILURE: (state, action) => {
+        createPostFailure: (state, action) => {
             state.postCreateInp.loading = false
             state.postCreateInp.title = ''
             state.postCreateInp.body = ''
@@ -42,11 +42,11 @@ export const postsReducer = createSlice({
             state.errorInf.errorText = action.payload
         },
 
-        getAllPosts__START: (state) => {
+        getAllPostsStart: (state) => {
             state.loading = true
         },
 
-        getAllPosts__SUCCESS: (state, action) => {
+        getAllPostsSuccess: (state, action) => {
             state.loading = false
             state.allPosts = action.payload
         },
@@ -57,99 +57,99 @@ export const postsReducer = createSlice({
             state.errorInf.errorText = action.payload
         },
 
-        getCurrentUserPosts__START: (state) => {
+        getCurrentUserPostsStart: (state) => {
             state.loading = true
         },
         
-        getCurrentUserPosts__SUCCESS: (state) => {
+        getCurrentUserPostsSuccess: (state) => {
             state.loading = false
         },
         
-        getCurrentUserPosts__FAILURE: (state, action) => {
+        getCurrentUserPostsFailure: (state, action) => {
             state.loading = false
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
         },
 
-        deletePost__START: (state, action) => {
+        deletePostStart: (state, action) => {
             state.loading = true
             state.selectedId = action.payload
         },
 
-        deletePost__SUCCESS: (state) => {
+        deletePostSuccess: (state) => {
             state.loading = false
             state.selectedId = ''
         },
 
-        deletePost__FAILURE: (state, action) => {
+        deletePostFailure: (state, action) => {
             state.loading = false
             state.selectedId = ''
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
         },
 
-        changePostInf__START: (state, action) => {
+        changePostInfStart: (state, action) => {
             state.loading = true
             state.postChangeInf = action.payload
         },
 
-        changePostInf__SUCCESS: (state) => {
+        changePostInfSuccess: (state) => {
             state.loading = false
             state.postChangeInf = {}
         },
 
-        changePostInf__FAILURE: (state, action) => {
+        changePostInfFailure: (state, action) => {
             state.loading = false
             state.postChangeInf = {}
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
         },
 
-        sendComment__START: (state, action) => {
+        sendCommentStart: (state, action) => {
             state.loading = true
             state.commentSendInf = action.payload
         },
 
-        sendComment__SUCCESS: (state) => {
+        sendCommentSuccess: (state) => {
             state.loading = false
             state.commentSendInf = ''
         },
 
-        sendComment__FAILURE: (state, action) => {
+        sendCommentFailure: (state, action) => {
             state.loading = false
             state.commentSendInf = ''
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
         },
 
-        deleteComment__START: (state, action) => {
+        deleteCommentStart: (state, action) => {
             state.loading = true
             state.commentDeletInf = action.payload
         },
 
-        deleteComment__SUCCESS: (state) => {
+        deleteCommentSuccess: (state) => {
             state.loading = false
             state.commentDeletInf = {}
         },
 
-        deleteComment__FAILURE: (state, action) => {
+        deleteCommentFailure: (state, action) => {
             state.loading = false
             state.commentDeletInf = {}
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
         },
 
-        changeComment__START: (state, action) => {
+        changeCommentStart: (state, action) => {
             state.loading = true
             state.commentChangeInf = action.payload
         },
         
-        changeComment__SUCCESS: (state) => {
+        changeCommentSuccess: (state) => {
             state.loading = false
             state.commentChangeInf = {}
         },
 
-        changeComment__FAILURE: (state, action) => {
+        changeCommentFailure: (state, action) => {
             state.loading = false
             state.commentChangeInf = {}
             state.errorInf.error = true
@@ -166,29 +166,29 @@ export const postsReducer = createSlice({
 })
 
 export const { 
-    createPost__START,
-    createPost__SUCCESS,
-    createPost__FAILURE,
-    getAllPosts__START,
-    getAllPosts__SUCCESS,
-    getAllPosts__FAILURE,
-    deletePost__START,
-    deletePost__SUCCESS,
-    deletePost__FAILURE,
-    getCurrentUserPosts__START,
-    getCurrentUserPosts__SUCCESS,
-    getCurrentUserPosts__FAILURE,
-    changePostInf__START,
-    changePostInf__SUCCESS,
-    changePostInf__FAILURE,
-    sendComment__START,
-    sendComment__SUCCESS,
-    sendComment__FAILURE,
-    deleteComment__START,
-    deleteComment__SUCCESS,
-    deleteComment__FAILURE,
-    changeComment__START,
-    changeComment__SUCCESS,
-    changeComment__FAILURE,
+    createPostStart,
+    createPostSuccess,
+    createPostFailure,
+    getAllPostsStart,
+    getAllPostsSuccess,
+    getAllPostsFailure,
+    deletePostStart,
+    deletePostSuccess,
+    deletePostFailure,
+    getCurrentUserPostsStart,
+    getCurrentUserPostsSuccess,
+    getCurrentUserPostsFailure,
+    changePostInfStart,
+    changePostInfSuccess,
+    changePostInfFailure,
+    sendCommentStart,
+    sendCommentSuccess,
+    sendCommentFailure,
+    deleteCommentStart,
+    deleteCommentSuccess,
+    deleteCommentFailure,
+    changeCommentStart,
+    changeCommentSuccess,
+    changeCommentFailure,
     removeError
 } = postsReducer.actions

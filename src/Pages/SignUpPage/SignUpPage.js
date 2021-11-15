@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { Loader } from '../../../src/components/Loader/Loader'
 import { 
-    signUp__START 
+    signUpStart 
 } from '../../../src/redux/auth/authReducer'
 import {
     LogSignBox,
@@ -52,7 +52,7 @@ export const SignUpPage = () => {
                         <Paragraph>If you already have account, you can <Link to={'./login'}>Log in</Link></Paragraph>
                         <LogSignBtn onClick={(e) => {
                             e.preventDefault()
-                            dispatch(signUp__START({email, pass}))
+                            dispatch(signUpStart({email, pass}))
                         }}>Sign Up</LogSignBtn>
                     </> :
                     <H2>Please, confirm registration on your mail</H2>

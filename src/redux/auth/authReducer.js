@@ -21,23 +21,23 @@ export const authReducer = createSlice({
         }
     },
     reducers: {
-        checkLogIn__START: () => {},
+        checkLogInStart: () => {},
 
-        checkLogIn__SUCCESS: (state, action) => {
+        checkLogInSuccess: (state, action) => {
             state.personalInf = action.payload
             state.auth = true
         },
 
-        checkLogIn__FAILURE: (state, action) => {},
+        checkLogInFailure: (state, action) => {},
         
-        logIn__START: (state, action) => {
+        logInStart: (state, action) => {
             const { email, pass } = action.payload
             state.userInfInp.email = email
             state.userInfInp.password = pass
             state.loading = true
         },
         
-        logIn__SUCCESS: (state, action) => {
+        logInSuccess: (state, action) => {
             state.loading = false
             state.auth = true
             state.personalInf = action.payload
@@ -45,7 +45,7 @@ export const authReducer = createSlice({
             state.userInfInp.password = ''
         },
         
-        logIn__FAILURE: (state, action) => {
+        logInFailure: (state, action) => {
             state.loading = false
             state.userInfInp.email = ''
             state.userInfInp.password = ''
@@ -53,21 +53,21 @@ export const authReducer = createSlice({
             state.errorInf.errorText = action.payload
         },
         
-        signUp__START: (state, action) => {
+        signUpStart: (state, action) => {
             const { email, pass } = action.payload
             state.userInfInp.email = email
             state.userInfInp.password = pass
             state.loading = true
         },
         
-        signUp__SUCCESS: (state) => {
+        signUpSuccess: (state) => {
             state.sign = true
             state.userInfInp.email = ''
             state.userInfInp.password = ''
             state.loading = false
         },
         
-        signUp__FAILURE: (state, action) => {
+        signUpFailure: (state, action) => {
             state.userInfInp.email = ''
             state.userInfInp.password = ''
             state.loading = false
@@ -80,34 +80,34 @@ export const authReducer = createSlice({
             state.firstAuth = false
         },
         
-        getDataCurrentPersone__START: (state) => {
+        getDataCurrentPersoneStart: (state) => {
             state.loading = true
         },
 
-        getDataCurrentPersone__SUCCESS: (state, action) => {
+        getDataCurrentPersoneSuccess: (state, action) => {
             state.loading = false
             state.personalInf = action.payload
         },
 
-        getDataCurrentPersone__FAILURE: (state, action) => {
+        getDataCurrentPersoneFailure: (state, action) => {
             state.loading = false
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
         },
 
-        setNickPhone__START: (state, action) => {
+        setNickPhoneStart: (state, action) => {
             state.userInfInp.nickName = action.payload.nickname
             state.userInfInp.phone = action.payload.phone
             state.loading = true
         },
 
-        setNickPhone__SUCCESS: (state) => {
+        setNickPhoneSuccess: (state) => {
             state.userInfInp.nickName = ''
             state.userInfInp.phone = ''
             state.loading = false
         },
 
-        setNickPhone__FAILURE: (state, action) => {
+        setNickPhoneFailure: (state, action) => {
             state.userInfInp.nickName = ''
             state.userInfInp.phone = ''
             state.loading = false
@@ -115,17 +115,17 @@ export const authReducer = createSlice({
             state.errorInf.errorText = action.payload
         },
 
-        deleteUser__START: (state) => {
+        deleteUserStart: (state) => {
             state.loading = true
         },
 
-        deleteUser__SUCCESS: (state) => {
+        deleteUserSuccess: (state) => {
             state.loading = false
             state.auth = false
             alert('Your acc was deleted')
         },
 
-        deleteUser__FAILURE: (state, action) => {
+        deleteUserFailure: (state, action) => {
             state.loading = false
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
@@ -149,25 +149,25 @@ export const authReducer = createSlice({
 })
 
 export const { 
-    checkLogIn__START,
-    checkLogIn__SUCCESS,
-    checkLogIn__FAILURE,
-    logIn__START, 
-    logIn__SUCCESS, 
-    logIn__FAILURE, 
-    signUp__START,
-    signUp__SUCCESS,
-    signUp__FAILURE,
+    checkLogInStart,
+    checkLogInSuccess,
+    checkLogInFailure,
+    logInStart, 
+    logInSuccess, 
+    logInFailure, 
+    signUpStart,
+    signUpSuccess,
+    signUpFailure,
     logOutReducer,
-    getDataCurrentPersone__START,
-    getDataCurrentPersone__SUCCESS,
-    getDataCurrentPersone__FAILURE,
-    setNickPhone__START,
-    setNickPhone__SUCCESS,
-    setNickPhone__FAILURE,
-    deleteUser__START,
-    deleteUser__SUCCESS,
-    deleteUser__FAILURE,
+    getDataCurrentPersoneStart,
+    getDataCurrentPersoneSuccess,
+    getDataCurrentPersoneFailure,
+    setNickPhoneStart,
+    setNickPhoneSuccess,
+    setNickPhoneFailure,
+    deleteUserStart,
+    deleteUserSuccess,
+    deleteUserFailure,
     clearPersInf,
     updateUserPosts,
     removeError

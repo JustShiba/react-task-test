@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { getAllPosts__START } from '../../../src/redux/posts/postsReducer'
-import { addUsers__START } from '../../../src/redux/users/usersReducer'
+import { getAllPostsStart } from '../../../src/redux/posts/postsReducer'
+import { addUsersStart } from '../../../src/redux/users/usersReducer'
 import { Loader } from '../../../src/components/Loader/Loader'
 import { PostCard } from './PostCard/PostCard'
 
@@ -12,8 +12,8 @@ export const AllPostsPage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(addUsers__START())
-        dispatch(getAllPosts__START())
+        dispatch(addUsersStart())
+        dispatch(getAllPostsStart())
     }, [dispatch])
 
     const { loading, allPosts } = useSelector(state => state.posts)

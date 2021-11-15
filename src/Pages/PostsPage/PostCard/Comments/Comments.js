@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { sendComment__START } from '../../../../../src/redux/posts/postsReducer'
+import { sendCommentStart } from '../../../../../src/redux/posts/postsReducer'
 import { UserComment } from './UserComment/UserComment'
 
 
@@ -24,7 +24,7 @@ export const Comments = ({ inf, postId, loading, curUser }) => {
                         <SendCommentBtn 
                             onClick={() => {
                                 const config = curUser
-                                dispatch(sendComment__START({comment, postId, config}))
+                                dispatch(sendCommentStart({comment, postId, config}))
                                 setComment(comment = '')
                             }}
                         >Send</SendCommentBtn>

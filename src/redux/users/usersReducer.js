@@ -15,11 +15,11 @@ export const usersReducer = createSlice({
         }
     },
     reducers: {
-        addUsers__START: (state) => {
+        addUsersStart: (state) => {
             state.loading = true
         },
 
-        addUsers__SUCCESS: (state, action) => {
+        addUsersSuccess: (state, action) => {
             state.loading = false
             state.users = action.payload
         },
@@ -34,11 +34,11 @@ export const usersReducer = createSlice({
             state.currentUserId = action.payload
         },
 
-        getDataCurrentUser__START: (state) => {
+        getDataCurrentUserStart: (state) => {
             state.loading = true
         },
 
-        getDataCurrentUser__SUCCESS: (state, action) => {
+        getDataCurrentUserSuccess: (state, action) => {
             state.loading = false
             state.currentUserInf = action.payload
             state.otherUser = true
@@ -58,12 +58,12 @@ export const usersReducer = createSlice({
 })
 
 export const { 
-    addUsers__START, 
-    addUsers__SUCCESS, 
+    addUsersStart, 
+    addUsersSuccess, 
     addUsers__FAILURE,
     selectUserId,
-    getDataCurrentUser__START,
-    getDataCurrentUser__SUCCESS,
+    getDataCurrentUserStart,
+    getDataCurrentUserSuccess,
     currentUserIsNotAuth,
     removeError
 } = usersReducer.actions

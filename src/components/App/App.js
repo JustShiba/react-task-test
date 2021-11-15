@@ -10,7 +10,7 @@ import { SignUpPage } from '../../Pages/SignUpPage/SignUpPage'
 import { UsersPage } from '../../Pages/UsersPage/UsersPage'
 import { ProfilePage } from '../../Pages/ProfilePage/ProfilePage'
 import { AllPostsPage } from '../../Pages/PostsPage/AllPostsPage'
-import { checkLogIn__START } from '../../../src/redux/auth/authReducer'
+import { checkLogInStart } from '../../../src/redux/auth/authReducer'
 import { PrivateRoute } from './PrivateRoute'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 
@@ -23,7 +23,7 @@ export function App() {
     const errorPost =  useSelector(state => state.posts.errorInf)
     
     useEffect(() => {
-        dispatch(checkLogIn__START())
+        dispatch(checkLogInStart())
     }, [dispatch])
     console.log(errorAuth,
         errorUser,
