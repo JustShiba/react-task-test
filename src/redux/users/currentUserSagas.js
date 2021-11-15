@@ -1,4 +1,4 @@
-import { select, put, call } from 'redux-saga/effects'
+import { select, put, call, delay } from 'redux-saga/effects'
 
 import {
     getDataCurrentPersone__START,
@@ -13,7 +13,6 @@ import {
 } from '../auth/authReducer'
 import { getDataCurrentUser__SUCCESS, currentUserIsNotAuth } from './usersReducer'
 import { apiCall } from '../../services/service'
-import { waitErrRemove } from '../removeError/removeError'
 
 
 export function* currentUser() {
@@ -29,7 +28,7 @@ export function* currentUser() {
             }
         } catch (error) {
             yield put(getDataCurrentPersone__FAILURE(error.response.data.message))
-            yield call(waitErrRemove, 5000)
+            yield delay(5000)
             yield put(removeError())
         }
     } else {
@@ -41,7 +40,7 @@ export function* currentUser() {
             }
         } catch (error) {
             yield put(getDataCurrentPersone__FAILURE(error.response.data.message))
-            yield call(waitErrRemove, 5000)
+            yield delay(5000)
             yield put(removeError())
         }
     }
@@ -61,7 +60,7 @@ export function* changeNickPhone() {
         }
     } catch (error) {
         yield put(setNickPhone__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -77,7 +76,7 @@ export function* deleteUser() {
         }
     } catch (error) {
         yield put(deleteUser__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 } 

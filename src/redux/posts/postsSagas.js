@@ -1,4 +1,4 @@
-import { call, put, select } from '@redux-saga/core/effects'
+import { call, put, select, delay } from '@redux-saga/core/effects'
 
 import { apiCall } from '../../services/service'
 import { 
@@ -29,20 +29,19 @@ import {
 import { 
     getDataCurrentUser__START,
 } from '../users/usersReducer'
-import { waitErrRemove } from '../removeError/removeError'
 
 
 export function* changePostInf() {
     const { titlePost, bodyPost, postId } = yield select(state => state.posts.postChangeInf)
     try {
-        const response = yield call(apiCall, [`put`, `posts/${postId}`, {'title': titlePost, 'body': bodyPost}])
+        const response = yield call(apiCall, [`put`, `posts/${postId}684684wefwef`, {'title': titlePost, 'body': bodyPost}])
         if (response.status === 200) {
             yield put(changePostInf__SUCCESS())
             yield put(getCurrentUserPosts__START())
         }
-    } catch {
-        yield put(changePostInf__FAILURE())
-        yield call(waitErrRemove, 5000)
+    } catch (error) {
+        yield put(changePostInf__FAILURE(error.response.data.message))
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -67,9 +66,9 @@ export function* getAllPosts() {
             }
             yield put(getAllPosts__SUCCESS(response.data))
         } 
-    } catch {
-        yield put(getAllPosts__FAILURE())
-        yield call(waitErrRemove, 5000)
+    } catch (error) {
+        yield put(getAllPosts__FAILURE(error.response.data.message))
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -87,12 +86,12 @@ export function* createPost() {
             }
         } catch (error) {
             yield put(createPost__FAILURE(error.response.data.message))
-            yield call(waitErrRemove, 5000)
+            yield delay(5000)
             yield put(removeError())
         }
     } else {
         yield put(createPost__FAILURE('No title or body'))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -106,7 +105,7 @@ export function* getCurrentUserPosts() {
         }
     } catch (error) {
         yield put(getCurrentUserPosts__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -123,7 +122,7 @@ export function* deletePost() {
         }
     } catch (error) {
         yield put(deletePost__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -150,7 +149,7 @@ export function* sendComment() {
         }
     } catch (error) {
         yield put(sendComment__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -202,7 +201,7 @@ export function* changeComment() {
         }
     } catch (error) {
         yield put(changeComment__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }

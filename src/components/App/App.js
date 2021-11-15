@@ -11,7 +11,6 @@ import { UsersPage } from '../../Pages/UsersPage/UsersPage'
 import { ProfilePage } from '../../Pages/ProfilePage/ProfilePage'
 import { AllPostsPage } from '../../Pages/PostsPage/AllPostsPage'
 import { checkLogIn__START } from '../../../src/redux/auth/authReducer'
-// import { NoPage } from '../../Pages/NoPage/NoPage'
 import { PrivateRoute } from './PrivateRoute'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 
@@ -26,7 +25,9 @@ export function App() {
     useEffect(() => {
         dispatch(checkLogIn__START())
     }, [dispatch])
-
+    console.log(errorAuth,
+        errorUser,
+        errorPost);
     return (
         <Router>
             <Header />

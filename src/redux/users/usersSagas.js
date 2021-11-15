@@ -1,8 +1,7 @@
-import { put, call } from 'redux-saga/effects'
+import { put, call, delay } from 'redux-saga/effects'
 
 import { addUsers__SUCCESS, addUsers__FAILURE, removeError } from './usersReducer'
 import { apiCall } from '../../services/service'
-import { waitErrRemove } from '../removeError/removeError'
 
 
 export function* loadUsers() {
@@ -13,7 +12,7 @@ export function* loadUsers() {
         }
     } catch (error) {
         yield put(addUsers__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
     

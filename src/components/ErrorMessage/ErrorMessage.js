@@ -18,7 +18,7 @@ export const ErrorMessage = ({ errorAuth, errorUser, errorPost }) => {
 
 const ErrorWrapper = styled.div`
     width: 300px;
-    position: absolute;
+    position: fixed;
     top: 65px;
     right: 15px;
     background-color: brown;  

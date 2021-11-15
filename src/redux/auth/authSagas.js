@@ -1,4 +1,4 @@
-import { select, put, call } from 'redux-saga/effects'
+import { select, put, call, delay } from 'redux-saga/effects'
 
 import { 
     checkLogIn__SUCCESS, 
@@ -10,7 +10,6 @@ import {
     removeError
 } from './authReducer'
 import { apiCall } from '../../services/service'
-import { waitErrRemove } from '../removeError/removeError'
 
 
 
@@ -25,7 +24,7 @@ export function* logInSaga() {
         }
     } catch (error) {
         yield put(logIn__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
@@ -54,7 +53,7 @@ export function* signUpSaga() {
         if (response.status === 200) yield put(signUp__SUCCESS())
     } catch (error) {
         yield put(signUp__FAILURE(error.response.data.message))
-        yield call(waitErrRemove, 5000)
+        yield delay(5000)
         yield put(removeError())
     }
 }
