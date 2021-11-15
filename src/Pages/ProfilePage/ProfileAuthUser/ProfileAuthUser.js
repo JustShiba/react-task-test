@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import {
     deleteUserStart,
-    getDataCurrentPersoneStart,
+    getDataCurrentPersonStart,
 } from '../../../../src/redux/auth/authReducer'
 import { Loader } from '../../../../src/components/Loader/Loader'
 import { PostsPage } from '../../PostsPage/PostsPage'
@@ -39,7 +39,7 @@ export const ProfileAuthUser = ({ user }) => {
             dispatch(selectUserId(userId))
         }
 
-        if (auth) dispatch(getDataCurrentPersoneStart())
+        if (auth) dispatch(getDataCurrentPersonStart())
     }, [dispatch, userId, user, auth])
     
     return (

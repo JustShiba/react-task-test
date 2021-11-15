@@ -2,7 +2,7 @@ import { call, put, select, delay } from '@redux-saga/core/effects'
 
 import { apiCall } from '../../services/service'
 import { 
-    getDataCurrentPersoneStart,
+    getDataCurrentPersonStart,
     updateUserPosts 
 } from '../auth/authReducer'
 import { 
@@ -135,7 +135,7 @@ export function* sendComment() {
 
         if (response.status === 200) {
             if (config === 'authUser') {
-                yield put(getDataCurrentPersoneStart())
+                yield put(getDataCurrentPersonStart())
             }
             
             if (config === 'nonAuthUser') {
@@ -163,7 +163,7 @@ export function* deleteComment() {
         if (response.status === 200) {
             yield put(deleteCommentSuccess())
             if (config === 'authUser') {
-                yield put(getDataCurrentPersoneStart())
+                yield put(getDataCurrentPersonStart())
             }
             
             if (config === 'nonAuthUser') {
@@ -188,7 +188,7 @@ export function* changeComment() {
         if (response.status === 200) {
             yield put(changeCommentSuccess())
             if (config === 'authUser') {
-                yield put(getDataCurrentPersoneStart())
+                yield put(getDataCurrentPersonStart())
             }
             
             if (config === 'nonAuthUser') {

@@ -3,7 +3,7 @@ import { takeEvery, all } from 'redux-saga/effects'
 import { addUsersStart, getDataCurrentUserStart } from '../users/usersReducer'
 import { loadUsers } from '../users/usersSagas'
 import { checkLogIn, logInSaga, signUpSaga } from '../auth/authSagas'
-import { checkLogInStart, getDataCurrentPersoneStart } from '../auth/authReducer'
+import { checkLogInStart, getDataCurrentPersonStart } from '../auth/authReducer'
 import { 
     deleteUserStart,
     logInStart, 
@@ -43,7 +43,7 @@ export default function* allSagas() {
         yield takeEvery(addUsersStart, loadUsers),
         yield takeEvery(signUpStart, signUpSaga),
         yield takeEvery(logInStart, logInSaga),
-        yield takeEvery(getDataCurrentPersoneStart, currentUser),
+        yield takeEvery(getDataCurrentPersonStart, currentUser),
         yield takeEvery(setNickPhoneStart, changeNickPhone),
         yield takeEvery(deleteUserStart, deleteUser),
         yield takeEvery(getDataCurrentUserStart, currentUser),

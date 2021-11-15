@@ -80,16 +80,16 @@ export const authReducer = createSlice({
             state.firstAuth = false
         },
         
-        getDataCurrentPersoneStart: (state) => {
+        getDataCurrentPersonStart: (state) => {
             state.loading = true
         },
 
-        getDataCurrentPersoneSuccess: (state, action) => {
+        getDataCurrentPersonSuccess: (state, action) => {
             state.loading = false
             state.personalInf = action.payload
         },
 
-        getDataCurrentPersoneFailure: (state, action) => {
+        getDataCurrentPersonFailure: (state, action) => {
             state.loading = false
             state.errorInf.error = true
             state.errorInf.errorText = action.payload
@@ -158,9 +158,9 @@ export const {
     signUpSuccess,
     signUpFailure,
     logOutReducer,
-    getDataCurrentPersoneStart,
-    getDataCurrentPersoneSuccess,
-    getDataCurrentPersoneFailure,
+    getDataCurrentPersonStart,
+    getDataCurrentPersonSuccess,
+    getDataCurrentPersonFailure,
     setNickPhoneStart,
     setNickPhoneSuccess,
     setNickPhoneFailure,

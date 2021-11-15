@@ -1,9 +1,9 @@
 import { select, put, call, delay } from 'redux-saga/effects'
 
 import {
-    getDataCurrentPersoneStart,
-    getDataCurrentPersoneSuccess,
-    getDataCurrentPersoneFailure,
+    getDataCurrentPersonStart,
+    getDataCurrentPersonSuccess,
+    getDataCurrentPersonFailure,
     setNickPhoneSuccess,
     setNickPhoneFailure,
     deleteUserSuccess,
@@ -24,10 +24,10 @@ export function* currentUser() {
             const response =  yield call(apiCall, [`get`, `users/${userPersonalId}`])
             if (response.status === 200) {
                 yield put(currentUserIsNotAuth())
-                yield put(getDataCurrentPersoneSuccess(response.data))
+                yield put(getDataCurrentPersonSuccess(response.data))
             }
         } catch (error) {
-            yield put(getDataCurrentPersoneFailure(error.response.data.message))
+            yield put(getDataCurrentPersonFailure(error.response.data.message))
             yield delay(5000)
             yield put(removeError())
         }
@@ -39,7 +39,7 @@ export function* currentUser() {
                 yield put(getDataCurrentUserSuccess(response.data))
             }
         } catch (error) {
-            yield put(getDataCurrentPersoneFailure(error.response.data.message))
+            yield put(getDataCurrentPersonFailure(error.response.data.message))
             yield delay(5000)
             yield put(removeError())
         }
@@ -56,7 +56,7 @@ export function* changeNickPhone() {
         
         if (response.status === 200) {
             yield put(setNickPhoneSuccess())
-            yield put(getDataCurrentPersoneStart())
+            yield put(getDataCurrentPersonStart())
         }
     } catch (error) {
         yield put(setNickPhoneFailure(error.response.data.message))
