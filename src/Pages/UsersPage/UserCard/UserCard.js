@@ -49,6 +49,7 @@ const UserCardBox = styled.div`
     color: white;
     cursor: pointer;
     transition: 300ms;
+    
     &:hover{
         box-shadow: 0 10px 13px -7px #a49bff;
     }

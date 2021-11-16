@@ -69,6 +69,7 @@ const CangeCommentBtn = styled.button`
     writing-mode: vertical-lr; 
     transition: 200ms;
     cursor: pointer;
+    
     &:hover{
         padding: 0 20px;
     }

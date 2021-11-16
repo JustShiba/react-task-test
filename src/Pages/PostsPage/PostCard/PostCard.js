@@ -94,6 +94,7 @@ const ConfirmChangeBtn = styled.button`
     border-radius: 0;
     padding: 5px 0;
     transition: 200ms;
+    
     &:hover{
         padding: 7px 0;
     }
@@ -125,6 +126,7 @@ const ChangePost = styled.div`
     font-weight: 600;
     transition: 200ms;
     cursor: pointer;
+    
     &:hover{
         padding: 6px 0;
 
@@ -150,6 +152,7 @@ const CommentsBtn = styled.div`
     writing-mode: vertical-lr; 
     transition: 200ms;
     cursor: pointer;
+    
     &:hover{
         padding: 0 15px;
     }
