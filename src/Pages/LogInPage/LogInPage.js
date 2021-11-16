@@ -52,7 +52,6 @@ export const LogInPage = () => {
                     />
                     <Paragraph>If you have no account, you should <Link to={'./signup'}>Sign up</Link></Paragraph>
                     <LogSignBtn onClick={(e) => {
-                        e.preventDefault()
                         dispatch(logInStart({email, pass}))
                     }}>Log In</LogSignBtn>
                 </>
