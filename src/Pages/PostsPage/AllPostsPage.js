@@ -24,10 +24,10 @@ export const AllPostsPage = () => {
                     <H2>All posts</H2>
                     {allPosts.map(post => (<PostCard 
                                             key={post.postId} 
-                                            inf={post} 
-                                            name={post.nickname} 
+                                            informationPost={post} 
+                                            nameUser={post.nickname} 
                                             loading={loading} 
-                                            auth={false}
+                                            authorization={false}
                                         />))}
                 </>:
                 <Loader/> 
