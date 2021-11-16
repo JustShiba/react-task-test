@@ -49,7 +49,7 @@ export const SignUpPage = () => {
                                 setPass(e.target.value)
                             }}
                         />
-                        <Paragraph>If you already have account, you can <Link to={'./login'}>Log in</Link></Paragraph>
+                        <Paragraph>If you already have account, you can <Link to={'/login'}>Log in</Link></Paragraph>
                         <LogSignBtn onClick={(e) => {
                             e.preventDefault()
                             dispatch(signUpStart({email, pass}))

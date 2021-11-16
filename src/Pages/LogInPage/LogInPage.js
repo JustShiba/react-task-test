@@ -50,8 +50,8 @@ export const LogInPage = () => {
                             setPass(e.target.value)
                         }}
                     />
-                    <Paragraph>If you have no account, you should <Link to={'./signup'}>Sign up</Link></Paragraph>
-                    <LogSignBtn onClick={(e) => {
+                    <Paragraph>If you have no account, you should <Link to={'/signup'}>Sign up</Link></Paragraph>
+                    <LogSignBtn onClick={() => {
                         dispatch(logInStart({email, pass}))
                     }}>Log In</LogSignBtn>
                 </>
