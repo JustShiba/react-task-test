@@ -20,7 +20,7 @@ const List = styled.ul`
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    padding-inline-start: 0px;
+    padding-inline-start: 0;
 `
 
 const Links = styled.li`

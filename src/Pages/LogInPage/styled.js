@@ -9,7 +9,7 @@ export const LogSignBox = styled.form`
 `
 
 export const LogInInp = styled.input`
-    margin: 0px 25px 25px 25px;
+    margin: 0 25px 25px 25px;
     height: 50px;
     border-radius: 30px;
     padding-left: 25px;
@@ -34,7 +34,7 @@ export const LogSignBtn = styled.button`
     margin-top: 30px;
     width: 200px;
     padding: 25px;
-    border-radius: 0px;
+    border-radius: 0;
     border: none;
     letter-spacing: 2px;
     font-size: 13px;

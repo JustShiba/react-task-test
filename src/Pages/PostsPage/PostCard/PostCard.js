@@ -91,7 +91,7 @@ const ConfirmChangeBtn = styled.button`
     font-weight: 800;
     cursor: pointer;    
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     padding: 5px 0;
     transition: 200ms;
     &:hover{
@@ -119,14 +119,14 @@ const H3 = styled.h3`
 const ChangePost = styled.div`
     background-color: cadetblue;
     text-align: center;
-    padding: 4px 0px;
+    padding: 4px 0;
     text-transform: uppercase;
     color: white;
     font-weight: 600;
     transition: 200ms;
     cursor: pointer;
     &:hover{
-        padding: 6px 0px;
+        padding: 6px 0;
 
     }
 `
@@ -165,14 +165,14 @@ const PostCardBox = styled.div`
     background-color: #3324c4;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 10px 13px -7px #a49bff;
+    box-shadow: 0 10px 13px -7px #a49bff;
     color: white;
 `
 
 const Information = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 10px 15px 0px 15px;
+    margin: 10px 15px 0 15px;
 
 `
 

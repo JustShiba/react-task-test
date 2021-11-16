@@ -20,7 +20,7 @@ export const LogSign = () => {
 }
 
 const LogInBtn = styled.button`
-    border-radius: 0px;
+    border-radius: 0;
     border: none;
     letter-spacing: 2px;
     font-size: 13px;

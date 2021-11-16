@@ -58,7 +58,7 @@ export const AddCommentInp = styled.input`
 `
 
 const SendCommentBtn = styled.button`
-    border-radius: 0px;
+    border-radius: 0;
     border: none;
     letter-spacing: 2px;
     font-size: 13px;
@@ -82,5 +82,5 @@ const Cont = styled.div`
     border: 4px solid lightcoral;
     border-top: none;
     border-right: none;
-    border-radius: 0px 0px 0px 10px;
+    border-radius: 0 0 0 10px;
 `
