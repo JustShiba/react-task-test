@@ -17,7 +17,6 @@ export const AllPostsPage = () => {
     }, [dispatch])
 
     const { loading, allPosts } = useSelector(state => state.posts)
-    const auth = false
     return(
         <PostsContainer>
             {allPosts ? 
@@ -28,7 +27,7 @@ export const AllPostsPage = () => {
                                             inf={post} 
                                             name={post.nickname} 
                                             loading={loading} 
-                                            auth={auth}
+                                            auth={false}
                                         />))}
                 </>:
                 <Loader/> 
