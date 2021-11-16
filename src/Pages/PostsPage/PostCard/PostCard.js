@@ -54,7 +54,7 @@ export const PostCard = ({ informationPost, nameUser, loading, authorization, cu
                                 <ChangeInp 
                                     value={bodyPost} 
                                     onChange={(e) => setBody(bodyPost = e.target.value)}/> : 
-                                <p>{body}</p>
+                                <P>{body}</P>
                             }
                         </InformstionPost>
                         {change ? 
@@ -96,16 +96,16 @@ const ConfirmChangeBtn = styled.button`
     transition: 200ms;
     
     &:hover {
-        padding: 7px 0;
+        letter-spacing: 1px;
     }
 `
 
 const ChangeInp = styled.input`
-    font: 20px system-ui;
+    font: 15px system-ui;
     font-weight: 500;
     color: white;
     background-color: inherit;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 `
 
 const H3 = styled.h3`
@@ -128,8 +128,7 @@ const ChangePost = styled.div`
     cursor: pointer;
     
     &:hover {
-        padding: 6px 0;
-
+        letter-spacing: 1px;
     }
 `
 
@@ -164,6 +163,7 @@ const DeletePost = styled(CommentsBtn)`
 
 const PostCardBox = styled.div`
     width: 100%;
+    height: 150px;
     margin-bottom: 35px;
     background-color: #3324c4;
     display: flex;
@@ -195,8 +195,14 @@ const H4 = styled.h4`
     text-align: center;
 `
 
+const P = styled.p`
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 21px 0;
+`
+
 const InformstionPost = styled.div`
-    margin: 15px 25px;
+    margin: 5px 25px;
     height: 100%;
     display: flex;
     flex-direction: column;
