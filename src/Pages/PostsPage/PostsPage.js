@@ -11,7 +11,7 @@ export const PostsPage = ({ posts, nickname, auth, curUser }) => {
             {(!posts) ? 
                 <H2>No posts</H2> : 
                 <>
-                    <H2>{nickname ? nickname : 'noname'} posts</H2>
+                    <H2>{nickname || 'Noname'} posts</H2>
                     {posts.map(post => (<PostCard 
                                             key={post.postId} 
                                             inf={post} 
