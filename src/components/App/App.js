@@ -29,13 +29,12 @@ export function App() {
     return (
         <Router>
             <Header />
-            {(errorAuth.error || errorUser.error || errorPost.error) ? 
+            {(errorAuth.error || errorUser.error || errorPost.error) &&
                 <ErrorMessage 
                     errorAuth={errorAuth.errorText}
                     errorUser={errorUser.errorText}
                     errorPost={errorPost.errorText}
-                /> :
-                    null
+                />
             }
             <PagesContainer>
                 <PagesWrapper>
@@ -45,7 +44,7 @@ export function App() {
                         <PrivateRoute path='/posts' exact component={AllPostsPage} />
                         <PrivateRoute path='/profile' component={ProfilePage} />
                         <PrivateRoute path='/user' component={ProfilePage} />
-                        {auth ? <Redirect from='*' to='/profile' /> : null}
+                        {auth && <Redirect from='*' to='/profile' />}
                         <Route path='/login' component={LogInPage} />
                         <Route path='/signup' component={SignUpPage} />
                         <Redirect from='*' to='/' />
