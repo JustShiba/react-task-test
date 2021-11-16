@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router'
 
+import { USER__ID } from '../../redux/variables/variables'
 import { ProfileAuthUser } from './ProfileAuthUser/ProfileAuthUser'
 import { ProfileNonAuthUser } from './ProfileNonAuthUser/ProfileNonAuthUser'
 
@@ -10,7 +11,7 @@ export const ProfilePage = () => {
     return (
         <>
             {(location.pathname.indexOf('/profile') === 0) ?
-                <ProfileAuthUser user={localStorage.getItem('userId')} /> :
+                <ProfileAuthUser user={localStorage.getItem(USER__ID)} /> :
                 <ProfileNonAuthUser/>
             }
         </>

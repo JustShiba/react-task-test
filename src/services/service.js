@@ -1,10 +1,12 @@
 import axios from 'axios'
 
+import { USER__TOKEN } from '../redux/variables/variables';
+
 
 export const apiCall = ([ method, path, inf, token = false ]) => {
     const config = {
         'headers': {
-            'Authorization': `Bearer ${token ? token : localStorage.getItem('userToken')}`
+            'Authorization': `Bearer ${token ? token : localStorage.getItem(USER__TOKEN)}`
         }
     }
     if (inf) {

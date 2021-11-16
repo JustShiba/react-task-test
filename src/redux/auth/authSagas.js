@@ -10,6 +10,7 @@ import {
     removeError
 } from './authReducer'
 import { apiCall } from '../../services/service'
+import { USER__ID, USER__TOKEN } from '../variables/variables';
 
 
 
@@ -19,8 +20,8 @@ export function* logInSaga() {
         const response = yield call(apiCall, [`post`, `login`, state])
         if (response.status === 200) {
             yield put(logInSuccess(response.data))
-            localStorage.setItem(`userToken`, response.data.token)
-            localStorage.setItem(`userId`, response.data.userId)
+            localStorage.setItem(USER__TOKEN, response.data.token)
+            localStorage.setItem(USER__ID, response.data.userId)
         }
     } catch (error) {
         yield put(logInFailure(error.response.data.message))
@@ -30,8 +31,8 @@ export function* logInSaga() {
 }
 
 export function* checkLogIn() {
-    const userId = yield localStorage.getItem(`userId`)
-    const userToken = yield localStorage.getItem(`userToken`)
+    const userToken = yield localStorage.getItem(USER__TOKEN)
+    const userId = yield localStorage.getItem(USER__ID)
     if (!userId || !userToken) put(checkLogInFailure())
     let response = {}
     try {
@@ -40,8 +41,8 @@ export function* checkLogIn() {
             yield put(checkLogInSuccess(response.data))
         }
     } catch {
-        localStorage.removeItem(`userToken`)
-        localStorage.removeItem(`userId`)
+        localStorage.removeItem(USER__TOKEN)
+        localStorage.removeItem(USER__ID)
         put(checkLogInFailure())
     }
 }
