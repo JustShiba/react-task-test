@@ -95,7 +95,7 @@ const ConfirmChangeBtn = styled.button`
     padding: 5px 0;
     transition: 200ms;
     
-    &:hover{
+    &:hover {
         padding: 7px 0;
     }
 `
@@ -127,7 +127,7 @@ const ChangePost = styled.div`
     transition: 200ms;
     cursor: pointer;
     
-    &:hover{
+    &:hover {
         padding: 6px 0;
 
     }
@@ -153,7 +153,7 @@ const CommentsBtn = styled.div`
     transition: 200ms;
     cursor: pointer;
     
-    &:hover{
+    &:hover {
         padding: 0 15px;
     }
 `

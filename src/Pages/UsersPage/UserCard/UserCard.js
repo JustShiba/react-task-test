@@ -50,7 +50,7 @@ const UserCardBox = styled.div`
     cursor: pointer;
     transition: 300ms;
     
-    &:hover{
+    &:hover {
         box-shadow: 0 10px 13px -7px #a49bff;
     }
 `
@@ -82,6 +82,7 @@ const Posts = styled.p`
     margin-top: 25px;
     font-size: 25px;
     font-weight: 900;
+    
     & span {
         font-size: 20px;
         font-weight: 500;

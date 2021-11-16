@@ -70,6 +70,7 @@ const SendCommentBtn = styled.button`
     transition: 200ms;
     color: white;
     cursor: pointer;
+    
     &:hover {
         background-color: #1b1f50;
     }

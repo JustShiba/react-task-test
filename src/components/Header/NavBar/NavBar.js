@@ -25,10 +25,12 @@ const Links = styled.li`
     display: block;
     margin-right: 13px;
     font-weight: 600;
+
     & a {
         text-decoration: none;
         color: white;
         transition: 200ms;
+        
         &:hover {
             color: #6e59ca;  
         }

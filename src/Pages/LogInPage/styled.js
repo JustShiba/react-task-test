@@ -24,6 +24,7 @@ export const Title = styled.p`
     font-weight: 400;
     margin-block-start: 0;
     margin-block-end: 0;
+
     & span {
         font-size: 20px;
         font-weight: 500;
@@ -45,6 +46,7 @@ export const LogSignBtn = styled.button`
     transition: 200ms;
     color: white;
     cursor: pointer;
+
     &:hover {
         background-color: #4328b7;
     }
@@ -58,7 +60,8 @@ export const H2 = styled.h2`
 
 export const Paragraph = styled.p`
     color: white;
-    & a{
+
+    & a {
         color: white;
     }
 `

@@ -70,7 +70,7 @@ const CangeCommentBtn = styled.button`
     transition: 200ms;
     cursor: pointer;
     
-    &:hover{
+    &:hover {
         padding: 0 20px;
     }
 `

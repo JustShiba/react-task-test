@@ -32,6 +32,7 @@ const LogInBtn = styled.button`
     transition: 200ms;
     color: white;
     cursor: pointer;
+
     &:hover {
         background-color: #4328b7;
     }
@@ -40,6 +41,7 @@ const LogInBtn = styled.button`
 export const SignUpBtn = styled(LogInBtn)`
     background-color: #4328b7;  
     margin-left: 10px;
+    
     &:hover {
         background-color: #1b1f50;
     }

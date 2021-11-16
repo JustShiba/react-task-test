@@ -105,7 +105,7 @@ const AddPostBtn = styled.button`
     cursor: pointer;
     text-transform: uppercase;
     
-    &:hover{
+    &:hover {
         background-color: #1b1f50
 }
 `

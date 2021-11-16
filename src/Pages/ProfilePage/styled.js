@@ -14,7 +14,7 @@ export const Btn = styled.button`
     cursor: pointer;
     text-transform: uppercase;
     
-    &:hover{
+    &:hover {
         background-color: #1b1f50
     }
 `
@@ -32,7 +32,8 @@ export const InpBox = styled.div`
     display: flex;
     flex-direction: row;
     margin: 25px 0;
-    & h2{
+    
+    & h2 {
         margin: 0 10px 0 0;
         padding-bottom: 0;
     }
