@@ -2,7 +2,6 @@ import  styled  from 'styled-components'
 import { v4 } from 'uuid'
 import { Link } from 'react-router-dom'
 
-
 const arr = ['users', 'posts']
 
 export const NavBar = () => {
