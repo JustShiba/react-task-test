@@ -1,5 +1,4 @@
 import  styled  from 'styled-components'
-import { v4 } from 'uuid'
 import { Link } from 'react-router-dom'
 
 const arr = ['users', 'posts']
@@ -7,8 +6,8 @@ const arr = ['users', 'posts']
 export const NavBar = () => {
     return (
         <List>
-            {arr.map(item => (
-            <Links key={v4()}>
+            {arr.map((item, index) => (
+            <Links key={index}>
                 <Link to={`../${item}`}>{item.toUpperCase()}</Link>
             </Links>))}
         </List>
