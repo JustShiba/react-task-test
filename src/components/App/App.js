@@ -29,7 +29,7 @@ export function App() {
     return (
         <Router>
             <Header />
-            {(errorAuth.error === true) || (errorUser.error === true) || (errorPost.error === true) ? 
+            {(errorAuth.error || errorUser.error || errorPost.error) ? 
                 <ErrorMessage 
                     errorAuth={errorAuth.errorText}
                     errorUser={errorUser.errorText}
