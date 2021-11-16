@@ -34,7 +34,7 @@ import {
 export function* changePostInf() {
     const { titlePost, bodyPost, postId } = yield select(state => state.posts.postChangeInf)
     try {
-        const response = yield call(apiCall, [`put`, `posts/${postId}684684wefwef`, {'title': titlePost, 'body': bodyPost}])
+        const response = yield call(apiCall, [`put`, `posts/${postId}`, {'title': titlePost, 'body': bodyPost}])
         if (response.status === 200) {
             yield put(changePostInfSuccess())
             yield put(getCurrentUserPostsStart())
