@@ -11,9 +11,9 @@ export const LogSign = () => {
                 </LogInBtn>
             </Link>
             <Link to='/signup'> 
-                <SignUpBtn>
+                <LightBtn>
                     Sign Up
-                </SignUpBtn>
+                </LightBtn>
             </Link>
         </div>
     )
@@ -38,7 +38,7 @@ const LogInBtn = styled.button`
     }
 `
 
-export const SignUpBtn = styled(LogInBtn)`
+export const LightBtn = styled(LogInBtn)`
     background-color: #4328b7;  
     margin-left: 10px;
     
