@@ -7,8 +7,8 @@ import { Loader } from '../../../../src/components/Loader/Loader'
 import { Comments } from './Comments/Comments'
 
 
-export const PostCard = ({ inf, name, loading, auth, curUser }) => {
-    const { likes, body, postId, title, comments } = inf
+export const PostCard = ({ informationPost, nameUser, loading, authorization, currentUser }) => {
+    const { likes, body, postId, title, comments } = informationPost
 
     let [change, setChange] = useState(false)
     let [commentsSate, setComments] = useState(false)
@@ -22,7 +22,7 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
             {loading ? 
                 <Loader/> :
                 <>
-                    {auth ? 
+                    {authorization ? 
                     <ChangePost onClick={() => {
                         setChange(!change)
                         setComments(commentsSate = false)
@@ -37,7 +37,7 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
                     <PostCardBox>
                         <Information>
                             <InformationUser>
-                                <H3>{name ? name : 'Noname'}</H3>
+                                <H3>{nameUser || 'Noname'}</H3>
                             </InformationUser>
                             <InformationLikes>
                                 {likes} Likes
@@ -67,7 +67,7 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
                             null
                         }  
                     </PostCardBox>
-                    {auth ? 
+                    {authorization ? 
                         <DeletePost onClick={() => {
                             dispatch(deletePostStart(postId))
                         }}>Delete</DeletePost> :
@@ -75,7 +75,7 @@ export const PostCard = ({ inf, name, loading, auth, curUser }) => {
                     }
                 </PostContainer>
                 {commentsSate ? 
-                    <Comments inf={comments} postId={postId} loading={loading} curUser={curUser}/> : 
+                    <Comments informationComments={comments} postId={postId} loading={loading} currentUser={currentUser}/> : 
                     null
                 }
                 </>

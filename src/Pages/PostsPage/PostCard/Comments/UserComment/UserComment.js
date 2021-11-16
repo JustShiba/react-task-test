@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import { changeCommentStart, deleteCommentStart } from '../../../../../../src/redux/posts/postsReducer'
 
-export const UserComment = ({ inf, postId, curUser }) => {
-    const { body, commentId, userId } = inf
+export const UserComment = ({ informationUserComment, postId, currentUser }) => {
+    const { body, commentId, userId } = informationUserComment
     const personalUserId = useSelector(state => state.authorization.personalInf.userId)
 
     const dispatch = useDispatch()
@@ -31,7 +31,7 @@ export const UserComment = ({ inf, postId, curUser }) => {
                     {changingComment ?  
                         <CangeCommentBtn 
                             onClick={() => {
-                                const config = curUser 
+                                const config = currentUser 
                                 dispatch(changeCommentStart({ postId, commentId, comment, config }))
                             }}
                         >Save</CangeCommentBtn> : 
@@ -42,7 +42,7 @@ export const UserComment = ({ inf, postId, curUser }) => {
                     
                     <DeleteCommentBtn 
                         onClick={() => {
-                            const config = curUser
+                            const config = currentUser
                             dispatch(deleteCommentStart({ postId, commentId, config }))
                         }}
 

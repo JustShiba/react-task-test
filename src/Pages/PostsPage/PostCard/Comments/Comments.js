@@ -6,7 +6,7 @@ import { sendCommentStart } from '../../../../../src/redux/posts/postsReducer'
 import { UserComment } from './UserComment/UserComment'
 
 
-export const Comments = ({ inf, postId, loading, curUser }) => {
+export const Comments = ({ informationComments, postId, loading, currentUser }) => {
     const dispatch = useDispatch()
     let [ comment, setComment ] = useState('')
 
@@ -23,17 +23,23 @@ export const Comments = ({ inf, postId, loading, curUser }) => {
                         />
                         <SendCommentBtn 
                             onClick={() => {
-                                const config = curUser
+                                const config = currentUser
                                 dispatch(sendCommentStart({comment, postId, config}))
                                 setComment(comment = '')
                             }}
                         >Send</SendCommentBtn>
                     </AddCommentBox>
                     <UsersComments>
-                        {inf[0] ?
-                            inf.map((comment) => 
-                                <UserComment inf={comment} postId={postId} key={comment.commentId} curUser={curUser}/>) : 
-                            <h2>There is no comments yet</h2>}
+                        {informationComments[0] ?
+                            informationComments.map((comment) => 
+                            <UserComment 
+                                informationUserComment={comment} 
+                                postId={postId} 
+                                key={comment.commentId} 
+                                currentUser={currentUser}
+                            />) : 
+                            <h2>There is no comments yet</h2>
+                        }
                     </UsersComments>
                 </Cont>
             }

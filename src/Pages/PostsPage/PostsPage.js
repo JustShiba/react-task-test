@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { PostCard } from './PostCard/PostCard'
 
 
-export const PostsPage = ({ posts, nickname, auth, curUser }) => {
+export const PostsPage = ({ posts, nickname, authorization, currentUser }) => {
     const { loading } = useSelector(state => state.posts)
     return(
         <PostsContainer>
@@ -14,11 +14,11 @@ export const PostsPage = ({ posts, nickname, auth, curUser }) => {
                     <H2>{nickname || 'Noname'} posts</H2>
                     {posts.map(post => (<PostCard 
                                             key={post.postId} 
-                                            inf={post} 
-                                            name={nickname} 
+                                            informationPost={post} 
+                                            nameUser={nickname} 
                                             loading={loading} 
-                                            auth={!auth}
-                                            curUser={curUser}
+                                            authorization={!authorization}
+                                            currentUser={currentUser}
                                         />))}
                 </>
             }
