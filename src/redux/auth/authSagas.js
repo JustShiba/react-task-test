@@ -6,7 +6,6 @@ import {
     logInSuccess, 
     signUpFailure, 
     signUpSuccess,
-    checkLogInFailure,
     removeError
 } from './authReducer'
 import { apiCall } from '../../services/service'
@@ -30,10 +29,15 @@ export function* logInSaga() {
     }
 }
 
+const cleanLocalStorage = () => {
+    localStorage.removeItem(USER__TOKEN)
+    localStorage.removeItem(USER__ID)
+}
+
 export function* checkLogIn() {
     const userToken = yield localStorage.getItem(USER__TOKEN)
     const userId = yield localStorage.getItem(USER__ID)
-    if (!userId || !userToken) put(checkLogInFailure())
+    if (!userId || !userToken) return cleanLocalStorage()
     let response = {}
     try {
         response = yield call(apiCall, [`get`, `users/${userId}`, null, userToken])
@@ -41,9 +45,7 @@ export function* checkLogIn() {
             yield put(checkLogInSuccess(response.data))
         }
     } catch {
-        localStorage.removeItem(USER__TOKEN)
-        localStorage.removeItem(USER__ID)
-        put(checkLogInFailure())
+        cleanLocalStorage()
     }
 }
 

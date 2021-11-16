@@ -28,8 +28,6 @@ export const authReducer = createSlice({
             state.auth = true
         },
 
-        checkLogInFailure: (state, action) => {},
-        
         logInStart: (state, action) => {
             const { email, pass } = action.payload
             state.userInfInp.email = email
@@ -150,7 +148,6 @@ export const authReducer = createSlice({
 export const { 
     checkLogInStart,
     checkLogInSuccess,
-    checkLogInFailure,
     logInStart, 
     logInSuccess, 
     logInFailure, 
