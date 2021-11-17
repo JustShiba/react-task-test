@@ -4,18 +4,18 @@ import { createSlice } from '@reduxjs/toolkit'
 export const authReducer = createSlice({
     name: 'authReducer',
     initialState: {
-        userInfInp: {
+        userInformationInput: {
             email: '',
             password: '',
             nickName: '',
             phone: '',
             loading: false
         },
-        personalInf: {},
-        auth: false,
-        sign: false,
+        personalInformationUser: {},
+        isAuthorized: false,
+        isSignUp: false,
         loading: false,
-        errorInf: {
+        errorInformation: {
             error: false,
             errorText: ''
         }
@@ -24,57 +24,57 @@ export const authReducer = createSlice({
         checkLogInStart: () => {},
 
         checkLogInSuccess: (state, action) => {
-            state.personalInf = action.payload
-            state.auth = true
+            state.personalInformationUser = action.payload
+            state.isAuthorized = true
         },
 
         logInStart: (state, action) => {
-            const { email, pass } = action.payload
-            state.userInfInp.email = email
-            state.userInfInp.password = pass
+            const { email, password } = action.payload
+            state.userInformationInput.email = email
+            state.userInformationInput.password = password
             state.loading = true
         },
         
         logInSuccess: (state, action) => {
             state.loading = false
-            state.auth = true
-            state.personalInf = action.payload
-            state.userInfInp.email = ''
-            state.userInfInp.password = ''
+            state.isAuthorized = true
+            state.personalInformationUser = action.payload
+            state.userInformationInput.email = ''
+            state.userInformationInput.password = ''
         },
         
         logInFailure: (state, action) => {
             state.loading = false
-            state.userInfInp.email = ''
-            state.userInfInp.password = ''
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.userInformationInput.email = ''
+            state.userInformationInput.password = ''
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
         
         signUpStart: (state, action) => {
-            const { email, pass } = action.payload
-            state.userInfInp.email = email
-            state.userInfInp.password = pass
+            const { email, password } = action.payload
+            state.userInformationInput.email = email
+            state.userInformationInput.password = password
             state.loading = true
         },
         
         signUpSuccess: (state) => {
-            state.sign = true
-            state.userInfInp.email = ''
-            state.userInfInp.password = ''
+            state.isSignUp = true
+            state.userInformationInput.email = ''
+            state.userInformationInput.password = ''
             state.loading = false
         },
         
         signUpFailure: (state, action) => {
-            state.userInfInp.email = ''
-            state.userInfInp.password = ''
+            state.userInformationInput.email = ''
+            state.userInformationInput.password = ''
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         logOutReducer: (state) => {
-            state.auth = false
+            state.isAuthorized = false
             state.firstAuth = false
         },
         
@@ -84,33 +84,33 @@ export const authReducer = createSlice({
 
         getDataCurrentPersonSuccess: (state, action) => {
             state.loading = false
-            state.personalInf = action.payload
+            state.personalInformationUser = action.payload
         },
 
         getDataCurrentPersonFailure: (state, action) => {
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         setNickPhoneStart: (state, action) => {
-            state.userInfInp.nickName = action.payload.nickname
-            state.userInfInp.phone = action.payload.phone
+            state.userInformationInput.nickName = action.payload.nickname
+            state.userInformationInput.phone = action.payload.phone
             state.loading = true
         },
 
         setNickPhoneSuccess: (state) => {
-            state.userInfInp.nickName = ''
-            state.userInfInp.phone = ''
+            state.userInformationInput.nickName = ''
+            state.userInformationInput.phone = ''
             state.loading = false
         },
 
         setNickPhoneFailure: (state, action) => {
-            state.userInfInp.nickName = ''
-            state.userInfInp.phone = ''
+            state.userInformationInput.nickName = ''
+            state.userInformationInput.phone = ''
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         deleteUserStart: (state) => {
@@ -119,25 +119,25 @@ export const authReducer = createSlice({
 
         deleteUserSuccess: (state) => {
             state.loading = false
-            state.auth = false
+            state.isAuthorized = false
         },
 
         deleteUserFailure: (state, action) => {
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         clearPersInf: (state) => {
-            state.personalInf = {}
+            state.personalInformationUser = {}
         },
 
         updateUserPosts: (state, action) => {
-            state.personalInf.posts = action.payload
+            state.personalInformationUser.posts = action.payload
         },
 
         removeError: (state) => {
-            state.errorInf = {
+            state.errorInformation = {
                 error: false,
                 errorText: ''
             }

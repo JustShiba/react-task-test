@@ -13,7 +13,7 @@ import { USER__ID, USER__TOKEN } from '../variables/variables';
 
 
 export function* logInSaga() {
-    const state = yield select(state => state.authorization.userInfInp)
+    const state = yield select(state => state.authorization.userInformationInput)
     try {
         const response = yield call(apiCall, [`post`, `login`, state])
         if (response.status === 200) {
@@ -49,7 +49,7 @@ export function* checkLogIn() {
 }
 
 export function* signUpSaga() {
-    const state = yield select(state => state.authorization.userInfInp)
+    const state = yield select(state => state.authorization.userInformationInput)
     try {
         const response = yield call(apiCall, [`post`, `signup`, state])
         if (response.status === 200) yield put(signUpSuccess())

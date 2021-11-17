@@ -8,13 +8,18 @@ import { Profile } from './Profile/Profile'
 
 
 export const Header = () => {
-    const { auth } = useSelector(state => state.authorization)
+    const { isAuthorized } = useSelector(state => state.authorization)
 
     return (
         <HeaderContainer>
             <HeaderWrapper>
-                <NavBar/>
-                {auth ? <AuthContHeaderBtn><Profile/><LogOut/></AuthContHeaderBtn> : <LogSign/>}
+                <NavBar />
+                {isAuthorized ?
+                    <AuthContHeaderBtn>
+                        <Profile />
+                        <LogOut />
+                    </AuthContHeaderBtn> :
+                    <LogSign />}
             </HeaderWrapper>
         </HeaderContainer>
     )

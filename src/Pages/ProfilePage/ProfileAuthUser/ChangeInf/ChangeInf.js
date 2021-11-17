@@ -8,8 +8,9 @@ import { Loader } from '../../../../components/Loader/Loader'
 import { setNickPhoneStart } from '../../../../redux/auth/authReducer'
 
 export const ChangeInf = ({ nickname, phone }) => {
-    const { loading } = useSelector(state => state.authorization.userInfInp)
+    const { loading } = useSelector(state => state.authorization.userInformationInput)
     const dispatch = useDispatch()
+
     const formik = useFormik({
         initialValues: {
             nickname,
@@ -24,7 +25,7 @@ export const ChangeInf = ({ nickname, phone }) => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <Line />
-            {loading ? <Loader/> :
+            {loading ? <Loader /> :
                 <>
                     <H2>Add information</H2>
                     <Box>

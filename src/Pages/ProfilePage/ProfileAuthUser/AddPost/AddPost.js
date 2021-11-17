@@ -10,7 +10,7 @@ import { Loader } from '../../../../../src/components/Loader/Loader'
 
 export const AddPost = () => {
     const dispatch = useDispatch()
-    const { title, body, loading } = useSelector(state => state.posts.postCreateInp)
+    const { title, body, loading } = useSelector(state => state.posts.postCreateInput)
 
     const formik = useFormik({
         initialValues: {
@@ -26,7 +26,7 @@ export const AddPost = () => {
 
     return (
         <form onSubmit={formik.handleSubmit}>
-            {loading ? <Loader/> :
+            {loading ? <Loader /> :
                 <>
                     <H2>Create post</H2>
                     <Box>

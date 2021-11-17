@@ -18,7 +18,7 @@ import {
     Email,
     InpBox2,
     ChangeBtn,
-    Marge
+    Marge,
 } from '../styled'
 import { selectUserId } from '../../../../src/redux/users/usersReducer'
 import { ChangeInf } from './ChangeInf/ChangeInf';
@@ -26,11 +26,11 @@ import { ChangeInf } from './ChangeInf/ChangeInf';
 
 export const ProfileAuthUser = ({ user }) => {
     const dispatch = useDispatch()
-    const state = useSelector(state => state.authorization)
-    const { auth } = state
-    const { email, nickname, phone, posts, userId } = state.personalInf
-    const loading = state.loading
-    const [ changeInf, setChangeInf ] = useState(false)
+    const stateAuthorization = useSelector(state => state.authorization)
+    const { isAuthorized } = stateAuthorization
+    const { email, nickname, phone, posts, userId } = stateAuthorization.personalInformationUser
+    const loadingAuthorization = stateAuthorization.loading
+    const [ifChangeInformation, setIfChangeInformation] = useState(false)
 
     useEffect(() => {
         if (user) {
@@ -39,12 +39,12 @@ export const ProfileAuthUser = ({ user }) => {
             dispatch(selectUserId(userId))
         }
 
-        if (auth) dispatch(getDataCurrentPersonStart())
-    }, [dispatch, userId, user, auth])
-    
+        if (isAuthorized) dispatch(getDataCurrentPersonStart())
+    }, [dispatch, userId, user, isAuthorized])
+
     return (
         <ProfilePageContainer>
-            {loading ?
+            {loadingAuthorization ?
                 <Loader /> :
                 <>
                     <H2>{nickname ? `Personal information: ${nickname}` : 'Your Nickname: '}</H2>
@@ -52,19 +52,20 @@ export const ProfileAuthUser = ({ user }) => {
                     <Box>
                         <Phone>{phone}</Phone>
                         <InpBox2>
-                            <ChangeBtn onClick={() => setChangeInf(!changeInf)}>
-                                {nickname ?  `Change information` : `Add information`}
+                            <ChangeBtn onClick={() => setIfChangeInformation(!ifChangeInformation)}>
+                                {nickname ? `Change information` : `Add information`}
                             </ChangeBtn>
                             <DeleteBtn onClick={() => dispatch(deleteUserStart())}>Delete account</DeleteBtn>
                         </InpBox2>
                     </Box>
-                </>}
+                </>
+            }
             <Marge />
-            {changeInf ? <ChangeInf nickname={nickname} phone={phone}/> : null}
+            {ifChangeInformation ? <ChangeInf nickname={nickname} phone={phone} /> : null}
             <Line />
             <AddPost />
             <Line />
-            {loading ? <Loader /> : <PostsPage posts={posts} nickname={nickname} currentUser={'authUser'} />}
+            {loadingAuthorization ? <Loader /> : <PostsPage posts={posts} nickname={nickname} currentUser={'authUser'} />}
         </ProfilePageContainer>
     )
 }

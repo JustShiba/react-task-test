@@ -6,10 +6,10 @@ export const usersReducer = createSlice({
     initialState: {
         users: [],
         currentUserId: '',
-        currentUserInf: {},
-        otherUser: true,
+        currentUserInformation: {},
+        isOtherUser: true,
         loading: false,
-        errorInf: {
+        errorInformation: {
             error: false,
             errorText: ''
         }
@@ -26,8 +26,8 @@ export const usersReducer = createSlice({
 
         addUsersFailure: (state, action) => {
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         selectUserId: (state, action) => {
@@ -40,16 +40,16 @@ export const usersReducer = createSlice({
 
         getDataCurrentUserSuccess: (state, action) => {
             state.loading = false
-            state.currentUserInf = action.payload
-            state.otherUser = true
+            state.currentUserInformation = action.payload
+            state.isOtherUser = true
         },
 
         currentUserIsNotAuth: (state) => {
-            state.otherUser = false
+            state.isOtherUser = false
         },
 
         removeError: (state) => {
-            state.errorInf = {
+            state.errorInformation = {
                 error: false,
                 errorText: ''
             }

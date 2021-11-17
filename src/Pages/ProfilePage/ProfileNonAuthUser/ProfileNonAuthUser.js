@@ -18,34 +18,41 @@ import {
 
 export const ProfileNonAuthUser = () => {
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(getDataCurrentUserStart())
     }, [dispatch])
-    
+
     const state = useSelector(state => state.users)
-    const loading = state.loading
-    const otherUser = state.otherUser    
-    const { nickname, phone, email, posts } = state.currentUserInf 
+    const loadingUsers = state.loading
+    const isOtherUser = state.isOtherUser
+    const { nickname, phone, email, posts } = state.currentUserInformation
 
     return (
         <ProfilePageContainer>
-            {loading?
-                <Loader/>:
+            {loadingUsers ?
+                <Loader /> :
                 <>
                     <InpBox>
-                        <H2>{nickname ? `Personal information: ${nickname}`: `Noname`}</H2>
+                        <H2>{nickname ? `Personal information: ${nickname}` : `Noname`}</H2>
                     </InpBox>
-                    <Email>{email}</Email>  
-                    <Box>            
+                    <Email>{email}</Email>
+                    <Box>
                         <InpBox2>
                             <Phone>{phone ? phone : `No phone number`}</Phone>
                         </InpBox2>
                     </Box>
                 </>
             }
-            <Line/>
-            {loading ? <Loader/> : <PostsPage posts={posts} nickname={nickname} authorization={otherUser} currentUser={'nonAuthUser'}/>}
+            <Line />
+            {loadingUsers ?
+                <Loader /> :
+                <PostsPage
+                    posts={posts}
+                    nickname={nickname}
+                    authorization={isOtherUser}
+                    currentUser={'nonAuthUser'}
+                />}
         </ProfilePageContainer>
     )
 }

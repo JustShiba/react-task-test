@@ -32,7 +32,7 @@ import {
 
 
 export function* changePostInf() {
-    const { titlePost, bodyPost, postId } = yield select(state => state.posts.postChangeInf)
+    const { titlePost, bodyPost, postId } = yield select(state => state.posts.postChangeInformation)
     try {
         const response = yield call(apiCall, [`put`, `posts/${postId}`, {'title': titlePost, 'body': bodyPost}])
         if (response.status === 200) {
@@ -74,7 +74,7 @@ export function* getAllPosts() {
 }
 
 export function* createPost() {
-    const { title, body } = yield select(state => state.posts.postCreateInp)
+    const { title, body } = yield select(state => state.posts.postCreateInput)
     
     if (title && body) {
         try {
@@ -111,10 +111,10 @@ export function* getCurrentUserPosts() {
 }
 
 export function* deletePost() {
-    const { selectedId } = yield select(state => state.posts)
+    const { selectedIdPost } = yield select(state => state.posts)
 
     try {
-        const response = yield call(apiCall, [`delete`, `posts/${selectedId}`])
+        const response = yield call(apiCall, [`delete`, `posts/${selectedIdPost}`])
 
         if (response.status === 200) {
             yield put(deletePostSuccess())
@@ -128,7 +128,7 @@ export function* deletePost() {
 }
 
 export function* sendComment() {
-    const { comment, postId, config } = yield select(state => state.posts.commentSendInf)
+    const { comment, postId, config } = yield select(state => state.posts.commentSendInformation)
 
     try {
         const response = yield call(apiCall, [`post`, `posts/${postId}/comments`, {'body': comment}])
@@ -155,7 +155,7 @@ export function* sendComment() {
 }
 
 export function* deleteComment() {
-    const { postId, commentId, config } = yield select(state => state.posts.commentDeletInf)
+    const { postId, commentId, config } = yield select(state => state.posts.commentDeletInformation)
 
     try {
         const response = yield call(apiCall, [`delete`, `posts/${postId}/comments/${commentId}`])
@@ -180,7 +180,7 @@ export function* deleteComment() {
 }
 
 export function* changeComment() {
-    const { postId, commentId, comment, config } = yield select(state => state.posts.commentChangeInf)
+    const { postId, commentId, comment, config } = yield select(state => state.posts.commentChangeInformation)
 
     try {
         const response = yield call(apiCall, [`put`, `posts/${postId}/comments/${commentId}`, { 'body': comment}])

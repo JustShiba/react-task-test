@@ -4,7 +4,6 @@ import { LightBtn } from '../LogSign/LogSign'
 
 
 export const Profile = () => {
-
     return(
         <Link to='/profile'> 
             <LightBtn>Profile</LightBtn>

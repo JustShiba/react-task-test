@@ -10,10 +10,10 @@ import { Comments } from './Comments/Comments'
 export const PostCard = ({ informationPost, nameUser, loading, authorization, currentUser }) => {
     const { likes, body, postId, title, comments } = informationPost
 
-    let [change, setChange] = useState(false)
-    let [commentsSate, setComments] = useState(false)
-    let [titlePost, setTitle] = useState(title)
-    let [bodyPost, setBody] = useState(body)
+    let [ifChangePost, setIfChangePost] = useState(false)
+    let [ifCommentsShow, setIfCommentsShow] = useState(false)
+    let [titlePost, setTitlePost] = useState(title)
+    let [bodyPost, setBodyPost] = useState(body)
     
     const dispatch = useDispatch()
 
@@ -24,15 +24,15 @@ export const PostCard = ({ informationPost, nameUser, loading, authorization, cu
                 <>
                     {authorization ? 
                     <ChangePost onClick={() => {
-                        setChange(!change)
-                        setComments(commentsSate = false)
+                        setIfChangePost(!ifChangePost)
+                        setIfCommentsShow(ifCommentsShow = false)
                     }}>Change Post</ChangePost> : 
                     null
                 }
                 <PostContainer>
                     <CommentsBtn onClick={() => {
-                        setComments(!commentsSate)
-                        setChange(change = false)
+                        setIfCommentsShow(!ifCommentsShow)
+                        setIfChangePost(ifChangePost = false)
                     }}>Comments</CommentsBtn>
                     <PostCardBox>
                         <Information>
@@ -44,24 +44,24 @@ export const PostCard = ({ informationPost, nameUser, loading, authorization, cu
                             </InformationLikes>
                         </Information>
                         <InformstionPost>
-                            {change ? 
+                            {ifChangePost ? 
                                 <ChangeInp 
                                     value={titlePost} 
-                                    onChange={(e) => setTitle(titlePost = e.target.value)}/> : 
+                                    onChange={(e) => setTitlePost(titlePost = e.target.value)}/> : 
                                 <H4>{title}</H4>
                             }
-                            {change ? 
+                            {ifChangePost ? 
                                 <ChangeInp 
                                     value={bodyPost} 
-                                    onChange={(e) => setBody(bodyPost = e.target.value)}/> : 
+                                    onChange={(e) => setBodyPost(bodyPost = e.target.value)}/> : 
                                 <P>{body}</P>
                             }
                         </InformstionPost>
-                        {change ? 
+                        {ifChangePost ? 
                             <ConfirmChangeBtn 
                                 onClick={() => {
                                     dispatch(changePostInfStart({titlePost, bodyPost, postId}))
-                                    setChange(!change)
+                                    setIfChangePost(!ifChangePost)
                                 }}
                             >Confirm</ConfirmChangeBtn> :
                             null
@@ -74,7 +74,7 @@ export const PostCard = ({ informationPost, nameUser, loading, authorization, cu
                         null
                     }
                 </PostContainer>
-                {commentsSate ? 
+                {ifCommentsShow ? 
                     <Comments informationComments={comments} postId={postId} loading={loading} currentUser={currentUser}/> : 
                     null
                 }

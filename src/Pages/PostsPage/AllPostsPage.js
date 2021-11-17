@@ -17,22 +17,23 @@ export const AllPostsPage = () => {
     }, [dispatch])
 
     const { loading, allPosts } = useSelector(state => state.posts)
-    return(
+
+    return (
         <PostsContainer>
-            {allPosts ? 
+            {allPosts ?
                 <>
                     <H2>All posts</H2>
-                    {allPosts.map(post => (<PostCard 
-                                            key={post.postId} 
-                                            informationPost={post} 
-                                            nameUser={post.nickname} 
-                                            loading={loading} 
-                                            authorization={false}
-                                        />))}
-                </>:
-                <Loader/> 
+                    {allPosts.map(post => (<PostCard
+                        key={post.postId}
+                        informationPost={post}
+                        nameUser={post.nickname}
+                        loading={loading}
+                        authorization={false}
+                    />))}
+                </> :
+                <Loader />
             }
-            
+
         </PostsContainer>
     )
 }

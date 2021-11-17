@@ -8,7 +8,7 @@ import { UserComment } from './UserComment/UserComment'
 
 export const Comments = ({ informationComments, postId, loading, currentUser }) => {
     const dispatch = useDispatch()
-    let [ comment, setComment ] = useState('')
+    let [ commentText, setCommentText ] = useState('')
 
     return (
         <>
@@ -18,24 +18,24 @@ export const Comments = ({ informationComments, postId, loading, currentUser }) 
                     <h2>Comments</h2>
                     <AddCommentBox>
                         <AddCommentInp 
-                            value={comment} 
-                            onChange={(e) => setComment(comment = e.target.value)}
+                            value={commentText} 
+                            onChange={(e) => setCommentText(commentText = e.target.value)}
                         />
                         <SendCommentBtn 
                             onClick={() => {
                                 const config = currentUser
-                                dispatch(sendCommentStart({comment, postId, config}))
-                                setComment(comment = '')
+                                dispatch(sendCommentStart({commentText, postId, config}))
+                                setCommentText(commentText = '')
                             }}
                         >Send</SendCommentBtn>
                     </AddCommentBox>
                     <UsersComments>
                         {informationComments[0] ?
-                            informationComments.map((comment) => 
+                            informationComments.map((commentText) => 
                             <UserComment 
-                                informationUserComment={comment} 
+                                informationUserComment={commentText} 
                                 postId={postId} 
-                                key={comment.commentId} 
+                                key={commentText.commentId} 
                                 currentUser={currentUser}
                             />) : 
                             <h2>There is no comments yet</h2>

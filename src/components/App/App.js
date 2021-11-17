@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
-
 import { Header } from '../Header/Header'
 import { LogInPage } from '../../pages/LogInPage/LogInPage'
 import { SignUpPage } from '../../pages/SignUpPage/SignUpPage'
@@ -16,11 +15,11 @@ import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 
 
 export function App() {
-    const { auth } = useSelector(state => state.authorization)
+    const { isAuthorized } = useSelector(state => state.authorization)
     const dispatch = useDispatch()
-    const errorAuth =  useSelector(state => state.authorization.errorInf)
-    const errorUser =  useSelector(state => state.users.errorInf)
-    const errorPost =  useSelector(state => state.posts.errorInf)
+    const errorAuth =  useSelector(state => state.authorization.errorInformation)
+    const errorUser =  useSelector(state => state.users.errorInformation)
+    const errorPost =  useSelector(state => state.posts.errorInformation)
     
     useEffect(() => {
         dispatch(checkLogInStart())
@@ -40,7 +39,7 @@ export function App() {
                         <PrivateRoute path='/posts' exact component={AllPostsPage} />
                         <PrivateRoute path='/profile' component={ProfilePage} />
                         <PrivateRoute path='/user' component={ProfilePage} />
-                        {auth && <Redirect from='*' to='/profile' />}
+                        {isAuthorized && <Redirect from='*' to='/profile' />}
                         <Route path='/login' component={LogInPage} />
                         <Route path='/signup' component={SignUpPage} />
                         <Redirect from='*' to='/' />

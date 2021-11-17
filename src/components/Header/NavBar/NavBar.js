@@ -6,9 +6,9 @@ const arr = ['users', 'posts']
 export const NavBar = () => {
     return (
         <List>
-            {arr.map((item, index) => (
+            {arr.map((navItem, index) => (
             <Links key={index}>
-                <Link to={`../${item}`}>{item.toUpperCase()}</Link>
+                <Link to={`../${navItem}`}>{navItem.toUpperCase()}</Link>
             </Links>))}
         </List>
     )

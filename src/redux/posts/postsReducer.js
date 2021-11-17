@@ -4,42 +4,42 @@ import { createSlice } from '@reduxjs/toolkit'
 export const postsReducer = createSlice({
     name: 'postsReducer',
     initialState: {
-        postCreateInp: {
+        postCreateInput: {
             title: '',
             body: '',
             loading: false
         },
         allPosts: [],
-        selectedId: '',
-        postChangeInf: {},
-        commentSendInf: {},
-        commentDeletInf: {},
-        commentChangeInf: {},
+        selectedIdPost: '',
+        postChangeInformation: {},
+        commentSendInformation: {},
+        commentDeletInformation: {},
+        commentChangeInformation: {},
         loading: false,
-        errorInf: {
+        errorInformation: {
             error: false,
             errorText: ''
         }
     },
     reducers: {
         createPostStart: (state, action) => {
-            state.postCreateInp.loading = true
-            state.postCreateInp.title = action.payload.title
-            state.postCreateInp.body = action.payload.body
+            state.postCreateInput.loading = true
+            state.postCreateInput.title = action.payload.title
+            state.postCreateInput.body = action.payload.body
         },
 
         createPostSuccess: (state) => {
-            state.postCreateInp.loading = false
-            state.postCreateInp.title = ''
-            state.postCreateInp.body = ''
+            state.postCreateInput.loading = false
+            state.postCreateInput.title = ''
+            state.postCreateInput.body = ''
         },
 
         createPostFailure: (state, action) => {
-            state.postCreateInp.loading = false
-            state.postCreateInp.title = ''
-            state.postCreateInp.body = ''
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.postCreateInput.loading = false
+            state.postCreateInput.title = ''
+            state.postCreateInput.body = ''
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         getAllPostsStart: (state) => {
@@ -53,8 +53,8 @@ export const postsReducer = createSlice({
 
         getAllPosts__FAILRE: (state, action) => {
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         getCurrentUserPostsStart: (state) => {
@@ -67,97 +67,97 @@ export const postsReducer = createSlice({
         
         getCurrentUserPostsFailure: (state, action) => {
             state.loading = false
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         deletePostStart: (state, action) => {
             state.loading = true
-            state.selectedId = action.payload
+            state.selectedIdPost = action.payload
         },
 
         deletePostSuccess: (state) => {
             state.loading = false
-            state.selectedId = ''
+            state.selectedIdPost = ''
         },
 
         deletePostFailure: (state, action) => {
             state.loading = false
-            state.selectedId = ''
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.selectedIdPost = ''
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         changePostInfStart: (state, action) => {
             state.loading = true
-            state.postChangeInf = action.payload
+            state.postChangeInformation = action.payload
         },
 
         changePostInfSuccess: (state) => {
             state.loading = false
-            state.postChangeInf = {}
+            state.postChangeInformation = {}
         },
 
         changePostInfFailure: (state, action) => {
             state.loading = false
-            state.postChangeInf = {}
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.postChangeInformation = {}
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         sendCommentStart: (state, action) => {
             state.loading = true
-            state.commentSendInf = action.payload
+            state.commentSendInformation = action.payload
         },
 
         sendCommentSuccess: (state) => {
             state.loading = false
-            state.commentSendInf = ''
+            state.commentSendInformation = ''
         },
 
         sendCommentFailure: (state, action) => {
             state.loading = false
-            state.commentSendInf = ''
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.commentSendInformation = ''
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         deleteCommentStart: (state, action) => {
             state.loading = true
-            state.commentDeletInf = action.payload
+            state.commentDeletInformation = action.payload
         },
 
         deleteCommentSuccess: (state) => {
             state.loading = false
-            state.commentDeletInf = {}
+            state.commentDeletInformation = {}
         },
 
         deleteCommentFailure: (state, action) => {
             state.loading = false
-            state.commentDeletInf = {}
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.commentDeletInformation = {}
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         changeCommentStart: (state, action) => {
             state.loading = true
-            state.commentChangeInf = action.payload
+            state.commentChangeInformation = action.payload
         },
         
         changeCommentSuccess: (state) => {
             state.loading = false
-            state.commentChangeInf = {}
+            state.commentChangeInformation = {}
         },
 
         changeCommentFailure: (state, action) => {
             state.loading = false
-            state.commentChangeInf = {}
-            state.errorInf.error = true
-            state.errorInf.errorText = action.payload
+            state.commentChangeInformation = {}
+            state.errorInformation.error = true
+            state.errorInformation.errorText = action.payload
         },
 
         removeError: (state) => {
-            state.errorInf = {
+            state.errorInformation = {
                 error: false,
                 errorText: ''
             }

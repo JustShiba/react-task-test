@@ -6,23 +6,24 @@ import { PostCard } from './PostCard/PostCard'
 
 export const PostsPage = ({ posts, nickname, authorization, currentUser }) => {
     const { loading } = useSelector(state => state.posts)
-    return(
+    
+    return (
         <PostsContainer>
-            {(!posts) ? 
-                <H2>No posts</H2> : 
+            {(!posts) ?
+                <H2>No posts</H2> :
                 <>
                     <H2>{nickname || 'Noname'} posts</H2>
-                    {posts.map(post => (<PostCard 
-                                            key={post.postId} 
-                                            informationPost={post} 
-                                            nameUser={nickname} 
-                                            loading={loading} 
-                                            authorization={!authorization}
-                                            currentUser={currentUser}
-                                        />))}
+                    {posts.map(post => (<PostCard
+                        key={post.postId}
+                        informationPost={post}
+                        nameUser={nickname}
+                        loading={loading}
+                        authorization={!authorization}
+                        currentUser={currentUser}
+                    />))}
                 </>
             }
-            
+
         </PostsContainer>
     )
 }

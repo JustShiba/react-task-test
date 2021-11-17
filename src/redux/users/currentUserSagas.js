@@ -16,7 +16,7 @@ import { apiCall } from '../../services/service'
 
 
 export function* currentUser() {
-    const userPersonalId = yield select(state => state.authorization.personalInf.userId)
+    const userPersonalId = yield select(state => state.authorization.personalInformationUser.userId)
     const userCurrentId = yield select(state => state.users.currentUserId)
 
     if (userPersonalId === userCurrentId) {
@@ -47,9 +47,9 @@ export function* currentUser() {
 }
 
 export function* changeNickPhone() {
-    const id = yield select(state => state.authorization.personalInf.userId)
-    const nick = yield select(state => state.authorization.userInfInp.nickName)
-    const phone = yield select(state => state.authorization.userInfInp.phone)
+    const id = yield select(state => state.authorization.personalInformationUser.userId)
+    const nick = yield select(state => state.authorization.userInformationInput.nickName)
+    const phone = yield select(state => state.authorization.userInformationInput.phone)
     
     try {
         const response =  yield call(apiCall, [`patch`, `users/${id}`, {'nickname': nick, 'phone': phone}])
@@ -66,7 +66,7 @@ export function* changeNickPhone() {
 }
 
 export function* deleteUser() {
-    const id = yield select(state => state.authorization.personalInf.userId)
+    const id = yield select(state => state.authorization.personalInformationUser.userId)
     try {
         const response =  yield call(apiCall, [`delete`, `users/${id}`])
         

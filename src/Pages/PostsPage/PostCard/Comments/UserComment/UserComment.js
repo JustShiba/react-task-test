@@ -6,37 +6,37 @@ import { changeCommentStart, deleteCommentStart } from '../../../../../../src/re
 
 export const UserComment = ({ informationUserComment, postId, currentUser }) => {
     const { body, commentId, userId } = informationUserComment
-    const personalUserId = useSelector(state => state.authorization.personalInf.userId)
+    const personalUserId = useSelector(state => state.authorization.personalInformationUser.userId)
 
     const dispatch = useDispatch()
-    let [comment, setComment] = useState(body)
+    let [commentTextUser, setCommentTextUser] = useState(body)
     
     useEffect(() => {
-        setComment(body)
+        setCommentTextUser(body)
     }, [body])
 
-    const [changingComment, setChangingComment] = useState(false)
+    const [changeCommentText, setChangeCommentText] = useState(false)
 
     return (
         <UserCommentBox>
-            {changingComment ? 
+            {changeCommentText ? 
                 <ChangeCommentInp 
-                    value={comment} 
-                    onChange={(e) => setComment(comment = e.target.value)}
+                    value={commentTextUser} 
+                    onChange={(e) => setCommentTextUser(commentTextUser = e.target.value)}
                 /> :
-                <TextComment>{comment}</TextComment>
+                <TextComment>{commentTextUser}</TextComment>
             }
             {(userId === personalUserId) ?  
                 <ButBox>
-                    {changingComment ?  
+                    {changeCommentText ?  
                         <CangeCommentBtn 
                             onClick={() => {
                                 const config = currentUser 
-                                dispatch(changeCommentStart({ postId, commentId, comment, config }))
+                                dispatch(changeCommentStart({ postId, commentId, commentTextUser, config }))
                             }}
                         >Save</CangeCommentBtn> : 
                         <CangeCommentBtn 
-                            onClick={() => setChangingComment(!changingComment)}
+                            onClick={() => setChangeCommentText(!changeCommentText)}
                         >Change</CangeCommentBtn>
                     }
                     

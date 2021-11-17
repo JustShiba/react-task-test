@@ -18,12 +18,12 @@ import {
 
 export const SignUpPage = () => {
     const dispatch = useDispatch()
-    const { loading, sign } = useSelector(state => state.authorization)
+    const { loading, isSignUp } = useSelector(state => state.authorization)
 
-    const [ pass, setPass ] = useState('')
+    const [ password, setPassword ] = useState('')
     const [ email, setEmail ] = useState('')  
     useEffect(() => {
-        setPass('')
+        setPassword('')
         setEmail('')
     }, [])
 
@@ -31,7 +31,7 @@ export const SignUpPage = () => {
         <LogSignBox>
             {loading ?
                 <Loader /> :
-                !sign ?
+                !isSignUp ?
                     <>
                         <H2>Sign Up</H2>
                         <Title>Email:</Title>
@@ -44,15 +44,15 @@ export const SignUpPage = () => {
                         <Title>Password:</Title>
                         <LogInInp
                             type='password'
-                            value={pass}
+                            value={password}
                             onChange={(e) => {
-                                setPass(e.target.value)
+                                setPassword(e.target.value)
                             }}
                         />
                         <Paragraph>If you already have account, you can <Link to={'/login'}>Log in</Link></Paragraph>
                         <LogSignBtn onClick={(e) => {
                             e.preventDefault()
-                            dispatch(signUpStart({email, pass}))
+                            dispatch(signUpStart({email, password}))
                         }}>Sign Up</LogSignBtn>
                     </> :
                     <H2>Please, confirm registration on your mail</H2>

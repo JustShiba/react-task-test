@@ -8,22 +8,21 @@ import { Loader } from '../../../src/components/Loader/Loader'
 
 
 export const UsersPage = () => {
-    const state = useSelector(state => state.users)
-    
+    const stateUsers = useSelector(state => state.users)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(addUsersStart())
     }, [dispatch])
 
     return (
-            <UsersContainer>
-                <H2>All Users</H2>
-                {state.loading ? 
-                    <Loader/> : 
-                    state.users.map((item) => <UserCard key={item.userId} info={item}/>)
-                }
-            </UsersContainer>
+        <UsersContainer>
+            <H2>All Users</H2>
+            {stateUsers.loading ?
+                <Loader /> :
+                stateUsers.users.map((item) => <UserCard key={item.userId} informationPost={item} />)
+            }
+        </UsersContainer>
     )
 }
 

@@ -5,10 +5,10 @@ import styled from 'styled-components'
 import { selectUserId } from '../../../../src/redux/users/usersReducer'
 
 
-export const UserCard = ({ info }) => {
-    const personalUserId = useSelector(state => state.authorization.personalInf.userId)
+export const UserCard = ({ informationPost }) => {
+    const personalUserId = useSelector(state => state.authorization.personalInformationUser.userId)
 
-    const { email, nickname, phone, posts, userId } = info
+    const { email, nickname, phone, posts, userId } = informationPost
     
     const dispatch = useDispatch()
 

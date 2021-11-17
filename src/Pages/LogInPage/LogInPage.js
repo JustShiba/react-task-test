@@ -17,17 +17,17 @@ import {
 export const LogInPage = () => {
     const dispatch = useDispatch()
     const location = useLocation()
-    const { loading, auth } = useSelector(state => state.authorization)
-    
-    const [ pass, setPass ] = useState('')
-    const [ email, setEmail ] = useState('')  
+    const { loading, isAuthorized } = useSelector(state => state.authorization)
+
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
 
     useEffect(() => {
-        setPass('')
+        setPassword('')
         setEmail('')
-    }, [])  
-    
-    location.pathname = `${auth ? `profile` : location.pathname}`
+    }, [])
+
+    location.pathname = `${isAuthorized ? `profile` : location.pathname}`
 
     return (
         <LogSignBox>
@@ -45,14 +45,14 @@ export const LogInPage = () => {
                     <Title>Password:</Title>
                     <LogInInp
                         type='password'
-                        value={pass}
+                        value={password}
                         onChange={(e) => {
-                            setPass(e.target.value)
+                            setPassword(e.target.value)
                         }}
                     />
                     <Paragraph>If you have no account, you should <Link to={'/signup'}>Sign up</Link></Paragraph>
                     <LogSignBtn onClick={() => {
-                        dispatch(logInStart({email, pass}))
+                        dispatch(logInStart({ email, password }))
                     }}>Log In</LogSignBtn>
                 </>
             }
