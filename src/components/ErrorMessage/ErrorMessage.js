@@ -1,39 +1,23 @@
 
-import styled from 'styled-components'
+import { ToastContainer, toast } from 'react-toastify';
 
-export const ErrorMessage = ({ errorAuth, errorUser, errorPost }) => {
+import 'react-toastify/dist/ReactToastify.css';
+
+
+export const ErrorMessage = ({ errorText = 'Something go wrong' }) => {
+    const notify = (errorText) => toast.error(errorText, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark'
+    });
+    notify(errorText)
 
     return (
-        <ErrorWrapper>
-            <ErrorTitle>Error</ErrorTitle>
-            <ErrorBody>
-                {errorAuth ? 
-                errorAuth : errorUser ? 
-                errorUser : errorPost ? 
-                errorPost : 'something go wrong'}
-            </ErrorBody>
-        </ErrorWrapper>
-    )
+        <ToastContainer limit={1} />
+    );
 }
-
-const ErrorWrapper = styled.div`
-    width: 300px;
-    position: fixed;
-    top: 65px;
-    right: 15px;
-    background-color: brown;  
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-const ErrorTitle = styled.h3`
-    color: white;
-    margin-block-start: 0.5em;
-`
-
-const ErrorBody = styled.p`
-    color: white;
-    margin-block-start: 0;
-`

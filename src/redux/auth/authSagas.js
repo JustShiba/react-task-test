@@ -12,7 +12,6 @@ import { apiCall } from '../../services/service'
 import { USER__ID, USER__TOKEN } from '../variables/variables';
 
 
-
 export function* logInSaga() {
     const state = yield select(state => state.authorization.userInfInp)
     try {

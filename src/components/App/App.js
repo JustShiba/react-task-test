@@ -30,11 +30,7 @@ export function App() {
         <Router>
             <Header />
             {(errorAuth.error || errorUser.error || errorPost.error) &&
-                <ErrorMessage 
-                    errorAuth={errorAuth.errorText}
-                    errorUser={errorUser.errorText}
-                    errorPost={errorPost.errorText}
-                />
+                <ErrorMessage errorText={errorAuth.errorText || errorUser.errorText || errorPost.errorText} />
             }
             <PagesContainer>
                 <PagesWrapper>
