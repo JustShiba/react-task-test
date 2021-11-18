@@ -1,37 +1,28 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getDataCurrentUserStart } from '../../../../src/redux/users/usersReducer'
-import { Loader } from '../../../../src/components/Loader/Loader'
-import { PostsPage } from '../../PostsPage/PostsPage'
-import {
-    Box,
-    InpBox,
-    InpBox2,
-    Line,
-    ProfilePageContainer,
-    H2,
-    Phone,
-    Email
-} from '../styled'
-
+import { getDataCurrentUserStart } from '../../../../src/redux/users/usersReducer';
+import { Loader } from '../../../../src/components/Loader/Loader';
+import { PostsPage } from '../../PostsPage/PostsPage';
+import { Box, InpBox, InpBox2, Line, ProfilePageContainer, H2, Phone, Email } from '../styled';
 
 export const ProfileNonAuthUser = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getDataCurrentUserStart())
-    }, [dispatch])
+        dispatch(getDataCurrentUserStart());
+    }, [dispatch]);
 
-    const state = useSelector(state => state.users)
-    const loadingUsers = state.loading
-    const isOtherUser = state.isOtherUser
-    const { nickname, phone, email, posts } = state.currentUserInformation
+    const state = useSelector((state) => state.users);
+    const loadingUsers = state.loading;
+    const isOtherUser = state.isOtherUser;
+    const { nickname, phone, email, posts } = state.currentUserInformation;
 
     return (
         <ProfilePageContainer>
-            {loadingUsers ?
-                <Loader /> :
+            {loadingUsers ? (
+                <Loader />
+            ) : (
                 <>
                     <InpBox>
                         <H2>{nickname ? `Personal information: ${nickname}` : `Noname`}</H2>
@@ -43,17 +34,13 @@ export const ProfileNonAuthUser = () => {
                         </InpBox2>
                     </Box>
                 </>
-            }
+            )}
             <Line />
-            {loadingUsers ?
-                <Loader /> :
-                <PostsPage
-                    posts={posts}
-                    nickname={nickname}
-                    authorization={isOtherUser}
-                    currentUser={'nonAuthUser'}
-                />}
+            {loadingUsers ? (
+                <Loader />
+            ) : (
+                <PostsPage posts={posts} nickname={nickname} authorization={isOtherUser} currentUser={'nonAuthUser'} />
+            )}
         </ProfilePageContainer>
-    )
-}
-
+    );
+};

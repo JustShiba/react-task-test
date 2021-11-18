@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useFormik } from 'formik'
-import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import styled from 'styled-components';
 
-import { H2, Line } from '../../styled'
-import { validate } from './validateUser'
-import { Loader } from '../../../../components/Loader/Loader'
-import { setNickPhoneStart } from '../../../../redux/auth/authReducer'
+import { H2, Line } from '../../styled';
+import { validate } from './validateUser';
+import { Loader } from '../../../../components/Loader/Loader';
+import { setNickPhoneStart } from '../../../../redux/auth/authReducer';
 
 export const ChangeInf = ({ nickname, phone }) => {
-    const { loading } = useSelector(state => state.authorization.userInformationInput)
-    const dispatch = useDispatch()
+    const { loading } = useSelector((state) => state.authorization.userInformationInput);
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -17,15 +17,17 @@ export const ChangeInf = ({ nickname, phone }) => {
             phone,
         },
         validate,
-        onSubmit: values => {
-            dispatch(setNickPhoneStart(values))
+        onSubmit: (values) => {
+            dispatch(setNickPhoneStart(values));
         },
-    })
+    });
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <Line />
-            {loading ? <Loader /> :
+            {loading ? (
+                <Loader />
+            ) : (
                 <>
                     <H2>Add information</H2>
                     <Box>
@@ -53,31 +55,31 @@ export const ChangeInf = ({ nickname, phone }) => {
                     </Box>
 
                     <AddPostBtn type="submit">Submit</AddPostBtn>
-                </>}
+                </>
+            )}
         </form>
-    )
-}
-
+    );
+};
 
 const Err = styled.span`
     text-align: center;
     color: red;
     text-transform: uppercase;
     font-size: 10px;
-`
+`;
 
 const Box = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`
+`;
 
 const TitleSection = styled.label`
     text-align: center;
     color: white;
     font-size: 20px;
     margin-top: 15px;
-`
+`;
 
 const ChangeInp = styled.input`
     padding: 0 15px;
@@ -90,7 +92,7 @@ const ChangeInp = styled.input`
     background-color: white;
     margin-bottom: 20px;
     border-radius: 25px;
-`
+`;
 
 const AddPostBtn = styled.button`
     padding: 15px 30px;
@@ -100,13 +102,13 @@ const AddPostBtn = styled.button`
     margin: 10px auto;
     display: block;
     background-color: #4328b7;
-    color: white;   
+    color: white;
     border: none;
     transition: 300ms;
     cursor: pointer;
     text-transform: uppercase;
-    
+
     &:hover {
-        background-color: #1b1f50
-}
-`
+        background-color: #1b1f50;
+    }
+`;

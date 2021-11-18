@@ -1,58 +1,60 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
-import { sendCommentStart } from '../../../../../src/redux/posts/postsReducer'
-import { UserComment } from './UserComment/UserComment'
-
+import { sendCommentStart } from '../../../../../src/redux/posts/postsReducer';
+import { UserComment } from './UserComment/UserComment';
 
 export const Comments = ({ informationComments, postId, loading, currentUser }) => {
-    const dispatch = useDispatch()
-    let [ commentText, setCommentText ] = useState('')
+    const dispatch = useDispatch();
+    let [commentText, setCommentText] = useState('');
 
     return (
         <>
-            {loading ? 
-                null :
+            {loading ? null : (
                 <Cont>
                     <h2>Comments</h2>
                     <AddCommentBox>
-                        <AddCommentInp 
-                            value={commentText} 
-                            onChange={(e) => setCommentText(commentText = e.target.value)}
+                        <AddCommentInp
+                            value={commentText}
+                            onChange={(e) => setCommentText((commentText = e.target.value))}
                         />
-                        <SendCommentBtn 
+                        <SendCommentBtn
                             onClick={() => {
-                                const config = currentUser
-                                dispatch(sendCommentStart({commentText, postId, config}))
-                                setCommentText(commentText = '')
+                                const config = currentUser;
+                                dispatch(sendCommentStart({ commentText, postId, config }));
+                                setCommentText((commentText = ''));
                             }}
-                        >Send</SendCommentBtn>
+                        >
+                            Send
+                        </SendCommentBtn>
                     </AddCommentBox>
                     <UsersComments>
-                        {informationComments[0] ?
-                            informationComments.map((commentText) => 
-                            <UserComment 
-                                informationUserComment={commentText} 
-                                postId={postId} 
-                                key={commentText.commentId} 
-                                currentUser={currentUser}
-                            />) : 
+                        {informationComments[0] ? (
+                            informationComments.map((commentText) => (
+                                <UserComment
+                                    informationUserComment={commentText}
+                                    postId={postId}
+                                    key={commentText.commentId}
+                                    currentUser={currentUser}
+                                />
+                            ))
+                        ) : (
                             <h2>There is no comments yet</h2>
-                        }
+                        )}
                     </UsersComments>
                 </Cont>
-            }
+            )}
         </>
-    )
-}
+    );
+};
 
-const UsersComments = styled.div``
+const UsersComments = styled.div``;
 
 const AddCommentBox = styled.div`
     display: flex;
     margin-bottom: 25px;
-`
+`;
 
 export const AddCommentInp = styled.input`
     width: 100%;
@@ -61,14 +63,14 @@ export const AddCommentInp = styled.input`
     color: white;
     background-color: inherit;
     border: 2px solid #4328b7;
-`
+`;
 
 const SendCommentBtn = styled.button`
     border-radius: 0;
     border: none;
     letter-spacing: 2px;
     font-size: 13px;
-    font-family: 'Titillium Web',Helvetica,Arial,Lucida,sans-serif!important;
+    font-family: 'Titillium Web', Helvetica, Arial, Lucida, sans-serif !important;
     font-weight: 700;
     text-transform: uppercase;
     background-color: #4328b7;
@@ -76,11 +78,11 @@ const SendCommentBtn = styled.button`
     transition: 200ms;
     color: white;
     cursor: pointer;
-    
+
     &:hover {
         background-color: #1b1f50;
     }
-`
+`;
 
 const Cont = styled.div`
     color: white;
@@ -90,4 +92,4 @@ const Cont = styled.div`
     border-top: none;
     border-right: none;
     border-radius: 0 0 0 10px;
-`
+`;

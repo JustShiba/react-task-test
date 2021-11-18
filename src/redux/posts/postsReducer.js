@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
-
+import { createSlice } from '@reduxjs/toolkit';
 
 export const postsReducer = createSlice({
     name: 'postsReducer',
@@ -7,7 +6,7 @@ export const postsReducer = createSlice({
         postCreateInput: {
             title: '',
             body: '',
-            loading: false
+            loading: false,
         },
         allPosts: [],
         selectedIdPost: '',
@@ -18,154 +17,154 @@ export const postsReducer = createSlice({
         loading: false,
         errorInformation: {
             error: false,
-            errorText: ''
-        }
+            errorText: '',
+        },
     },
     reducers: {
         createPostStart: (state, action) => {
-            state.postCreateInput.loading = true
-            state.postCreateInput.title = action.payload.title
-            state.postCreateInput.body = action.payload.body
+            state.postCreateInput.loading = true;
+            state.postCreateInput.title = action.payload.title;
+            state.postCreateInput.body = action.payload.body;
         },
 
         createPostSuccess: (state) => {
-            state.postCreateInput.loading = false
-            state.postCreateInput.title = ''
-            state.postCreateInput.body = ''
+            state.postCreateInput.loading = false;
+            state.postCreateInput.title = '';
+            state.postCreateInput.body = '';
         },
 
         createPostFailure: (state, action) => {
-            state.postCreateInput.loading = false
-            state.postCreateInput.title = ''
-            state.postCreateInput.body = ''
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.postCreateInput.loading = false;
+            state.postCreateInput.title = '';
+            state.postCreateInput.body = '';
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         getAllPostsStart: (state) => {
-            state.loading = true
+            state.loading = true;
         },
 
         getAllPostsSuccess: (state, action) => {
-            state.loading = false
-            state.allPosts = action.payload
+            state.loading = false;
+            state.allPosts = action.payload;
         },
 
         getAllPosts__FAILRE: (state, action) => {
-            state.loading = false
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         getCurrentUserPostsStart: (state) => {
-            state.loading = true
+            state.loading = true;
         },
-        
+
         getCurrentUserPostsSuccess: (state) => {
-            state.loading = false
+            state.loading = false;
         },
-        
+
         getCurrentUserPostsFailure: (state, action) => {
-            state.loading = false
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         deletePostStart: (state, action) => {
-            state.loading = true
-            state.selectedIdPost = action.payload
+            state.loading = true;
+            state.selectedIdPost = action.payload;
         },
 
         deletePostSuccess: (state) => {
-            state.loading = false
-            state.selectedIdPost = ''
+            state.loading = false;
+            state.selectedIdPost = '';
         },
 
         deletePostFailure: (state, action) => {
-            state.loading = false
-            state.selectedIdPost = ''
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.selectedIdPost = '';
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         changePostInfStart: (state, action) => {
-            state.loading = true
-            state.postChangeInformation = action.payload
+            state.loading = true;
+            state.postChangeInformation = action.payload;
         },
 
         changePostInfSuccess: (state) => {
-            state.loading = false
-            state.postChangeInformation = {}
+            state.loading = false;
+            state.postChangeInformation = {};
         },
 
         changePostInfFailure: (state, action) => {
-            state.loading = false
-            state.postChangeInformation = {}
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.postChangeInformation = {};
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         sendCommentStart: (state, action) => {
-            state.loading = true
-            state.commentSendInformation = action.payload
+            state.loading = true;
+            state.commentSendInformation = action.payload;
         },
 
         sendCommentSuccess: (state) => {
-            state.loading = false
-            state.commentSendInformation = ''
+            state.loading = false;
+            state.commentSendInformation = '';
         },
 
         sendCommentFailure: (state, action) => {
-            state.loading = false
-            state.commentSendInformation = ''
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.commentSendInformation = '';
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         deleteCommentStart: (state, action) => {
-            state.loading = true
-            state.commentDeletInformation = action.payload
+            state.loading = true;
+            state.commentDeletInformation = action.payload;
         },
 
         deleteCommentSuccess: (state) => {
-            state.loading = false
-            state.commentDeletInformation = {}
+            state.loading = false;
+            state.commentDeletInformation = {};
         },
 
         deleteCommentFailure: (state, action) => {
-            state.loading = false
-            state.commentDeletInformation = {}
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.commentDeletInformation = {};
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         changeCommentStart: (state, action) => {
-            state.loading = true
-            state.commentChangeInformation = action.payload
+            state.loading = true;
+            state.commentChangeInformation = action.payload;
         },
-        
+
         changeCommentSuccess: (state) => {
-            state.loading = false
-            state.commentChangeInformation = {}
+            state.loading = false;
+            state.commentChangeInformation = {};
         },
 
         changeCommentFailure: (state, action) => {
-            state.loading = false
-            state.commentChangeInformation = {}
-            state.errorInformation.error = true
-            state.errorInformation.errorText = action.payload
+            state.loading = false;
+            state.commentChangeInformation = {};
+            state.errorInformation.error = true;
+            state.errorInformation.errorText = action.payload;
         },
 
         removeError: (state) => {
             state.errorInformation = {
                 error: false,
-                errorText: ''
-            }
-        }
-    }
-})
+                errorText: '',
+            };
+        },
+    },
+});
 
-export const { 
+export const {
     createPostStart,
     createPostSuccess,
     createPostFailure,
@@ -190,5 +189,5 @@ export const {
     changeCommentStart,
     changeCommentSuccess,
     changeCommentFailure,
-    removeError
-} = postsReducer.actions
+    removeError,
+} = postsReducer.actions;

@@ -1,41 +1,31 @@
-import { takeEvery, all } from 'redux-saga/effects'
+import { takeEvery, all } from 'redux-saga/effects';
 
-import { addUsersStart, getDataCurrentUserStart } from '../users/usersReducer'
-import { loadUsers } from '../users/usersSagas'
-import { checkLogIn, logInSaga, signUpSaga } from '../auth/authSagas'
-import { checkLogInStart, getDataCurrentPersonStart } from '../auth/authReducer'
-import { 
-    deleteUserStart,
-    logInStart, 
-    setNickPhoneStart, 
-    signUpStart 
-} from '../auth/authReducer'
-import { 
-    changeNickPhone, 
-    currentUser, 
-    deleteUser,
-} from '../users/currentUserSagas'
-import { 
+import { addUsersStart, getDataCurrentUserStart } from '../users/usersReducer';
+import { loadUsers } from '../users/usersSagas';
+import { checkLogIn, logInSaga, signUpSaga } from '../auth/authSagas';
+import { checkLogInStart, getDataCurrentPersonStart } from '../auth/authReducer';
+import { deleteUserStart, logInStart, setNickPhoneStart, signUpStart } from '../auth/authReducer';
+import { changeNickPhone, currentUser, deleteUser } from '../users/currentUserSagas';
+import {
     changeCommentStart,
     changePostInfStart,
-    createPostStart, 
-    deleteCommentStart, 
-    deletePostStart, 
-    getAllPostsStart, 
-    getCurrentUserPostsStart, 
-    sendCommentStart
-} from '../posts/postsReducer'
-import { 
+    createPostStart,
+    deleteCommentStart,
+    deletePostStart,
+    getAllPostsStart,
+    getCurrentUserPostsStart,
+    sendCommentStart,
+} from '../posts/postsReducer';
+import {
     changeComment,
-    changePostInf, 
-    createPost, 
-    deleteComment, 
-    deletePost, 
-    getAllPosts, 
-    getCurrentUserPosts, 
-    sendComment
-} from '../posts/postsSagas'
-
+    changePostInf,
+    createPost,
+    deleteComment,
+    deletePost,
+    getAllPosts,
+    getCurrentUserPosts,
+    sendComment,
+} from '../posts/postsSagas';
 
 export default function* allSagas() {
     yield all([
@@ -55,5 +45,5 @@ export default function* allSagas() {
         yield takeEvery(sendCommentStart, sendComment),
         yield takeEvery(changeCommentStart, changeComment),
         yield takeEvery(deleteCommentStart, deleteComment),
-    ])
+    ]);
 }

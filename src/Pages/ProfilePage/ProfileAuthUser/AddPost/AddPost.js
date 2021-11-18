@@ -1,16 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { createPostStart } from '../../../../../src/redux/posts/postsReducer'
-import { validate } from './validatePost'
-import { Btn } from '../../styled'
-import { Loader } from '../../../../../src/components/Loader/Loader'
-
+import { createPostStart } from '../../../../../src/redux/posts/postsReducer';
+import { validate } from './validatePost';
+import { Btn } from '../../styled';
+import { Loader } from '../../../../../src/components/Loader/Loader';
 
 export const AddPost = () => {
-    const dispatch = useDispatch()
-    const { title, body, loading } = useSelector(state => state.posts.postCreateInput)
+    const dispatch = useDispatch();
+    const { title, body, loading } = useSelector((state) => state.posts.postCreateInput);
 
     const formik = useFormik({
         initialValues: {
@@ -18,15 +17,17 @@ export const AddPost = () => {
             body,
         },
         validate,
-        onSubmit: values => {
-            dispatch(createPostStart(values))
+        onSubmit: (values) => {
+            dispatch(createPostStart(values));
             formik.resetForm();
         },
-    })
+    });
 
     return (
         <form onSubmit={formik.handleSubmit}>
-            {loading ? <Loader /> :
+            {loading ? (
+                <Loader />
+            ) : (
                 <>
                     <H2>Create post</H2>
                     <Box>
@@ -54,35 +55,36 @@ export const AddPost = () => {
                     </Box>
 
                     <AddPostBtn type="submit">Submit</AddPostBtn>
-                </>}
+                </>
+            )}
         </form>
     );
-}
+};
 
 const Err = styled.span`
     text-align: center;
     color: red;
     text-transform: uppercase;
     font-size: 10px;
-`
+`;
 
 const Box = styled.div`
     display: flex;
     flex-direction: column;
-`
+`;
 
 const TitleSection = styled.label`
     text-align: center;
     color: white;
     font-size: 20px;
     margin-top: 15px;
-`
+`;
 
 const H2 = styled.h2`
     color: white;
     padding-bottom: 15px;
     font-size: 30px;
-`
+`;
 
 const AddPostTitleInp = styled.input`
     font: 25px system-ui;
@@ -91,14 +93,14 @@ const AddPostTitleInp = styled.input`
     background-color: inherit;
     margin-bottom: 10px;
     margin-bottom: 0;
-`
+`;
 
 const AddPostInp = styled.textarea`
     font: 18px system-ui;
     font-weight: 400;
     color: white;
     background-color: inherit;
-`
+`;
 
 const AddPostBtn = styled(Btn)`
     padding: 15px 30px;
@@ -107,4 +109,4 @@ const AddPostBtn = styled(Btn)`
     font-weight: 700;
     margin: 10px auto;
     display: block;
-`
+`;

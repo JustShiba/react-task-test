@@ -1,18 +1,15 @@
-import axios from 'axios'
+import axios from 'axios';
 
 import { USER__TOKEN } from '../redux/variables/variables';
 
-
-export const apiCall = ([ method, path, inf, token = false ]) => {
+export const apiCall = ([method, path, inf, token = false]) => {
     const config = {
-        'headers': {
-            'Authorization': `Bearer ${token ? token : localStorage.getItem(USER__TOKEN)}`
-        }
-    }
+        headers: {
+            Authorization: `Bearer ${token ? token : localStorage.getItem(USER__TOKEN)}`,
+        },
+    };
     if (inf) {
-        return axios[method](`http://178.124.178.6:3000/${path}`, inf, config)
-                    
+        return axios[method](`http://178.124.178.6:3000/${path}`, inf, config);
     }
-    return axios[method](`http://178.124.178.6:3000/${path}`, config)
-                
-}
+    return axios[method](`http://178.124.178.6:3000/${path}`, config);
+};
