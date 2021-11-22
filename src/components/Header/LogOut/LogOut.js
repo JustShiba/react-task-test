@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 
-import { logOutReducer } from '../../../redux/auth/authReducer';
-import { LightBtn } from '../LogSign/LogSign';
-import { USER__ID, USER__TOKEN } from '../../../redux/constances/constances';
+import { logOutReducer } from 'redux/auth/authReducer';
+import { LightBtn } from 'components/Header/LogSign/LogSign';
+import { USER__ID, USER__TOKEN } from 'redux/constances/constances';
 
 export const LogOut = () => {
     const dispatch = useDispatch();

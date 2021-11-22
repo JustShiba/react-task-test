@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { sendCommentStart } from '../../../../../src/redux/posts/postsReducer';
+import { sendCommentStart } from 'redux/posts/postsReducer';
 import { UserComment } from './UserComment/UserComment';
 
 export const Comments = ({ informationComments, postId, loading, currentUser }) => {

@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Header } from '../Header/Header';
-import { LogInPage } from '../../pages/LogInPage/LogInPage';
-import { SignUpPage } from '../../pages/SignUpPage/SignUpPage';
-import { UsersPage } from '../../pages/UsersPage/UsersPage';
-import { ProfilePage } from '../../pages/ProfilePage/ProfilePage';
-import { AllPostsPage } from '../../pages/PostsPage/AllPostsPage';
-import { checkLogInStart } from '../../../src/redux/auth/authReducer';
-import { PrivateRoute } from './PrivateRoute';
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { Header } from 'components/Header/Header';
+import { LogInPage } from 'pages/LogInPage/LogInPage';
+import { SignUpPage } from 'pages/SignUpPage/SignUpPage';
+import { UsersPage } from 'pages/UsersPage/UsersPage';
+import { ProfilePage } from 'pages/ProfilePage/ProfilePage';
+import { AllPostsPage } from 'pages/PostsPage/AllPostsPage';
+import { checkLogInStart } from 'redux/auth/authReducer';
+import { PrivateRoute } from 'components/App/PrivateRoute';
+import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 
 export function App() {
     const { isAuthorized } = useSelector((state) => state.authorization);

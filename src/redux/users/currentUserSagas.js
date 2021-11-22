@@ -10,9 +10,9 @@ import {
     deleteUserFailure,
     clearPersInf,
     removeError,
-} from '../auth/authReducer';
+} from 'redux/auth/authReducer';
 import { getDataCurrentUserSuccess, currentUserIsNotAuth } from './usersReducer';
-import { apiCall } from '../../services/service';
+import { apiCall } from 'services/service';
 
 export function* currentUser() {
     const userPersonalId = yield select((state) => state.authorization.personalInformationUser.userId);

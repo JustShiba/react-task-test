@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Loader } from '../../../src/components/Loader/Loader';
-import { signUpStart } from '../../../src/redux/auth/authReducer';
-import { LogSignBox, LogInInp, Title, LogSignBtn, H2, Paragraph } from '../LogInPage/styled';
+import { Loader } from 'components/Loader/Loader';
+import { signUpStart } from 'redux/auth/authReducer';
+import { LogSignBox, LogInInp, Title, LogSignBtn, H2, Paragraph } from 'pages/LogInPage/styled';
 
 export const SignUpPage = () => {
     const dispatch = useDispatch();

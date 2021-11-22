@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { selectUserId } from '../../../../src/redux/users/usersReducer';
+import { selectUserId } from 'redux/users/usersReducer';
 
 export const UserCard = ({ informationPost }) => {
     const personalUserId = useSelector((state) => state.authorization.personalInformationUser.userId);

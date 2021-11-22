@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getDataCurrentUserStart } from '../../../../src/redux/users/usersReducer';
-import { Loader } from '../../../../src/components/Loader/Loader';
-import { PostsPage } from '../../PostsPage/PostsPage';
+import { getDataCurrentUserStart } from 'redux/users/usersReducer';
+import { Loader } from 'components/Loader/Loader';
+import { PostsPage } from 'pages/PostsPage/PostsPage';
 import { Box, InpBox, InpBox2, Line, ProfilePageContainer, H2, Phone, Email } from '../styled';
 
 export const ProfileNonAuthUser = () => {

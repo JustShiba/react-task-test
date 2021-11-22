@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 
-import { createPostStart } from '../../../../../src/redux/posts/postsReducer';
+import { createPostStart } from 'redux/posts/postsReducer';
 import { validate } from './validatePost';
-import { Btn } from '../../styled';
-import { Loader } from '../../../../../src/components/Loader/Loader';
+import { Btn } from 'pages/ProfilePage/styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const AddPost = () => {
     const dispatch = useDispatch();

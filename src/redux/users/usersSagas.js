@@ -1,7 +1,7 @@
 import { put, call, delay } from 'redux-saga/effects';
 
 import { addUsersSuccess, addUsersFailure, removeError } from './usersReducer';
-import { apiCall } from '../../services/service';
+import { apiCall } from 'services/service';
 
 export function* loadUsers() {
     try {

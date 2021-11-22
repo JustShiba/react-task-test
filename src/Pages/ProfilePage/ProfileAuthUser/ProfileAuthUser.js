@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteUserStart, getDataCurrentPersonStart } from '../../../../src/redux/auth/authReducer';
-import { Loader } from '../../../../src/components/Loader/Loader';
-import { PostsPage } from '../../PostsPage/PostsPage';
+import { deleteUserStart, getDataCurrentPersonStart } from 'redux/auth/authReducer';
+import { Loader } from 'components/Loader/Loader';
+import { PostsPage } from 'pages/PostsPage/PostsPage';
 import { AddPost } from './AddPost/AddPost';
-import { Box, DeleteBtn, Line, ProfilePageContainer, H2, Phone, Email, InpBox2, ChangeBtn, Marge } from '../styled';
-import { selectUserId } from '../../../../src/redux/users/usersReducer';
+import {
+    Box, DeleteBtn, Line, ProfilePageContainer, H2,
+    Phone, Email, InpBox2, ChangeBtn, Marge
+} from '../styled';
+import { selectUserId } from 'redux/users/usersReducer';
 import { ChangeInf } from './ChangeInf/ChangeInf';
 
 export const ProfileAuthUser = ({ user }) => {

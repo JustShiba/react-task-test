@@ -1,7 +1,7 @@
 import { call, put, select, delay } from '@redux-saga/core/effects';
 
-import { apiCall } from '../../services/service';
-import { getDataCurrentPersonStart, updateUserPosts } from '../auth/authReducer';
+import { apiCall } from 'services/service';
+import { getDataCurrentPersonStart, updateUserPosts } from 'redux/auth/authReducer';
 import {
     createPostSuccess,
     createPostFailure,
@@ -23,7 +23,7 @@ import {
     removeError,
     getAllPostsStart,
 } from './postsReducer';
-import { getDataCurrentUserStart } from '../users/usersReducer';
+import { getDataCurrentUserStart } from 'redux/users/usersReducer';
 
 export function* changePostInf() {
     const { titlePost, bodyPost, postId } = yield select((state) => state.posts.postChangeInformation);

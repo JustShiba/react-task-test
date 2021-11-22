@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { UserCard } from './UserCard/UserCard';
-import { addUsersStart } from '../../../src/redux/users/usersReducer';
-import { Loader } from '../../../src/components/Loader/Loader';
+import { addUsersStart } from 'redux/users/usersReducer';
+import { Loader } from 'components/Loader/Loader';
 
 export const UsersPage = () => {
     const stateUsers = useSelector((state) => state.users);

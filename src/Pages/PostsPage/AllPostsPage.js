@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { getAllPostsStart } from '../../../src/redux/posts/postsReducer';
-import { addUsersStart } from '../../../src/redux/users/usersReducer';
-import { Loader } from '../../../src/components/Loader/Loader';
+import { getAllPostsStart } from 'redux/posts/postsReducer';
+import { addUsersStart } from 'redux/users/usersReducer';
+import { Loader } from 'components/Loader/Loader';
 import { PostCard } from './PostCard/PostCard';
 
 export const AllPostsPage = () => {

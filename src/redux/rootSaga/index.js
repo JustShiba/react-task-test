@@ -1,11 +1,11 @@
 import { takeEvery, all } from 'redux-saga/effects';
 
-import { addUsersStart, getDataCurrentUserStart } from '../users/usersReducer';
-import { loadUsers } from '../users/usersSagas';
-import { checkLogIn, logInSaga, signUpSaga } from '../auth/authSagas';
-import { checkLogInStart, getDataCurrentPersonStart } from '../auth/authReducer';
-import { deleteUserStart, logInStart, setNickPhoneStart, signUpStart } from '../auth/authReducer';
-import { changeNickPhone, currentUser, deleteUser } from '../users/currentUserSagas';
+import { addUsersStart, getDataCurrentUserStart } from 'redux/users/usersReducer';
+import { loadUsers } from 'redux/users/usersSagas';
+import { checkLogIn, logInSaga, signUpSaga } from 'redux/auth/authSagas';
+import { checkLogInStart, getDataCurrentPersonStart } from 'redux/auth/authReducer';
+import { deleteUserStart, logInStart, setNickPhoneStart, signUpStart } from 'redux/auth/authReducer';
+import { changeNickPhone, currentUser, deleteUser } from 'redux/users/currentUserSagas';
 import {
     changeCommentStart,
     changePostInfStart,
@@ -15,7 +15,7 @@ import {
     getAllPostsStart,
     getCurrentUserPostsStart,
     sendCommentStart,
-} from '../posts/postsReducer';
+} from 'redux/posts/postsReducer';
 import {
     changeComment,
     changePostInf,
@@ -25,7 +25,7 @@ import {
     getAllPosts,
     getCurrentUserPosts,
     sendComment,
-} from '../posts/postsSagas';
+} from 'redux/posts/postsSagas';
 
 export default function* allSagas() {
     yield all([

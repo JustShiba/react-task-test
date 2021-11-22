@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { LightBtn } from '../LogSign/LogSign';
+import { LightBtn } from 'components/Header/LogSign/LogSign';
 
 export const Profile = () => {
     return (

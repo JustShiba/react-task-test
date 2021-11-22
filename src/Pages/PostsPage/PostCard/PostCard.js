@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { changePostInfStart, deletePostStart } from '../../../../src/redux/posts/postsReducer';
-import { Loader } from '../../../../src/components/Loader/Loader';
+import { changePostInfStart, deletePostStart } from 'redux/posts/postsReducer';
+import { Loader } from 'components/Loader/Loader';
 import { Comments } from './Comments/Comments';
 
 export const PostCard = ({ informationPost, nameUser, loading, authorization, currentUser }) => {

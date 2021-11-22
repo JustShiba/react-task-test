@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router';
 
-import { USER__ID } from '../../redux/constances/constances';
+import { USER__ID } from 'redux/constances/constances';
 import { ProfileAuthUser } from './ProfileAuthUser/ProfileAuthUser';
 import { ProfileNonAuthUser } from './ProfileNonAuthUser/ProfileNonAuthUser';
 

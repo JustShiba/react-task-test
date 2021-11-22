@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 
-import { H2, Line } from '../../styled';
+import { H2, Line } from 'pages/ProfilePage/styled';
 import { validate } from './validateUser';
-import { Loader } from '../../../../components/Loader/Loader';
-import { setNickPhoneStart } from '../../../../redux/auth/authReducer';
+import { Loader } from 'components/Loader/Loader';
+import { setNickPhoneStart } from 'redux/auth/authReducer';
 
 export const ChangeInf = ({ nickname, phone }) => {
     const { loading } = useSelector((state) => state.authorization.userInformationInput);

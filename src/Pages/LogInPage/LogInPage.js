@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
-import { Loader } from '../../../src/components/Loader/Loader';
-import { logInStart } from '../../../src/redux/auth/authReducer';
+import { Loader } from 'components/Loader/Loader';
+import { logInStart } from 'redux/auth/authReducer';
 import { LogSignBox, LogInInp, Title, LogSignBtn, H2, Paragraph } from './styled';
 
 export const LogInPage = () => {

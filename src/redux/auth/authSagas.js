@@ -8,8 +8,8 @@ import {
     signUpSuccess,
     removeError,
 } from './authReducer';
-import { apiCall } from '../../services/service';
-import { USER__ID, USER__TOKEN } from '../constances/constances';
+import { apiCall } from 'services/service';
+import { USER__ID, USER__TOKEN } from 'redux/constances/constances';
 
 export function* logInSaga() {
     const state = yield select((state) => state.authorization.userInformationInput);
