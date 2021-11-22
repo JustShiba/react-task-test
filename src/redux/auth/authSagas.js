@@ -9,7 +9,7 @@ import {
     removeError,
 } from './authReducer';
 import { apiCall } from '../../services/service';
-import { USER__ID, USER__TOKEN } from '../variables/variables';
+import { USER__ID, USER__TOKEN } from '../constances/constances';
 
 export function* logInSaga() {
     const state = yield select((state) => state.authorization.userInformationInput);

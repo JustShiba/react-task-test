@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { USER__TOKEN } from '../redux/variables/variables';
+import { USER__TOKEN } from '../redux/constances/constances';
 
 export const apiCall = ([method, path, inf, token = false]) => {
     const config = {
